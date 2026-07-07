@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>TV Deportes App</title>
     <style>
-        /* Estilos generales (Modo Oscuro) */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -22,19 +21,27 @@
             overflow: hidden;
         }
 
-        /* Contenedor principal */
         .app-container {
             display: flex;
             height: 100%;
             width: 100%;
         }
 
-        /* Zona del reproductor (Izquierda) */
         .player-section {
             flex: 1;
             display: flex;
             background-color: #000;
             position: relative;
+        }
+
+        /* Clases para la Pantalla Completa Web (Solución definitiva para iPhone/Android) */
+        .player-section.web-fullscreen {
+            position: fixed !important;
+            top: 0;
+            left: 0;
+            width: 100vw !important;
+            height: 100vh !important;
+            z-index: 99999 !important;
         }
 
         iframe {
@@ -43,7 +50,28 @@
             border: none;
         }
 
-        /* Zona de la lista de canales (Derecha) */
+        /* Botón personalizado de pantalla completa */
+        .fullscreen-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: rgba(56, 189, 248, 0.9);
+            color: #fff;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.9rem;
+            z-index: 100000;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.4);
+            transition: background-color 0.2s;
+        }
+
+        .fullscreen-btn:hover {
+            background-color: #38bdf8;
+        }
+
         .playlist-section {
             width: 320px;
             background-color: #1e293b;
@@ -72,7 +100,6 @@
             flex: 1;
         }
 
-        /* Diseño de cada canal en la lista */
         .channel-item {
             display: flex;
             align-items: center;
@@ -116,20 +143,36 @@
             align-self: flex-start;
         }
 
-        /* Adaptabilidad para teléfonos móviles (Diseño tipo App) */
+        /* DISEÑO OPTIMIZADO PARA MÓVILES */
         @media (max-width: 768px) {
+            body {
+                overflow: auto;
+                height: auto;
+            }
             .app-container {
                 flex-direction: column;
+                height: auto;
             }
             .player-section {
-                height: 35vh; /* El video ocupa la parte superior */
-                flex: none;
+                height: 35vh; 
+                position: sticky;
+                top: 0;
+                z-index: 1000;
             }
             .playlist-section {
                 width: 100%;
-                height: 65vh; /* La lista ocupa el resto */
+                height: auto;
                 border-left: none;
                 border-top: 1px solid #334155;
+            }
+            .channel-list {
+                overflow-y: visible;
+            }
+            .fullscreen-btn {
+                top: 10px;
+                right: 10px;
+                padding: 6px 10px;
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -138,8 +181,12 @@
 
     <div class="app-container">
         <!-- Reproductor -->
-        <main class="player-section">
-            <iframe id="videoPlayer" src="" allowfullscreen allow="autoplay; fullscreen"></iframe>
+        <main class="player-section" id="playerSection">
+            <!-- Botón flotante para forzar Pantalla Completa Web -->
+            <button class="fullscreen-btn" id="fullscreenBtn" onclick="toggleFullscreen()">Pantalla Completa</button>
+            
+            <!-- iframe con atributo sandbox añadido para bloquear pop-ups de publicidad -->
+            <iframe id="videoPlayer" src="" allowfullscreen allow="autoplay; fullscreen; encrypted-media; picture-in-picture" sandbox="allow-scripts allow-same-origin"></iframe>
         </main>
 
         <!-- Lista de canales -->
@@ -148,13 +195,12 @@
                 <h2>TV en Vivo</h2>
             </div>
             <ul class="channel-list" id="channelList">
-                <!-- Los canales se insertan aquí con JavaScript -->
+                <!-- Los canales se inyectan dinámicamente -->
             </ul>
         </aside>
     </div>
 
     <script>
-        // Datos de los canales
         const canales = [
             { nombre: "DSPORTS", url: "https://latamvidzfy.org/dsportsar.php", logo: "https://acortar.link/XhOT8x", categoria: "Deportes" },
             { nombre: "DSPORTS 2", url: "https://latamvidzfy.org/dsports2.php", logo: "https://acortar.link/17c3fN", categoria: "Deportes" },
@@ -165,8 +211,9 @@
 
         const channelListContainer = document.getElementById('channelList');
         const videoPlayer = document.getElementById('videoPlayer');
+        const playerSection = document.getElementById('playerSection');
+        const fullscreenBtn = document.getElementById('fullscreenBtn');
 
-        // Función para cargar los canales en el HTML
         function inicializarApp() {
             canales.forEach((canal, index) => {
                 const li = document.createElement('li');
@@ -180,30 +227,37 @@
                     </div>
                 `;
 
-                // Evento al hacer clic en un canal
                 li.onclick = () => {
                     reproducirCanal(canal.url);
-                    
-                    // Actualizar estilos para marcar el canal activo
                     document.querySelectorAll('.channel-item').forEach(item => item.classList.remove('active'));
                     li.classList.add('active');
+                    
+                    if(window.innerWidth <= 768) {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
                 };
 
                 channelListContainer.appendChild(li);
 
-                // Auto-reproducir el primer canal al abrir la app
                 if (index === 0) {
                     li.click();
                 }
             });
         }
 
-        // Función para cambiar el iframe
         function reproducirCanal(url) {
             videoPlayer.src = url;
         }
 
-        // Iniciar la aplicación cuando cargue la ventana
+        function toggleFullscreen() {
+            playerSection.classList.toggle('web-fullscreen');
+            if (playerSection.classList.contains('web-fullscreen')) {
+                fullscreenBtn.textContent = 'Ver Canales';
+            } else {
+                fullscreenBtn.textContent = 'Pantalla Completa';
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', inicializarApp);
     </script>
 
