@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>TV Deportes App</title>
+    <style>
+        /* Estilos generales (Modo Oscuro) */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Contenedor principal */
+        .app-container {
+            display: flex;
+            height: 100%;
+            width: 100%;
+        }
+
+        /* Zona del reproductor (Izquierda) */
+        .player-section {
+            flex: 1;
+            display: flex;
+            background-color: #000;
+            position: relative;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Zona de la lista de canales (Derecha) */
+        .playlist-section {
+            width: 320px;
+            background-color: #1e293b;
+            display: flex;
+            flex-direction: column;
+            border-left: 1px solid #334155;
+        }
+
+        .playlist-header {
+            padding: 20px;
+            background-color: #0f172a;
+            border-bottom: 1px solid #334155;
+            text-align: center;
+        }
+
+        .playlist-header h2 {
+            font-size: 1.2rem;
+            color: #38bdf8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .channel-list {
+            list-style: none;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        /* Diseño de cada canal en la lista */
+        .channel-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            border-bottom: 1px solid #334155;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .channel-item:hover, .channel-item.active {
+            background-color: #334155;
+        }
+
+        .channel-item img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: contain;
+            background-color: #fff;
+            margin-right: 15px;
+            padding: 2px;
+        }
+
+        .channel-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .channel-name {
+            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+
+        .channel-category {
+            font-size: 0.8rem;
+            color: #94a3b8;
+            background-color: #0f172a;
+            padding: 2px 8px;
+            border-radius: 12px;
+            align-self: flex-start;
+        }
+
+        /* Adaptabilidad para teléfonos móviles (Diseño tipo App) */
+        @media (max-width: 768px) {
+            .app-container {
+                flex-direction: column;
+            }
+            .player-section {
+                height: 35vh; /* El video ocupa la parte superior */
+                flex: none;
+            }
+            .playlist-section {
+                width: 100%;
+                height: 65vh; /* La lista ocupa el resto */
+                border-left: none;
+                border-top: 1px solid #334155;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- Reproductor -->
+        <main class="player-section">
+            <iframe id="videoPlayer" src="" allowfullscreen allow="autoplay; fullscreen"></iframe>
+        </main>
+
+        <!-- Lista de canales -->
+        <aside class="playlist-section">
+            <div class="playlist-header">
+                <h2>TV en Vivo</h2>
+            </div>
+            <ul class="channel-list" id="channelList">
+                <!-- Los canales se insertan aquí con JavaScript -->
+            </ul>
+        </aside>
+    </div>
+
+    <script>
+        // Datos de los canales
+        const canales = [
+            { nombre: "DSPORTS", url: "https://latamvidzfy.org/dsportsar.php", logo: "https://acortar.link/XhOT8x", categoria: "Deportes" },
+            { nombre: "DSPORTS 2", url: "https://latamvidzfy.org/dsports2.php", logo: "https://acortar.link/17c3fN", categoria: "Deportes" },
+            { nombre: "TyC Sports", url: "https://tvtvhd.com/online/canales.php?stream=tycsports", logo: "https://acortar.link/nXlqlE", categoria: "Deportes" },
+            { nombre: "TELEMUNDO", url: "https://tvtvhd.com/online/canales.php?stream=telemundo", logo: "https://acortar.link/h4NUay", categoria: "Deportes" },
+            { nombre: "ESPN", url: "https://tvtvhd.com/canales.php?stream=disney2", logo: "https://acortar.link/hUJQo4", categoria: "Deportes" }
+        ];
+
+        const channelListContainer = document.getElementById('channelList');
+        const videoPlayer = document.getElementById('videoPlayer');
+
+        // Función para cargar los canales en el HTML
+        function inicializarApp() {
+            canales.forEach((canal, index) => {
+                const li = document.createElement('li');
+                li.className = 'channel-item';
+                
+                li.innerHTML = `
+                    <img src="${canal.logo}" alt="${canal.nombre}" onerror="this.src='https://via.placeholder.com/45?text=TV'">
+                    <div class="channel-info">
+                        <span class="channel-name">${canal.nombre}</span>
+                        <span class="channel-category">${canal.categoria}</span>
+                    </div>
+                `;
+
+                // Evento al hacer clic en un canal
+                li.onclick = () => {
+                    reproducirCanal(canal.url);
+                    
+                    // Actualizar estilos para marcar el canal activo
+                    document.querySelectorAll('.channel-item').forEach(item => item.classList.remove('active'));
+                    li.classList.add('active');
+                };
+
+                channelListContainer.appendChild(li);
+
+                // Auto-reproducir el primer canal al abrir la app
+                if (index === 0) {
+                    li.click();
+                }
+            });
+        }
+
+        // Función para cambiar el iframe
+        function reproducirCanal(url) {
+            videoPlayer.src = url;
+        }
+
+        // Iniciar la aplicación cuando cargue la ventana
+        document.addEventListener('DOMContentLoaded', inicializarApp);
+    </script>
+
+</body>
+</html>
