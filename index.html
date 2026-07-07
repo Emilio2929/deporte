@@ -211,19 +211,23 @@
 
     <div class="app-container">
         
+        <!-- Zona de Video -->
         <div class="player-wrapper" id="playerWrapper">
             <div class="controls">
                 <button class="btn-full" id="btnFull" onclick="toggleFullscreen()">Expandir ⛶</button>
             </div>
+            <!-- iframe SIN sandbox para que carguen los reproductores -->
             <iframe id="videoPlayer" src="" allowfullscreen allow="autoplay; fullscreen; encrypted-media; picture-in-picture"></iframe>
         </div>
 
+        <!-- Zona de Lista -->
         <div class="playlist">
             <div class="playlist-header">
                 TV <span>DEPORTES</span>
             </div>
             <ul class="channels" id="channelList">
-                </ul>
+                <!-- Javascript inyecta los canales aquí -->
+            </ul>
         </div>
 
     </div>
@@ -247,8 +251,10 @@
                 const li = document.createElement('li');
                 li.className = 'channel-card';
                 
+                // Si la imagen falla en cargar (onerror), la reemplaza por un div circular con el emoji 📺
                 li.innerHTML = `
-                    <img src="${canal.logo}" class="channel-logo" alt="${canal.nombre}" onerror="this.src='https://via.placeholder.com/52?text=TV'">
+                    <img src="${canal.logo}" class="channel-logo" alt="${canal.nombre}" 
+                         onerror="this.outerHTML='<div class=&quot;channel-logo&quot; style=&quot;display:flex; align-items:center; justify-content:center; font-size:26px; padding:0;&quot;>📺</div>'">
                     <div class="channel-info">
                         <span class="channel-name">${canal.nombre}</span>
                         <span class="channel-cat">${canal.categoria}</span>
