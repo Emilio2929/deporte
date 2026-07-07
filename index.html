@@ -5,37 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>TV Deportes App</title>
     <style>
+        /* Reset y configuración base */
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent; /* Quita el cuadro azul al tocar en móviles */
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #0f172a;
-            color: #f8fafc;
-            height: 100vh;
+            background-color: #0b0f19;
+            color: #f1f5f9;
             display: flex;
             flex-direction: column;
+            height: 100vh;
             overflow: hidden;
         }
 
         .app-container {
             display: flex;
+            flex-direction: row;
             height: 100%;
             width: 100%;
         }
 
-        .player-section {
+        /* --- ZONA DEL REPRODUCTOR --- */
+        .player-wrapper {
             flex: 1;
-            display: flex;
             background-color: #000;
             position: relative;
+            display: flex;
+            flex-direction: column;
         }
 
-        /* Clases para la Pantalla Completa Web (Solución definitiva para iPhone/Android) */
-        .player-section.web-fullscreen {
+        /* Modo Pantalla Completa Web */
+        .player-wrapper.fullscreen {
             position: fixed !important;
             top: 0;
             left: 0;
@@ -48,79 +53,104 @@
             width: 100%;
             height: 100%;
             border: none;
+            flex-grow: 1;
         }
 
-        /* Botón personalizado de pantalla completa */
-        .fullscreen-btn {
+        /* Botón de Pantalla Completa Flotante */
+        .controls {
             position: absolute;
-            top: 15px;
-            right: 15px;
-            background-color: rgba(56, 189, 248, 0.9);
-            color: #fff;
-            border: none;
-            padding: 8px 14px;
-            border-radius: 6px;
-            cursor: pointer;
+            top: 12px;
+            right: 12px;
+            z-index: 100;
+        }
+
+        .btn-full {
+            background: rgba(11, 15, 25, 0.75);
+            color: #0ea5e9;
+            border: 1px solid #0ea5e9;
+            padding: 8px 16px;
+            border-radius: 20px;
             font-weight: bold;
-            font-size: 0.9rem;
-            z-index: 100000;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.4);
-            transition: background-color 0.2s;
+            font-size: 0.85rem;
+            cursor: pointer;
+            backdrop-filter: blur(5px);
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
         }
 
-        .fullscreen-btn:hover {
-            background-color: #38bdf8;
+        .btn-full:active {
+            transform: scale(0.95);
+            background: #0ea5e9;
+            color: #fff;
         }
 
-        .playlist-section {
-            width: 320px;
-            background-color: #1e293b;
+        /* --- ZONA DE LA LISTA DE CANALES --- */
+        .playlist {
+            width: 360px;
+            background-color: #151e2f;
             display: flex;
             flex-direction: column;
-            border-left: 1px solid #334155;
+            border-left: 1px solid #1e293b;
         }
 
         .playlist-header {
             padding: 20px;
-            background-color: #0f172a;
-            border-bottom: 1px solid #334155;
+            background-color: #0b0f19;
             text-align: center;
+            font-size: 1.3rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            color: #fff;
+            border-bottom: 1px solid #1e293b;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            z-index: 10;
         }
 
-        .playlist-header h2 {
-            font-size: 1.2rem;
-            color: #38bdf8;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .playlist-header span {
+            color: #0ea5e9;
         }
 
-        .channel-list {
+        .channels {
             list-style: none;
             overflow-y: auto;
             flex: 1;
+            padding: 15px;
         }
 
-        .channel-item {
+        /* Diseño de cada tarjeta de canal */
+        .channel-card {
             display: flex;
             align-items: center;
-            padding: 15px 20px;
-            border-bottom: 1px solid #334155;
+            padding: 12px 15px;
+            margin-bottom: 12px;
+            background-color: #1e293b;
+            border-radius: 12px;
             cursor: pointer;
-            transition: background-color 0.2s;
+            transition: all 0.2s ease;
+            border: 2px solid transparent;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
-        .channel-item:hover, .channel-item.active {
-            background-color: #334155;
+        .channel-card:active {
+            transform: scale(0.97);
         }
 
-        .channel-item img {
-            width: 45px;
-            height: 45px;
+        .channel-card.active {
+            background-color: #0f172a;
+            border-color: #0ea5e9;
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.2);
+        }
+
+        .channel-logo {
+            width: 52px;
+            height: 52px;
             border-radius: 50%;
-            object-fit: contain;
             background-color: #fff;
+            padding: 4px;
+            object-fit: contain;
             margin-right: 15px;
-            padding: 2px;
+            flex-shrink: 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
 
         .channel-info {
@@ -129,50 +159,50 @@
         }
 
         .channel-name {
-            font-weight: bold;
-            font-size: 1rem;
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: #f8fafc;
             margin-bottom: 4px;
         }
 
-        .channel-category {
-            font-size: 0.8rem;
-            color: #94a3b8;
-            background-color: #0f172a;
-            padding: 2px 8px;
+        .channel-cat {
+            font-size: 0.7rem;
+            color: #0b0f19;
+            background-color: #0ea5e9;
+            padding: 3px 8px;
             border-radius: 12px;
             align-self: flex-start;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        /* DISEÑO OPTIMIZADO PARA MÓVILES */
+        /* --- ADAPTABILIDAD PARA MÓVILES (DISEÑO APP) --- */
         @media (max-width: 768px) {
             body {
-                overflow: auto;
+                overflow: auto; /* Permite scroll nativo */
                 height: auto;
             }
             .app-container {
                 flex-direction: column;
-                height: auto;
             }
-            .player-section {
-                height: 35vh; 
-                position: sticky;
+            .player-wrapper {
+                height: 32vh; /* Altura ideal del video en celular */
+                min-height: 220px;
+                position: sticky; /* Fija el video arriba */
                 top: 0;
                 z-index: 1000;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+                flex: none;
             }
-            .playlist-section {
+            .playlist {
                 width: 100%;
                 height: auto;
                 border-left: none;
-                border-top: 1px solid #334155;
             }
-            .channel-list {
-                overflow-y: visible;
-            }
-            .fullscreen-btn {
-                top: 10px;
-                right: 10px;
-                padding: 6px 10px;
-                font-size: 0.8rem;
+            .channels {
+                overflow: visible; /* Delega el scroll al body */
+                padding-bottom: 40px; /* Espacio extra al final */
             }
         }
     </style>
@@ -180,24 +210,22 @@
 <body>
 
     <div class="app-container">
-        <!-- Reproductor -->
-        <main class="player-section" id="playerSection">
-            <!-- Botón flotante para forzar Pantalla Completa Web -->
-            <button class="fullscreen-btn" id="fullscreenBtn" onclick="toggleFullscreen()">Pantalla Completa</button>
-            
-            <!-- iframe con atributo sandbox añadido para bloquear pop-ups de publicidad -->
-            <iframe id="videoPlayer" src="" allowfullscreen allow="autoplay; fullscreen; encrypted-media; picture-in-picture" sandbox="allow-scripts allow-same-origin"></iframe>
-        </main>
-
-        <!-- Lista de canales -->
-        <aside class="playlist-section">
-            <div class="playlist-header">
-                <h2>TV en Vivo</h2>
+        
+        <div class="player-wrapper" id="playerWrapper">
+            <div class="controls">
+                <button class="btn-full" id="btnFull" onclick="toggleFullscreen()">Expandir ⛶</button>
             </div>
-            <ul class="channel-list" id="channelList">
-                <!-- Los canales se inyectan dinámicamente -->
-            </ul>
-        </aside>
+            <iframe id="videoPlayer" src="" allowfullscreen allow="autoplay; fullscreen; encrypted-media; picture-in-picture"></iframe>
+        </div>
+
+        <div class="playlist">
+            <div class="playlist-header">
+                TV <span>DEPORTES</span>
+            </div>
+            <ul class="channels" id="channelList">
+                </ul>
+        </div>
+
     </div>
 
     <script>
@@ -211,27 +239,31 @@
 
         const channelListContainer = document.getElementById('channelList');
         const videoPlayer = document.getElementById('videoPlayer');
-        const playerSection = document.getElementById('playerSection');
-        const fullscreenBtn = document.getElementById('fullscreenBtn');
+        const playerWrapper = document.getElementById('playerWrapper');
+        const btnFull = document.getElementById('btnFull');
 
-        function inicializarApp() {
+        function iniciarApp() {
             canales.forEach((canal, index) => {
                 const li = document.createElement('li');
-                li.className = 'channel-item';
+                li.className = 'channel-card';
                 
                 li.innerHTML = `
-                    <img src="${canal.logo}" alt="${canal.nombre}" onerror="this.src='https://via.placeholder.com/45?text=TV'">
+                    <img src="${canal.logo}" class="channel-logo" alt="${canal.nombre}" onerror="this.src='https://via.placeholder.com/52?text=TV'">
                     <div class="channel-info">
                         <span class="channel-name">${canal.nombre}</span>
-                        <span class="channel-category">${canal.categoria}</span>
+                        <span class="channel-cat">${canal.categoria}</span>
                     </div>
                 `;
 
                 li.onclick = () => {
-                    reproducirCanal(canal.url);
-                    document.querySelectorAll('.channel-item').forEach(item => item.classList.remove('active'));
+                    // Cambiar el video
+                    videoPlayer.src = canal.url;
+                    
+                    // Marcar como activo
+                    document.querySelectorAll('.channel-card').forEach(item => item.classList.remove('active'));
                     li.classList.add('active');
                     
+                    // Si el usuario está en móvil y toca un canal, lo subimos suavemente al video
                     if(window.innerWidth <= 768) {
                         window.scrollTo({ top: 0, behavior: 'smooth' });
                     }
@@ -239,26 +271,25 @@
 
                 channelListContainer.appendChild(li);
 
+                // Autoreproducir el primer canal
                 if (index === 0) {
                     li.click();
                 }
             });
         }
 
-        function reproducirCanal(url) {
-            videoPlayer.src = url;
-        }
-
+        // Sistema de Pantalla Completa Web
         function toggleFullscreen() {
-            playerSection.classList.toggle('web-fullscreen');
-            if (playerSection.classList.contains('web-fullscreen')) {
-                fullscreenBtn.textContent = 'Ver Canales';
+            playerWrapper.classList.toggle('fullscreen');
+            if (playerWrapper.classList.contains('fullscreen')) {
+                btnFull.innerHTML = 'Cerrar ✕';
             } else {
-                fullscreenBtn.textContent = 'Pantalla Completa';
+                btnFull.innerHTML = 'Expandir ⛶';
             }
         }
 
-        document.addEventListener('DOMContentLoaded', inicializarApp);
+        // Arrancar la app al cargar
+        document.addEventListener('DOMContentLoaded', iniciarApp);
     </script>
 
 </body>
