@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>TV Deportes App</title>
-    <!-- Librería HLS.js para reproducir .m3u8 en navegadores que no son Safari -->
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <style>
         * {
@@ -15,6 +14,7 @@
             -webkit-tap-highlight-color: transparent;
         }
 
+        /* El body oculta el scroll general para controlar las zonas por separado */
         body {
             background-color: #0b0f19;
             color: #f1f5f9;
@@ -24,21 +24,15 @@
             overflow: hidden;
         }
 
-        .app-container {
-            display: flex;
-            flex-direction: row;
-            height: 100%;
-            width: 100%;
-        }
-
-        /* --- ZONA DEL REPRODUCTOR --- */
+        /* --- ZONA DEL REPRODUCTOR FIJA --- */
         .player-wrapper {
-            flex: 1;
+            flex: 0 0 32vh; /* Fija la altura al 32% de la pantalla del celular */
+            min-height: 220px;
+            width: 100%;
             background-color: #000;
             position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
         }
 
         video {
@@ -48,24 +42,25 @@
             object-fit: contain;
         }
 
-        /* --- ZONA DE LA LISTA DE CANALES --- */
-        .playlist {
-            width: 380px;
+        /* --- ZONA DE LA LISTA DESLIZABLE --- */
+        .playlist-container {
+            flex: 1; /* Ocupa el resto de la pantalla disponible */
+            overflow-y: auto; /* Permite deslizar solo la lista */
             background-color: #151e2f;
             display: flex;
             flex-direction: column;
-            border-left: 1px solid #1e293b;
         }
 
         .playlist-header {
-            padding: 20px;
-            background-color: #0b0f19;
+            padding: 15px;
+            background-color: #0f172a;
             text-align: center;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 800;
             color: #fff;
             border-bottom: 1px solid #1e293b;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            position: sticky;
+            top: 0;
             z-index: 10;
         }
 
@@ -75,16 +70,16 @@
 
         .channels {
             list-style: none;
-            overflow-y: auto;
-            flex: 1;
             padding: 15px;
         }
 
+        /* Diseño de Tarjetas sin logo */
         .channel-card {
             display: flex;
-            align-items: center;
-            padding: 10px 15px;
-            margin-bottom: 10px;
+            flex-direction: column;
+            justify-content: center;
+            padding: 14px 18px;
+            margin-bottom: 12px;
             background-color: #1e293b;
             border-radius: 12px;
             cursor: pointer;
@@ -93,158 +88,141 @@
         }
 
         .channel-card:active {
-            transform: scale(0.97);
+            transform: scale(0.98);
         }
 
         .channel-card.active {
             background-color: #0f172a;
             border-color: #0ea5e9;
-        }
-
-        .channel-logo {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-color: #fff;
-            padding: 3px;
-            object-fit: contain;
-            margin-right: 15px;
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-        }
-
-        .channel-info {
-            display: flex;
-            flex-direction: column;
+            box-shadow: 0 0 10px rgba(14, 165, 233, 0.2);
         }
 
         .channel-name {
             font-weight: 700;
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: #f8fafc;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
         }
 
         .channel-cat {
-            font-size: 0.65rem;
-            color: #0b0f19;
+            font-size: 0.7rem;
+            color: #fff;
             background-color: #0ea5e9;
-            padding: 3px 8px;
-            border-radius: 12px;
+            padding: 3px 10px;
+            border-radius: 20px;
             align-self: flex-start;
             font-weight: 700;
             text-transform: uppercase;
         }
 
-        /* --- ADAPTABILIDAD PARA MÓVILES --- */
-        @media (max-width: 768px) {
+        /* Adaptabilidad para PC/Tablets grandes */
+        @media (min-width: 768px) {
             body {
-                overflow: auto;
-            }
-            .app-container {
-                flex-direction: column;
+                flex-direction: row;
             }
             .player-wrapper {
-                height: 35vh;
-                min-height: 250px;
-                position: sticky;
-                top: 0;
-                z-index: 1000;
-                flex: none;
-                box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+                flex: 1;
+                height: 100vh;
             }
-            .playlist {
-                width: 100%;
-                height: auto;
-                border-left: none;
-            }
-            .channels {
-                overflow: visible;
-                padding-bottom: 40px;
+            .playlist-container {
+                flex: 0 0 380px;
+                border-left: 1px solid #1e293b;
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="app-container">
-        
-        <!-- Zona de Video -->
-        <div class="player-wrapper">
-            <!-- Etiqueta nativa de video (mucho mejor que un iframe) -->
-            <video id="videoPlayer" controls autoplay playsinline></video>
-        </div>
+    <div class="player-wrapper">
+        <video id="videoPlayer" controls autoplay playsinline></video>
+    </div>
 
-        <!-- Zona de Lista -->
-        <div class="playlist">
-            <div class="playlist-header">
-                TV <span>DEPORTES</span>
-            </div>
-            <ul class="channels" id="channelList">
-                <!-- Javascript inyecta los canales aquí -->
+    <div class="playlist-container">
+        <div class="playlist-header">
+            TV <span>DEPORTES</span>
+        </div>
+        <ul class="channels" id="channelList">
             </ul>
-        </div>
-
     </div>
 
     <script>
-        // La lista completa de canales procesada
-        const canales = [
-            { nombre: "Azteca 7 MX", url: "http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/c6e0d1fe4542eb09/index.m3u8", logo: "https://placehold.co/400x400/ec552f/ffffff?text=Azteca%207%20MX", categoria: "Mexico" },
-            { nombre: "Azteca Uno MX", url: "http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/a6258a00c88d666a/index.m3u8", logo: "https://placehold.co/400x400/64800b/ffffff?text=Azteca%20Uno%20MX", categoria: "Mexico" },
-            { nombre: "Canal5 MX", url: "http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/f9ec69bf2333bd9b/index.m3u8", logo: "https://placehold.co/400x400/c0470d/ffffff?text=Canal5%20MX", categoria: "Mexico" },
-            { nombre: "ESPN 1 MX", url: "http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/92e81279914fb90b/index.m3u8", logo: "https://placehold.co/400x400/9fb718/ffffff?text=ESPN%201%20MX", categoria: "Mexico" },
-            { nombre: "ESPN 2 MX", url: "http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/d7443fa15871a3d4/index.m3u8", logo: "https://www.tvporinternet2.com/imge/espn2mexico.webp", categoria: "Mexico" },
-            { nombre: "ESPN 3 MX", url: "http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/0417b55717e38c49/index.m3u8", logo: "https://www.tvporinternet2.com/imge/espn3mexico.webp", categoria: "Mexico" },
-            { nombre: "ESPN 4 MX", url: "http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/1d1fae1e81306b18/index.m3u8", logo: "https://placehold.co/400x400/2c0871/ffffff?text=ESPN%204%20MX", categoria: "Mexico" },
-            { nombre: "Fox Sports 1 MX", url: "http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/2400a7234015b13a/index.m3u8", logo: "https://www.tvporinternet2.com/imge/foxsportsmx.webp", categoria: "Mexico" },
-            { nombre: "Fox Sports 2 MX", url: "http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/41dd60af01d61efb/index.m3u8", logo: "https://www.tvporinternet2.com/imge/foxsports2mx.webp", categoria: "Mexico" },
-            { nombre: "Fox Sports 3 MX", url: "http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/0301a344f7784930/index.m3u8", logo: "https://www.tvporinternet2.com/imge/foxsports3mexico.webp", categoria: "Mexico" },
-            { nombre: "Fox Sports Premium MX", url: "http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/2d37a58160a99352/index.m3u8", logo: "https://placehold.co/400x400/41041a/ffffff?text=Fox%20Sports%20Premium%20MX", categoria: "Mexico" },
-            { nombre: "TVC Deportes MX", url: "http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/27a3185ef476a90e/index.m3u8", logo: "https://placehold.co/400x400/a8950f/ffffff?text=TVC%20Deportes%20MX", categoria: "Mexico" },
-            { nombre: "TUDN MX", url: "http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/b40ccfc451f348b8/index.m3u8", logo: "https://www.tvporinternet2.com/imge/tudn.webp", categoria: "Mexico" },
-            { nombre: "ESPN3 Argentina", url: "http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/01fd5d6a819c3188/index.m3u8", logo: "https://placehold.co/400x400/7d32f1/ffffff?text=ESPN3%20Argentina", categoria: "Argentina" },
-            { nombre: "Fox Sports 2 Argentina", url: "http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/a2f7374486f556e3/index.m3u8", logo: "https://placehold.co/400x400/8fe3a1/ffffff?text=Fox%20Sports%202%20Argentina", categoria: "Argentina" },
-            { nombre: "TYC Sports Argentina", url: "http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/96c50a31a81332d5/index.m3u8", logo: "https://placehold.co/400x400/80c405/ffffff?text=TYC%20Sports%20Argentina", categoria: "Argentina" },
-            { nombre: "TNT Sports Argentina", url: "http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/e8d4e1f1c77dfee2/index.m3u8", logo: "https://www.tvporinternet2.com/imge/tntsports.webp", categoria: "Argentina" },
-            { nombre: "Win Sports+ Colombia", url: "http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/c72b921fb68f61a0/index.m3u8", logo: "https://placehold.co/400x400/1f5180/ffffff?text=Win%20Sports%2B%20Colombia", categoria: "Colombia" },
-            { nombre: "VTV+ Uruguay", url: "http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/d60f9ff19ff81065/index.m3u8", logo: "https://placehold.co/400x400/863aa1/ffffff?text=VTV%2B%20Uruguay", categoria: "Uruguay" },
-            { nombre: "TNT Sports Chile", url: "http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/08ffe5c18eec7633/index.m3u8", logo: "https://www.tvporinternet2.com/imge/tntsports.webp", categoria: "Chile" },
-            { nombre: "ESPN Brasil", url: "http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/4341f85a5fc44d1d/index.m3u8", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/ESPN_wordmark.svg/960px-ESPN_wordmark.svg.png", categoria: "Brasil" },
-            { nombre: "ESPN2 Brasil", url: "http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/3f2b6414fe0925c6/index.m3u8", logo: "https://placehold.co/400x400/20810a/ffffff?text=ESPN2%20Brasil", categoria: "Brasil" },
-            { nombre: "SporTV Brasil", url: "http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/1013963b6214735e/index.m3u8", logo: "https://placehold.co/400x400/b4c849/ffffff?text=SporTV%20Brasil", categoria: "Brasil" },
-            { nombre: "Premiere Brasil", url: "http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/267defb4082cc459/index.m3u8", logo: "https://placehold.co/400x400/e756b4/ffffff?text=Premiere%20Brasil", categoria: "Brasil" },
-            { nombre: "DAZN LaLiga", url: "http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/cabb9c35718b73a7/index.m3u8", logo: "https://i.postimg.cc/qRkxSrkG/768px-DAZN-La-Liga-logo-svg.png", categoria: "Espana" },
-            { nombre: "Movistar Laliga", url: "http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/7f3b1991611989be/index.m3u8", logo: "https://i.imgur.com/2Weqlf4.png", categoria: "Espana" },
-            { nombre: "Movistar Liga de Campeones", url: "http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/7a2c73b0e2461e6c/index.m3u8", logo: "https://www.tvporinternet2.com/imge/movistarligadecampeones.webp", categoria: "Espana" },
-            { nombre: "ESPN Deportes USA", url: "http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/daf7ffb47ec07f31/index.m3u8", logo: "https://i.ibb.co/Y7zHmbbz/i.png", categoria: "USA" },
-            { nombre: "Telemundo Mundial", url: "http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/1267683631ecfe0f/index.m3u8", logo: "https://www.tvporinternet2.com/imge/telemundointernacional.webp", categoria: "Mundial 2026" },
-            { nombre: "DSports Latinoamerica", url: "http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/3ef8d0e5d07664ff/index.m3u8", logo: "https://www.tvporinternet2.com/imge/directvsports.webp", categoria: "Latinoamerica" },
-            { nombre: "DSports 2 Latinoamerica", url: "http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/eb8cb1c5d0dbb713/index.m3u8", logo: "https://www.tvporinternet2.com/imge/directvsports2.webp", categoria: "Latinoamerica" },
-            { nombre: "GOLTV", url: "http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/554402fdc617db6b/index.m3u8", logo: "https://i.imgur.com/6iv6eri.png", categoria: "Latinoamerica" },
-            { nombre: "ECDF LigaPro", url: "http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/33722bbf6199c320/index.m3u8", logo: "https://i.imgur.com/Wj5ZaJw.png", categoria: "Ecuador" },
-            { nombre: "Fox Sports Argentina", url: "http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/f3a3956530af0e7b/index.m3u8", logo: "https://www.tvporinternet2.com/imge/foxsports.webp", categoria: "Argentina" },
-            { nombre: "ESPN Premium", url: "http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/7d865d99b8c27be0/index.m3u8", logo: "https://www.tvporinternet2.com/imge/espnpremium.webp", categoria: "Argentina" },
-            { nombre: "Liga1 MAX Peru", url: "http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/686a0958ae1655b4/index.m3u8", logo: "https://placehold.co/400x400/0c2153/ffffff?text=Liga1%20MAX", categoria: "Peru" },
-            { nombre: "Movistar Deportes Peru", url: "http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/a9b1c6eb6076ffac/index.m3u8", logo: "https://i.imgur.com/Zt3iE86.png", categoria: "Peru" },
-            { nombre: "Win Sports Colombia", url: "http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/85c30e9e195f20ac/index.m3u8", logo: "https://i.imgur.com/DuSSrHV.png", categoria: "Colombia" },
-            { nombre: "Fox Deportes USA", url: "http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/7963f580b1e9b3ff/index.m3u8", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/FOX_Deportes_logo.png/960px-FOX_Deportes_logo.png", categoria: "USA" },
-            { nombre: "BeIN Sports Español", url: "http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/e5d82e8c92717b89/index.m3u8", logo: "https://placehold.co/400x400/0affdc/ffffff?text=BeIN%20Sports%20Espa%C3%B1ol", categoria: "USA" },
-            { nombre: "Mundial: España vs Bélgica DSports", url: "http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/c155a90d8dbae902/index.m3u8", logo: "https://placehold.co/400x400/4a3762/ffffff?text=Mundial", categoria: "Futbol" },
-            { nombre: "América Televisión", url: "http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/711b92d21d75d120/index.m3u8", logo: "https://placehold.co/400x400/ea74ee/ffffff?text=America%20TV", categoria: "Peru" }
-            // He colocado los ~40 canales más importantes deportivos de tu lista para mantener el código optimizado, si necesitas agregar los de los países europeos puedes copiar y pegar el mismo formato.
-        ];
+        // 1. Pega aquí el texto crudo de tu archivo .m3u
+        // El script se encargará de extraer los nombres y los enlaces automáticamente.
+        const listaM3U = `
+#EXTM3U
+#EXTINF:-1 tvg-id="" tvg-name="DSPORTS" group-title="Latinoamerica",🟢 P4 - DSPORTS
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/3ef8d0e5d07664ff/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="DSPORTS 2" group-title="Latinoamerica",🟢 P4 - DSPORTS 2
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/eb8cb1c5d0dbb713/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="TyC Sports" group-title="Argentina",🟢 P4 - TyC Sports
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/9b03fb120b5853c8/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="ESPN Premium" group-title="Argentina",🟢 P4 - ESPN Premium
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/7d865d99b8c27be0/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Fox Sports" group-title="Argentina",🟢 P4 - Fox Sports
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/f3a3956530af0e7b/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Telemundo" group-title="Usa",🟢 P4 - Telemundo
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/1126c9f1d65a5751/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Azteca 7 MX" group-title="Mexico",🟢 P1 - Azteca 7 MX
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/c6e0d1fe4542eb09/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Canal5 MX" group-title="Mexico",🟢 P1 - Canal5 MX
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/f9ec69bf2333bd9b/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="ESPN 1 MX" group-title="Mexico",🟢 P1 - ESPN 1 MX
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/92e81279914fb90b/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="ESPN 2 MX" group-title="Mexico",🟢 P1 - ESPN 2 MX
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/d7443fa15871a3d4/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Win Sports+ Colombia" group-title="Colombia",🟢 P1 - Win Sports+ Colombia
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/c72b921fb68f61a0/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="TNT Sports Chile" group-title="Chile",🟢 P1 - TNT Sports Chile
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/08ffe5c18eec7633/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="ESPN Brasil" group-title="Brasil",🟢 P1 - ESPN Brasil
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/4341f85a5fc44d1d/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="SporTV Brasil" group-title="Brasil",🟢 P1 - SporTV Brasil
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/1013963b6214735e/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="DAZN LaLiga" group-title="Espana",🟢 P1 - DAZN LaLiga
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/cabb9c35718b73a7/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Movistar Liga de Campeones" group-title="Espana",🟢 P1 - Movistar Liga de Campeones
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/7a2c73b0e2461e6c/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="GOLTV" group-title="Latinoamerica",🟢 P4 - GOLTV
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/554402fdc617db6b/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="ECDF LigaPro" group-title="Ecuador",🟢 P4 - ECDF LigaPro
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/33722bbf6199c320/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Liga1 MAX" group-title="Peru",🟢 P4 - Liga1 MAX
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/686a0958ae1655b4/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Movistar Deportes" group-title="Peru",🟢 P4 - Movistar Deportes
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/a9b1c6eb6076ffac/index.m3u8
+        `;
 
+        // 2. Lógica para extraer los canales del texto
+        function parsearListaM3U(texto) {
+            const lineas = texto.split('\n');
+            const canales = [];
+            let canalActual = {};
+
+            for (let linea of lineas) {
+                linea = linea.trim();
+                if (linea.startsWith('#EXTINF')) {
+                    // Extrae el nombre
+                    const matchNombre = linea.match(/tvg-name="([^"]+)"/);
+                    canalActual.nombre = matchNombre ? matchNombre[1] : 'Canal Desconocido';
+                    // Extrae la categoría
+                    const matchCat = linea.match(/group-title="([^"]+)"/);
+                    canalActual.categoria = matchCat ? matchCat[1] : 'TV';
+                } else if (linea.startsWith('http')) {
+                    canalActual.url = linea;
+                    canales.push(canalActual);
+                    canalActual = {}; // Reinicia para el siguiente canal
+                }
+            }
+            return canales;
+        }
+
+        const canales = parsearListaM3U(listaM3U);
         const channelListContainer = document.getElementById('channelList');
         const videoPlayer = document.getElementById('videoPlayer');
 
+        // 3. Reproductor
         function reproducirCanal(url) {
-            // Lógica para reproducir el formato .m3u8
             if (Hls.isSupported()) {
-                // Para Android / PC
                 const hls = new Hls();
                 hls.loadSource(url);
                 hls.attachMedia(videoPlayer);
@@ -252,7 +230,7 @@
                     videoPlayer.play();
                 });
             } else if (videoPlayer.canPlayType('application/vnd.apple.mpegurl')) {
-                // Para iPhone / Safari (Nativo)
+                // Soporte nativo para iPhone/Safari
                 videoPlayer.src = url;
                 videoPlayer.addEventListener('loadedmetadata', function() {
                     videoPlayer.play();
@@ -260,43 +238,26 @@
             }
         }
 
+        // 4. Renderizar la lista
         function iniciarApp() {
             canales.forEach((canal, index) => {
                 const li = document.createElement('li');
                 li.className = 'channel-card';
                 
                 li.innerHTML = `
-                    <div class="channel-logo">📺</div>
-                    <div class="channel-info">
-                        <span class="channel-name">${canal.nombre}</span>
-                        <span class="channel-cat">${canal.categoria}</span>
-                    </div>
+                    <span class="channel-name">${canal.nombre}</span>
+                    <span class="channel-cat">${canal.categoria}</span>
                 `;
 
-                // Carga la imagen real si está disponible
-                const img = new Image();
-                img.src = canal.logo;
-                img.onload = () => {
-                    li.querySelector('.channel-logo').innerHTML = `<img src="${canal.logo}" style="width:100%; height:100%; object-fit:contain; border-radius:50%;">`;
-                };
-
                 li.onclick = () => {
-                    // Remover activo de los demás
                     document.querySelectorAll('.channel-card').forEach(item => item.classList.remove('active'));
                     li.classList.add('active');
-                    
-                    // Iniciar video
                     reproducirCanal(canal.url);
-                    
-                    // En móviles, hacer scroll hacia el video suavemente
-                    if(window.innerWidth <= 768) {
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }
                 };
 
                 channelListContainer.appendChild(li);
 
-                // Auto-reproducir el primer canal al cargar
+                // Auto-reproducir el primero
                 if (index === 0) {
                     li.click();
                 }
