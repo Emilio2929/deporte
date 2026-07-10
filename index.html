@@ -71,6 +71,7 @@
         .channels {
             list-style: none;
             padding: 15px;
+            padding-bottom: 50px;
         }
 
         /* Diseño de Tarjetas sin logo */
@@ -146,53 +147,444 @@
     </div>
 
     <script>
-        // 1. Pega aquí el texto crudo de tu archivo .m3u
-        // El script se encargará de extraer los nombres y los enlaces automáticamente.
+        // 1. Texto crudo de tu archivo .m3u
         const listaM3U = `
 #EXTM3U
-#EXTINF:-1 tvg-id="" tvg-name="DSPORTS" group-title="Latinoamerica",🟢 P4 - DSPORTS
-http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/3ef8d0e5d07664ff/index.m3u8
-#EXTINF:-1 tvg-id="" tvg-name="DSPORTS 2" group-title="Latinoamerica",🟢 P4 - DSPORTS 2
-http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/eb8cb1c5d0dbb713/index.m3u8
-#EXTINF:-1 tvg-id="" tvg-name="TyC Sports" group-title="Argentina",🟢 P4 - TyC Sports
-http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/9b03fb120b5853c8/index.m3u8
-#EXTINF:-1 tvg-id="" tvg-name="ESPN Premium" group-title="Argentina",🟢 P4 - ESPN Premium
-http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/7d865d99b8c27be0/index.m3u8
-#EXTINF:-1 tvg-id="" tvg-name="Fox Sports" group-title="Argentina",🟢 P4 - Fox Sports
-http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/f3a3956530af0e7b/index.m3u8
-#EXTINF:-1 tvg-id="" tvg-name="Telemundo" group-title="Usa",🟢 P4 - Telemundo
-http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/1126c9f1d65a5751/index.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Azteca 7 MX" group-title="Mexico",🟢 P1 - Azteca 7 MX
 http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/c6e0d1fe4542eb09/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Azteca Uno MX" group-title="Mexico",🟢 P1 - Azteca Uno MX
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/a6258a00c88d666a/index.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Canal5 MX" group-title="Mexico",🟢 P1 - Canal5 MX
 http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/f9ec69bf2333bd9b/index.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="ESPN 1 MX" group-title="Mexico",🟢 P1 - ESPN 1 MX
 http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/92e81279914fb90b/index.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="ESPN 2 MX" group-title="Mexico",🟢 P1 - ESPN 2 MX
 http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/d7443fa15871a3d4/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="ESPN 3 MX" group-title="Mexico",🟢 P1 - ESPN 3 MX
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/0417b55717e38c49/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="ESPN 4 MX" group-title="Mexico",🟢 P1 - ESPN 4 MX
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/1d1fae1e81306b18/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Fox Sports 1 MX" group-title="Mexico",🟢 P1 - Fox Sports 1 MX
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/2400a7234015b13a/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Fox Sports 2 MX" group-title="Mexico",🟢 P1 - Fox Sports 2 MX
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/41dd60af01d61efb/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Fox Sports 3 MX" group-title="Mexico",🟢 P1 - Fox Sports 3 MX
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/0301a344f7784930/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Fox Sports Premium MX" group-title="Mexico",🟢 P1 - Fox Sports Premium MX
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/2d37a58160a99352/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="TVC Deportes MX" group-title="Mexico",🟢 P1 - TVC Deportes MX
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/27a3185ef476a90e/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="TUDN MX" group-title="Mexico",🟢 P1 - TUDN MX
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/b40ccfc451f348b8/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="ESPN3 Argentina" group-title="Argentina",🟢 P1 - ESPN3 Argentina
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/01fd5d6a819c3188/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Fox Sports 2 Argentina" group-title="Argentina",🟢 P1 - Fox Sports 2 Argentina
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/a2f7374486f556e3/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="TYC Sports Argentina" group-title="Argentina",🟢 P1 - TYC Sports Argentina
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/96c50a31a81332d5/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="TNT Sports Argentina" group-title="Argentina",🟢 P1 - TNT Sports Argentina
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/e8d4e1f1c77dfee2/index.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Win Sports+ Colombia" group-title="Colombia",🟢 P1 - Win Sports+ Colombia
 http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/c72b921fb68f61a0/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="VTV+ Uruguay" group-title="Uruguay",🟢 P1 - VTV+ Uruguay
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/d60f9ff19ff81065/index.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="TNT Sports Chile" group-title="Chile",🟢 P1 - TNT Sports Chile
 http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/08ffe5c18eec7633/index.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="ESPN Brasil" group-title="Brasil",🟢 P1 - ESPN Brasil
 http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/4341f85a5fc44d1d/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="ESPN2 Brasil" group-title="Brasil",🟢 P1 - ESPN2 Brasil
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/3f2b6414fe0925c6/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="ESPN3 Brasil" group-title="Brasil",🟢 P1 - ESPN3 Brasil
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/a4b058dca533d438/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="ESPN4 Brasil" group-title="Brasil",🟢 P1 - ESPN4 Brasil
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/d69d303359776714/index.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="SporTV Brasil" group-title="Brasil",🟢 P1 - SporTV Brasil
 http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/1013963b6214735e/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="SporTV2 Brasil" group-title="Brasil",🟢 P1 - SporTV2 Brasil
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/6637d960c896b661/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="SporTV3 Brasil" group-title="Brasil",🟢 P1 - SporTV3 Brasil
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/1be7ab88e341ca54/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Premiere Brasil" group-title="Brasil",🟢 P1 - Premiere Brasil
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/267defb4082cc459/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Combate Brasil" group-title="Brasil",🟢 P1 - Combate Brasil
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/372881aa775d2b8e/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Bandsports Brasil" group-title="Brasil",🟢 P1 - Bandsports Brasil
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/342472d04985d5b5/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Globo SP" group-title="Brasil",🟢 P1 - Globo SP
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/a6902463889ae9d8/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Globo RIO" group-title="Brasil",🟢 P1 - Globo RIO
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/6867be47e892c162/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="TNT Brasil" group-title="Brasil",🟢 P1 - TNT Brasil
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/3b539c0971ff0c57/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="DAZN 1 Spain" group-title="Espana",🟢 P1 - DAZN 1 Spain
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/ff3801e21c23c484/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="DAZN 2 Spain" group-title="Espana",🟢 P1 - DAZN 2 Spain
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/daec7d32b12f0bcb/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="DAZN 3 Spain" group-title="Espana",🟢 P1 - DAZN 3 Spain
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/b212e21bc946160e/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="DAZN 4 Spain" group-title="Espana",🟢 P1 - DAZN 4 Spain
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/320534f87e627f19/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="DAZN F1 ES" group-title="Espana",🟢 P1 - DAZN F1 ES
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/9db716edf135afcb/index.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="DAZN LaLiga" group-title="Espana",🟢 P1 - DAZN LaLiga
 http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/cabb9c35718b73a7/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Movistar Laliga" group-title="Espana",🟢 P1 - Movistar Laliga
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/7f3b1991611989be/index.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Movistar Liga de Campeones" group-title="Espana",🟢 P1 - Movistar Liga de Campeones
 http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/7a2c73b0e2461e6c/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="#Vamos Spain" group-title="Espana",🟢 P1 - #Vamos Spain
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/ec44bbccbe79afd9/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="GOL PLAY Spain" group-title="Espana",🟢 P1 - GOL PLAY Spain
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/4c6f0f9fa1219877/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Teledeporte Spain" group-title="Espana",🟢 P1 - Teledeporte Spain
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/94df0fe1276034c0/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Eurosport 1 Spain" group-title="Espana",🟢 P1 - Eurosport 1 Spain
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/ed8265bf69e38284/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Eurosport 2 Spain" group-title="Espana",🟢 P1 - Eurosport 2 Spain
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/205925d7d86b0759/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Real Madrid TV Spain" group-title="Espana",🟢 P1 - Real Madrid TV Spain
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/4ea857628c927791/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Barca TV Spain" group-title="Espana",🟢 P1 - Barca TV Spain
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/6fd07085a52f2d02/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Antena 3 Spain" group-title="Espana",🟢 P1 - Antena 3 Spain
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/941e5d647a4024eb/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Telecinco Spain" group-title="Espana",🟢 P1 - Telecinco Spain
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/6f2314a27d59c67c/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="TVE La 1 Spain" group-title="Espana",🟢 P1 - TVE La 1 Spain
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/9eaae00ce9367639/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="La Sexta Spain" group-title="Espana",🟢 P1 - La Sexta Spain
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/72a1344abd5a9611/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Cuatro Spain" group-title="Espana",🟢 P1 - Cuatro Spain
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/466c29725c2c60ab/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="ESPN Deportes" group-title="Latino Usa",🟢 P1 - ESPN Deportes
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/daf7ffb47ec07f31/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="FOXNY USA" group-title="Mundial 2026",🟢 P3 - FOXNY USA
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/927d7eb54eec9de2/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Fox Sports 1 USA" group-title="Mundial 2026",🟢 P3 - Fox Sports 1 USA
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/6b392aad27fd3a5f/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Telemundo" group-title="Mundial 2026",🟢 P3 - Telemundo
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/1267683631ecfe0f/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="NBC Universo" group-title="Mundial 2026",🟢 P3 - NBC Universo
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/f7cefa004b163545/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="RTE 2 Ireland" group-title="Mundial 2026",🟢 P3 - RTE 2 Ireland
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/e9ecde10194f5512/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="M6 France" group-title="Mundial 2026",🟢 P3 - M6 France
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/5c36e1c18a93f9b4/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="beIN Sports 1 France" group-title="Mundial 2026",🟢 P3 - beIN Sports 1 France
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/83d1a8325cd8ebfd/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="TVE La 1 Spain" group-title="Mundial 2026",🟢 P3 - TVE La 1 Spain
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/cac62057cc9e30ca/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="ZDF DE" group-title="Mundial 2026",🟢 P3 - ZDF DE
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/98a2e8e361ce3a19/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="RAI 1 IT" group-title="Mundial 2026",🟢 P3 - RAI 1 IT
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/fdc8f4bfeac3f335/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="RSI LA2 Italy" group-title="Mundial 2026",🟢 P3 - RSI LA2 Italy
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/f5c9aa2f126ac8a9/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="NRK 1 Norway" group-title="Mundial 2026",🟢 P3 - NRK 1 Norway
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/bf161e1c5a37aac6/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="TV 2 Norway" group-title="Mundial 2026",🟢 P3 - TV 2 Norway
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/b4b7e0bc778558a1/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="TV4 Sweden" group-title="Mundial 2026",🟢 P3 - TV4 Sweden
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/9d42b121bbc87441/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="SRF Zwei Switzerland" group-title="Mundial 2026",🟢 P3 - SRF Zwei Switzerland
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/48c3f922522d64f3/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="NPO 1 Netherlands" group-title="Mundial 2026",🟢 P3 - NPO 1 Netherlands
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/81365d1f1368ce60/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Ziggo Sport 1 NL" group-title="Mundial 2026",🟢 P3 - Ziggo Sport 1 NL
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/375b85b7f1cac249/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="TVP Sport Poland" group-title="Mundial 2026",🟢 P3 - TVP Sport Poland
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/a33031fc4642b4ef/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="TVP2 Poland" group-title="Mundial 2026",🟢 P3 - TVP2 Poland
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/9089dec1b860f428/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Sport TV1 Portugal" group-title="Mundial 2026",🟢 P3 - Sport TV1 Portugal
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/904a3cc50ade2742/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Sport TV1 Portugal 50fps" group-title="Mundial 2026",🟢 P3 - Sport TV1 Portugal 50fps
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/c788a1f96c5a8035/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Sport TV5 Portugal" group-title="Mundial 2026",🟢 P3 - Sport TV5 Portugal
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/653d8374144a5e38/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="RTP 1 Portugal" group-title="Mundial 2026",🟢 P3 - RTP 1 Portugal
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/5e70633c5ca479c4/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="TVI Portugal" group-title="Mundial 2026",🟢 P3 - TVI Portugal
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/528cac4ac2b38820/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="JOJ Sport Slovakia" group-title="Mundial 2026",🟢 P3 - JOJ Sport Slovakia
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/d9fc686766369936/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="CT Sport CZ" group-title="Mundial 2026",🟢 P3 - CT Sport CZ
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/c49768c5076d9065/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="M4 Sports Hungary" group-title="Mundial 2026",🟢 P3 - M4 Sports Hungary
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/8dd2b3ff2c894df2/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="HRT2 Croatia" group-title="Mundial 2026",🟢 P3 - HRT2 Croatia
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/fef3fbdb3cc318f8/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Arena Sport 1P" group-title="Mundial 2026",🟢 P3 - Arena Sport 1P
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/1599ae1a975d7d27/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Arena 1 Premium Serbia" group-title="Mundial 2026",🟢 P3 - Arena 1 Premium Serbia
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/3570ea9fe6d90bda/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="ERT1 Greece" group-title="Mundial 2026",🟢 P3 - ERT1 Greece
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/4e532c3d34cfbe4f/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="ERT2 Greece" group-title="Mundial 2026",🟢 P3 - ERT2 Greece
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/85d1de1f42c5d5b5/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="BNT 1 Bulgaria" group-title="Mundial 2026",🟢 P3 - BNT 1 Bulgaria
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/4435725d08825472/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="BNT 3 Bulgaria" group-title="Mundial 2026",🟢 P3 - BNT 3 Bulgaria
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/13895433e69d7d2c/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="TV Klan Albania" group-title="Mundial 2026",🟢 P3 - TV Klan Albania
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/0fe951131bf3924a/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="TRT 1 Turkey" group-title="Mundial 2026",🟢 P3 - TRT 1 Turkey
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/827b68b632fff3be/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="TRT Spor Turkey" group-title="Mundial 2026",🟢 P3 - TRT Spor Turkey
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/583c0df1639a4b52/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Match TV Russia" group-title="Mundial 2026",🟢 P3 - Match TV Russia
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/4942236d87b609e9/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Match Premier Russia" group-title="Mundial 2026",🟢 P3 - Match Premier Russia
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/1d7f5f23526da01f/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Match Football Russia 1" group-title="Mundial 2026",🟢 P3 - Match Football Russia 1
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/8297f085bfedc5af/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Fast Sports Armenia" group-title="Mundial 2026",🟢 P3 - Fast Sports Armenia
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/d77119df0677e35d/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Yle TV2 Finland" group-title="Mundial 2026",🟢 P3 - Yle TV2 Finland
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/6c3361c968c5dae5/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="DR 1 DK" group-title="Mundial 2026",🟢 P3 - DR 1 DK
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/766c2de01078d362/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="DR 2 DK" group-title="Mundial 2026",🟢 P3 - DR 2 DK
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/b3e9af5c90aaf586/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="TV2 Denmark" group-title="Mundial 2026",🟢 P3 - TV2 Denmark
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/dfdbf4ce131defb3/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="SBS Australia" group-title="Mundial 2026",🟢 P3 - SBS Australia
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/7788e4eba78ae2aa/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="TSN1 Canada" group-title="Mundial 2026",🟢 P3 - TSN1 Canada
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/ff4093a8af40142e/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="TSN3 Canada" group-title="Mundial 2026",🟢 P3 - TSN3 Canada
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/bc7b8de3fd269762/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="TSN4 Canada" group-title="Mundial 2026",🟢 P3 - TSN4 Canada
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/94671d69c2fa7794/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="CTV Canada" group-title="Mundial 2026",🟢 P3 - CTV Canada
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/ee560c965935f435/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="RDS CA" group-title="Mundial 2026",🟢 P3 - RDS CA
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/30520644b71003c5/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="RDS 2 CA" group-title="Mundial 2026",🟢 P3 - RDS 2 CA
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/b2ebee583777acf1/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="TUDN Mexico" group-title="Mundial 2026",🟢 P3 - TUDN Mexico
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/8db7f12c87e293d8/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Azteca 7 Mexico" group-title="Mundial 2026",🟢 P3 - Azteca 7 Mexico
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/febd8eeb1dad51bc/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Canal 5 Mexico" group-title="Mundial 2026",🟢 P3 - Canal 5 Mexico
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/c497bd775cc78930/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="TyC Sports Argentina" group-title="Mundial 2026",🟢 P3 - TyC Sports Argentina
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/9af5f4b93dda1950/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="DSports 1 Argentina" group-title="Mundial 2026",🟢 P3 - DSports 1 Argentina
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/03554c63f1c53077/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="DSports+ Argentina" group-title="Mundial 2026",🟢 P3 - DSports+ Argentina
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/64b9c1b5fdbc7940/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Caracol TV Colombia" group-title="Mundial 2026",🟢 P3 - Caracol TV Colombia
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/6100156df568174c/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="SporTV BR" group-title="Mundial 2026",🟢 P3 - SporTV BR
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/1fff9c09079ce773/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="ORF 1 Austria" group-title="Mundial 2026",🟢 P3 - ORF 1 Austria
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/b16a246e789284fb/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Tipik Belgium" group-title="Mundial 2026",🟢 P3 - Tipik Belgium
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/73df1c68f27a3e7a/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="T Sports Bangladesh" group-title="Mundial 2026",🟢 P3 - T Sports Bangladesh
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/ac0aa0b5798b9a9f/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Sport 1 Israel" group-title="Mundial 2026",🟢 P3 - Sport 1 Israel
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/362461fcd73561ad/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Sport 2 Israel" group-title="Mundial 2026",🟢 P3 - Sport 2 Israel
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/2842c6db10a0d606/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Sport 3 Israel" group-title="Mundial 2026",🟢 P3 - Sport 3 Israel
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/f5fe1f08394edbc6/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Sport 4 Israel" group-title="Mundial 2026",🟢 P3 - Sport 4 Israel
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/fd9b864f74f30d37/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="SuperSport PSL" group-title="Mundial 2026",🟢 P3 - SuperSport PSL
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/e7599041e6bbf28c/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Supersport Grandstand" group-title="Mundial 2026",🟢 P3 - Supersport Grandstand
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/35b44c611771e0c6/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="beIN Sports MAX 1 Arabic" group-title="Mundial 2026",🟢 P3 - beIN Sports MAX 1 Arabic
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/d77f22808a2612d0/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="beIN Sports MAX 2 Arabic" group-title="Mundial 2026",🟢 P3 - beIN Sports MAX 2 Arabic
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/33f9eaf0315dacdd/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="beIN Sports MAX 3 Arabic" group-title="Mundial 2026",🟢 P3 - beIN Sports MAX 3 Arabic
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/93cf0974a671b468/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="beIN Sports MAX 4 Arabic" group-title="Mundial 2026",🟢 P3 - beIN Sports MAX 4 Arabic
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/983721262ab67186/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="ESPN 5" group-title="Latinoamerica",🟢 P4 - ESPN 5
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/99d4b0bf1bd50afc/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="ESPN 6" group-title="Latinoamerica",🟢 P4 - ESPN 6
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/acc089c7b6b061f9/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="ESPN 7" group-title="Latinoamerica",🟢 P4 - ESPN 7
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/f44eb2778e5b28c5/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="DSports" group-title="Latinoamerica",🟢 P4 - DSports
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/3ef8d0e5d07664ff/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="DSports 2" group-title="Latinoamerica",🟢 P4 - DSports 2
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/eb8cb1c5d0dbb713/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="DSports Plus" group-title="Latinoamerica",🟢 P4 - DSports Plus
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/0f9779b0dea8bd5d/index.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="GOLTV" group-title="Latinoamerica",🟢 P4 - GOLTV
 http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/554402fdc617db6b/index.m3u8
-#EXTINF:-1 tvg-id="" tvg-name="ECDF LigaPro" group-title="Ecuador",🟢 P4 - ECDF LigaPro
+#EXTINF:-1 tvg-id="" tvg-name="VTV Plus" group-title="Latinoamerica",🟢 P4 - VTV Plus
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/c7097f138bbd95a8/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="ECDF LigaPro (eventos)" group-title="Latinoamerica",🟢 P4 - ECDF LigaPro (eventos)
 http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/33722bbf6199c320/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Fox Sports" group-title="Argentina",🟢 P4 - Fox Sports
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/f3a3956530af0e7b/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Fox Sports 2" group-title="Argentina",🟢 P4 - Fox Sports 2
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/1581d552c856f2f2/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Fox Sports 3" group-title="Argentina",🟢 P4 - Fox Sports 3
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/8b11a4c4defe8688/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="TNT Sports" group-title="Argentina",🟢 P4 - TNT Sports
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/bbab0ed2f5b8c6cc/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="ESPN Premium" group-title="Argentina",🟢 P4 - ESPN Premium
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/7d865d99b8c27be0/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="TyC Sports" group-title="Argentina",🟢 P4 - TyC Sports
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/9b03fb120b5853c8/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Telefe" group-title="Argentina",🟢 P4 - Telefe
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/0dbbbed3f4928631/index.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Liga1 MAX" group-title="Peru",🟢 P4 - Liga1 MAX
 http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/686a0958ae1655b4/index.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Movistar Deportes" group-title="Peru",🟢 P4 - Movistar Deportes
 http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/a9b1c6eb6076ffac/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Win Sports plus (2)" group-title="Colombia",🟢 P4 - Win Sports plus (2)
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/475b0f52297f0bac/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Win Sports" group-title="Colombia",🟢 P4 - Win Sports
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/85c30e9e195f20ac/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="ESPN 2" group-title="Mexico",🟢 P4 - ESPN 2
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/fffb3ec9f73c913d/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="ESPN 3" group-title="Mexico",🟢 P4 - ESPN 3
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/4b26d2e3651de5bc/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="ESPN 4" group-title="Mexico",🟢 P4 - ESPN 4
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/b78a4a962d54b32b/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Azteca 7" group-title="Mexico",🟢 P4 - Azteca 7
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/c7e85560093d76d6/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Canal 5" group-title="Mexico",🟢 P4 - Canal 5
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/fdb5425371d86a74/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="TVC Deportes" group-title="Mexico",🟢 P4 - TVC Deportes
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/6e6ff59fc81d7944/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Sky Sports LaLiga" group-title="Mexico",🟢 P4 - Sky Sports LaLiga
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/1c7b71e716526577/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Fox Deportes" group-title="Usa",🟢 P4 - Fox Deportes
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/7963f580b1e9b3ff/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="TUDN" group-title="Usa",🟢 P4 - TUDN
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/72ee351020bd2955/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Univisión" group-title="Usa",🟢 P4 - Univisión
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/5ca6e8e790ff9445/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Fox Sports 1" group-title="Usa",🟢 P4 - Fox Sports 1
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/fa3fee2c0498fb92/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Fox Sports 2" group-title="Usa",🟢 P4 - Fox Sports 2
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/05d4c8b89c5c87f3/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Universo" group-title="Usa",🟢 P4 - Universo
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/d807569ddd3df8ef/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="BeIN Sports Español" group-title="Usa",🟢 P4 - BeIN Sports Español
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/e5d82e8c92717b89/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Unimás" group-title="Usa",🟢 P4 - Unimás
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/e435479b750465e4/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Telemundo" group-title="Usa",🟢 P4 - Telemundo
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/1126c9f1d65a5751/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Premiere 1" group-title="Brasil",🟢 P4 - Premiere 1
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/b81dbb67ffbd6c3b/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Premiere 2" group-title="Brasil",🟢 P4 - Premiere 2
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/e65f2c42ccffec03/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Premiere 3" group-title="Brasil",🟢 P4 - Premiere 3
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/498075b9c769084f/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Premiere 4" group-title="Brasil",🟢 P4 - Premiere 4
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/02274cd6d78e15f6/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Premiere 5" group-title="Brasil",🟢 P4 - Premiere 5
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/1f6676df88689c52/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Premiere 6" group-title="Brasil",🟢 P4 - Premiere 6
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/1521bdb4e7940cb6/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Premiere 7" group-title="Brasil",🟢 P4 - Premiere 7
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/4f00ac45da6950ff/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Sportv" group-title="Brasil",🟢 P4 - Sportv
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/aaf097985d3bee53/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Sportv 2" group-title="Brasil",🟢 P4 - Sportv 2
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/7f148d88ef0974ab/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Sportv 3" group-title="Brasil",🟢 P4 - Sportv 3
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/0fa2e2c501a0cb60/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Liga de Campeones 2" group-title="Espana",🟢 P4 - Liga de Campeones 2
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/214e724e1de9ef2a/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Copa Mundial de la FIFA: España vs Bélgica | 4tos de Final" group-title="Futbol",🟢 P5 - Copa Mundial de la FIFA: España vs Bélgica | 4tos de Final
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/2cae1c396fa0411f/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="NBA Summer League: Cavaliers vs Pacers" group-title="Futbol",🟢 P5 - NBA Summer League: Cavaliers vs Pacers
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/cd95be7e861bd07f/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="NBA Summer League: Rockets vs Nuggets" group-title="Futbol",🟢 P5 - NBA Summer League: Rockets vs Nuggets
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/3174f2bdedfc0216/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="MLB: Seattle Mariners vs Tampa Bay Rays" group-title="Futbol",🟢 P5 - MLB: Seattle Mariners vs Tampa Bay Rays
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/e08d866deba7e622/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="DAZN Mundial 2026" group-title="Mundial 2026",🟢 P7 - DAZN Mundial 2026
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/95101a3fb10fc642/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Alemania vs Paraguay | *Dieciseisavos de final - Dsports 1" group-title="Futbol",🟢 P8 - Alemania vs Paraguay | *Dieciseisavos de final - Dsports 1
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/d7bd8a71463f87c7/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Unión Española vs Colo-Colo - Telemundo USA" group-title="Futbol",🟢 P8 - Unión Española vs Colo-Colo - Telemundo USA
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/8ed18b87ee8564e6/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Países Bajos vs Marruecos | *Dieciseisavos de final - Dsports 1" group-title="Futbol",🟢 P8 - Países Bajos vs Marruecos | *Dieciseisavos de final - Dsports 1
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/d7bd8a71463f87c7/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Costa de Marfil vs Noruega | *Dieciseisavos de final - Dsports 1" group-title="Futbol",🟢 P8 - Costa de Marfil vs Noruega | *Dieciseisavos de final - Dsports 1
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/d7bd8a71463f87c7/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Francia vs Suecia | *Dieciseisavos de final - Dsports 1" group-title="Futbol",🟢 P8 - Francia vs Suecia | *Dieciseisavos de final - Dsports 1
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/d7bd8a71463f87c7/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Audax Italiano vs Palestino - MAX" group-title="Futbol",🟢 P8 - Audax Italiano vs Palestino - MAX
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/8ed18b87ee8564e6/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="México vs Ecuador | *Dieciseisavos de final - Dsports 1" group-title="Futbol",🟢 P8 - México vs Ecuador | *Dieciseisavos de final - Dsports 1
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/d7bd8a71463f87c7/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Universidad Católica vs Everton - MAX" group-title="Futbol",🟢 P8 - Universidad Católica vs Everton - MAX
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/8ed18b87ee8564e6/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Inglaterra vs RD del Congo | *Dieciseisavos de final - Dsports 1" group-title="Futbol",🟢 P8 - Inglaterra vs RD del Congo | *Dieciseisavos de final - Dsports 1
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/d7bd8a71463f87c7/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Bélgica vs Senegal | *Dieciseisavos de final - Dsports 1" group-title="Futbol",🟢 P8 - Bélgica vs Senegal | *Dieciseisavos de final - Dsports 1
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/d7bd8a71463f87c7/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Cobresal vs La Serena - MAX" group-title="Futbol",🟢 P8 - Cobresal vs La Serena - MAX
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/8ed18b87ee8564e6/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Deportes Limache vs Coquimbo Unido - MAX" group-title="Futbol",🟢 P8 - Deportes Limache vs Coquimbo Unido - MAX
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/9808f94dddebbe51/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Univ. Concepción vs Ñublense - MAX" group-title="Futbol",🟢 P8 - Univ. Concepción vs Ñublense - MAX
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/72c4e734e9758120/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="EE. UU. vs Bosnia-Herzegovina | *Dieciseisavos de final - Dsports 1" group-title="Futbol",🟢 P8 - EE. UU. vs Bosnia-Herzegovina | *Dieciseisavos de final - Dsports 1
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/d7bd8a71463f87c7/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Universidad Chile vs Unión La Calera - MAX" group-title="Futbol",🟢 P8 - Universidad Chile vs Unión La Calera - MAX
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/8ed18b87ee8564e6/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="España vs Austria | *Dieciseisavos de final - Dsports 1" group-title="Futbol",🟢 P8 - España vs Austria | *Dieciseisavos de final - Dsports 1
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/d7bd8a71463f87c7/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Huachipato vs Deportes Concepción - MAX" group-title="Futbol",🟢 P8 - Huachipato vs Deportes Concepción - MAX
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/8ed18b87ee8564e6/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Portugal vs Croacia | *Dieciseisavos de final - Dsports 1" group-title="Futbol",🟢 P8 - Portugal vs Croacia | *Dieciseisavos de final - Dsports 1
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/d7bd8a71463f87c7/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="O'Higgins vs Colo-Colo - MAX" group-title="Futbol",🟢 P8 - O'Higgins vs Colo-Colo - MAX
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/8ed18b87ee8564e6/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Suiza vs Argelia | *Dieciseisavos de final - Dsports 1" group-title="Futbol",🟢 P8 - Suiza vs Argelia | *Dieciseisavos de final - Dsports 1
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/d7bd8a71463f87c7/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Australia vs Egipto | *Dieciseisavos de final - Dsports 1" group-title="Futbol",🟢 P8 - Australia vs Egipto | *Dieciseisavos de final - Dsports 1
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/d7bd8a71463f87c7/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Argentina vs Islas de Cabo Verde | *Dieciseisavos de final - Dsports 1" group-title="Futbol",🟢 P8 - Argentina vs Islas de Cabo Verde | *Dieciseisavos de final - Dsports 1
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/d7bd8a71463f87c7/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Colombia vs Ghana | *Dieciseisavos de final - Dsports 1" group-title="Futbol",🟢 P8 - Colombia vs Ghana | *Dieciseisavos de final - Dsports 1
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/d7bd8a71463f87c7/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Copa del Mundo: España vs Bélgica - DSports | HD" group-title="Mundial 2026",🟢 P9 - Copa del Mundo: España vs Bélgica - DSports | HD
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/c155a90d8dbae902/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Copa del Mundo: España vs Bélgica - Telefe" group-title="Mundial 2026",🟢 P9 - Copa del Mundo: España vs Bélgica - Telefe
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/684cc61f17dfb058/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Copa del Mundo: España vs Bélgica - Sportv BR" group-title="Mundial 2026",🟢 P9 - Copa del Mundo: España vs Bélgica - Sportv BR
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/bd5318199a15ece9/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Copa del Mundo: España vs Bélgica - Win Sports" group-title="Mundial 2026",🟢 P9 - Copa del Mundo: España vs Bélgica - Win Sports
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/47e6e09e891b104f/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Copa del Mundo: España vs Bélgica - America Television" group-title="Mundial 2026",🟢 P9 - Copa del Mundo: España vs Bélgica - America Television
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/711b92d21d75d120/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Serie A:  Leones del Norte vs Universidad Católica  - ECDF LigaPro" group-title="Ecuador",🟢 P9 - Serie A:  Leones del Norte vs Universidad Católica  - ECDF LigaPro
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/4a36ffc2448f864c/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Torneo de Reserva:  River Plate  vs Racing Club - TNT Sports" group-title="Argentina",🟢 P9 - Torneo de Reserva:  River Plate  vs Racing Club - TNT Sports
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/bb01fcab5d2e184b/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Dsports 5 (INT)" group-title="Mundial 2026",🟢 P10 - Dsports 5 (INT)
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/32dba95ac01c8aaa/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Capo Deportes 1 PLUS 11 (INT)" group-title="Mundial 2026",🟢 P10 - Capo Deportes 1 PLUS 11 (INT)
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/404e29fe33c2f9c6/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Onlinefutbol 4 12 (INT)" group-title="Mundial 2026",🟢 P10 - Onlinefutbol 4 12 (INT)
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/5b18ee1fa49ac368/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Telemundo 20 (INT)" group-title="Mundial 2026",🟢 P10 - Telemundo 20 (INT)
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/2fbc1c6c5056607a/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Caracol TV 24 (INT)" group-title="Mundial 2026",🟢 P10 - Caracol TV 24 (INT)
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/e9a947642bd52fce/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Canal 5 MX 29 (INT)" group-title="Mundial 2026",🟢 P10 - Canal 5 MX 29 (INT)
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/984995c2b9bdda43/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="VIX 1 34 (INT)" group-title="Mundial 2026",🟢 P10 - VIX 1 34 (INT)
+http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/91e17027dd237479/index.m3u8
         `;
 
-        // 2. Lógica para extraer los canales del texto
+        // 2. Lógica para extraer los canales del texto y pasarlos por el Proxy
         function parsearListaM3U(texto) {
             const lineas = texto.split('\n');
             const canales = [];
@@ -201,16 +593,20 @@ http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/a9b1c6eb6076ffac/i
             for (let linea of lineas) {
                 linea = linea.trim();
                 if (linea.startsWith('#EXTINF')) {
-                    // Extrae el nombre
+                    // Extrae el nombre y categoría
                     const matchNombre = linea.match(/tvg-name="([^"]+)"/);
                     canalActual.nombre = matchNombre ? matchNombre[1] : 'Canal Desconocido';
-                    // Extrae la categoría
                     const matchCat = linea.match(/group-title="([^"]+)"/);
                     canalActual.categoria = matchCat ? matchCat[1] : 'TV';
                 } else if (linea.startsWith('http')) {
-                    canalActual.url = linea;
-                    canales.push(canalActual);
-                    canalActual = {}; // Reinicia para el siguiente canal
+                    // TRUCO DE INGENIERÍA: Cambiamos la IP insegura por nuestro proxy seguro de Vercel
+                    canalActual.url = linea.replace('http://108.175.13.7', '/api-iptv');
+                    
+                    // Solo evitamos añadir canales duplicados (los que tienen el mismo nombre en la lista .txt)
+                    if(!canales.find(c => c.nombre === canalActual.nombre)){
+                        canales.push(canalActual);
+                    }
+                    canalActual = {}; // Reinicia para el siguiente
                 }
             }
             return canales;
@@ -220,7 +616,7 @@ http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/a9b1c6eb6076ffac/i
         const channelListContainer = document.getElementById('channelList');
         const videoPlayer = document.getElementById('videoPlayer');
 
-        // 3. Reproductor
+        // 3. Función del Reproductor de Video
         function reproducirCanal(url) {
             if (Hls.isSupported()) {
                 const hls = new Hls();
@@ -230,7 +626,7 @@ http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/a9b1c6eb6076ffac/i
                     videoPlayer.play();
                 });
             } else if (videoPlayer.canPlayType('application/vnd.apple.mpegurl')) {
-                // Soporte nativo para iPhone/Safari
+                // Soporte nativo para tu iPhone/Safari
                 videoPlayer.src = url;
                 videoPlayer.addEventListener('loadedmetadata', function() {
                     videoPlayer.play();
@@ -238,7 +634,7 @@ http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/a9b1c6eb6076ffac/i
             }
         }
 
-        // 4. Renderizar la lista
+        // 4. Inyectar las tarjetas limpias (Sin logos)
         function iniciarApp() {
             canales.forEach((canal, index) => {
                 const li = document.createElement('li');
@@ -257,7 +653,7 @@ http://108.175.13.7/live/f0a78f00-e10c-4465-9359-ccaf4d2d5023/a9b1c6eb6076ffac/i
 
                 channelListContainer.appendChild(li);
 
-                // Auto-reproducir el primero
+                // Auto-reproducir el primer canal al cargar la web
                 if (index === 0) {
                     li.click();
                 }
