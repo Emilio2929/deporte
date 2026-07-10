@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api-iptv/:path*",
+      "destination": "http://108.175.13.7/:path*"
+    }
+  ]
+}
