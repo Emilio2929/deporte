@@ -87,15 +87,6 @@
                         "label-sm": ["Inter"],
                         "headline-xl": ["Montserrat"],
                         "headline-md": ["Montserrat"]
-                    },
-                    "fontSize": {
-                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
-                        "headline-lg-mobile": ["28px", { "lineHeight": "1.3", "fontWeight": "600" }],
-                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
-                        "headline-lg": ["32px", { "lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600" }],
-                        "label-sm": ["14px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
-                        "headline-xl": ["48px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
-                        "headline-md": ["24px", { "lineHeight": "1.4", "fontWeight": "600" }]
                     }
                 }
             }
@@ -118,7 +109,7 @@
         .panel-hidden { transform: scale(0.95) translateY(10px); }
         .panel-visible { transform: scale(1) translateY(0); }
         
-        /* Scrollbar personalizado para el modal de privacidad */
+        /* Scrollbar personalizado para los modales de texto */
         .custom-scrollbar::-webkit-scrollbar { width: 6px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: #f2f4f6; border-radius: 4px; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #8c706e; border-radius: 4px; }
@@ -129,8 +120,9 @@
 <!-- TopNavBar -->
 <header class="bg-surface/95 dark:bg-surface-container/95 docked full-width top-0 sticky backdrop-blur-md border-b border-outline-variant shadow-sm z-50">
     <div class="flex justify-between items-center w-full px-4 md:px-margin-desktop max-w-container-max mx-auto h-20 gap-2">
-        <div class="flex items-center truncate">
-            <span class="font-headline-md text-lg md:text-headline-md font-bold tracking-tight text-primary whitespace-nowrap">MARIVIC SOFT</span>
+        <div class="flex items-center">
+            <!-- SE ELIMINÓ TRUNCATE Y WHITESPACE-NOWRAP PARA EVITAR EL BUG DE LA LETRA 'A' -->
+            <span class="font-headline-md text-lg md:text-headline-md font-bold text-primary">MARIVIC SOFT</span>
         </div>
         <nav class="hidden md:flex items-center gap-8">
             <a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-sm text-label-sm hover:bg-primary/5 transition-all" href="#">Inicio</a>
@@ -138,7 +130,7 @@
             <a class="text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm hover:bg-primary/5 transition-all py-1" href="#proyectos">Proyectos</a>
             <a class="text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm hover:bg-primary/5 transition-all py-1" href="#contacto">Contacto</a>
         </nav>
-        <button class="btn-cotizar bg-primary hover:bg-primary/90 text-on-primary px-3 py-2 md:px-6 md:py-3 rounded-lg font-label-sm text-xs md:text-label-sm shadow-[0_4px_14px_0_rgba(135,16,23,0.39)] hover:shadow-[0_6px_20px_rgba(135,16,23,0.23)] hover:-translate-y-0.5 transition-all duration-200 whitespace-nowrap">
+        <button class="btn-cotizar bg-primary hover:bg-primary/90 text-on-primary px-3 py-2 md:px-6 md:py-3 rounded-lg font-label-sm text-xs md:text-[14px] shadow-[0_4px_14px_0_rgba(135,16,23,0.39)] hover:shadow-[0_6px_20px_rgba(135,16,23,0.23)] hover:-translate-y-0.5 transition-all duration-200">
             Cotizar Proyecto
         </button>
     </div>
@@ -243,54 +235,87 @@
         </div>
     </section>
 
-    <!-- Process Section -->
+    <!-- Process Section (AHORA EN CUADRÍCULA Y CLICKEABLE) -->
     <section class="bg-surface-container-highest py-section-gap px-4 md:px-margin-desktop relative overflow-hidden">
         <div class="absolute inset-0 bg-primary/5 pointer-events-none"></div>
         <div class="max-w-container-max mx-auto relative z-10">
             <div class="text-center mb-16 space-y-4">
                 <p class="text-primary font-label-sm text-label-sm uppercase tracking-wider">Nuestro Proceso</p>
                 <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background">Metodología para el éxito</h2>
+                <p class="text-sm text-on-surface-variant italic">Presiona cada paso para conocer los detalles</p>
             </div>
-            <div class="flex flex-col md:flex-row justify-between items-center gap-8 md:gap-4 relative">
-                <!-- Connecting Line -->
-                <div class="hidden md:block absolute top-1/2 left-[5%] right-[5%] h-0.5 bg-outline-variant -z-10 -translate-y-1/2"></div>
-                <!-- Steps -->
-                <div class="flex flex-col items-center text-center max-w-[150px]">
-                    <div class="w-16 h-16 rounded-full bg-surface-container-lowest border-2 border-primary flex items-center justify-center mb-4 shadow-sm z-10">
-                        <span class="material-symbols-outlined text-primary" data-icon="search">search</span>
+            
+            <!-- Cambiamos a GRID: 2 columnas móvil, 3 tablet, 6 escritorio -->
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-y-12 gap-x-4 relative">
+                
+                <!-- Connecting Line (solo visible en escritorio) -->
+                <div class="hidden lg:block absolute top-[32px] left-[8%] right-[8%] h-0.5 bg-outline-variant -z-10"></div>
+                
+                <!-- Step 1 -->
+                <button type="button" class="btn-proceso flex flex-col items-center text-center group transition-transform hover:-translate-y-1 focus:outline-none" 
+                        data-title="Descubrimiento" 
+                        data-icon="search" 
+                        data-desc="En esta etapa inicial, nos reunimos contigo para comprender a fondo las necesidades de tu negocio, identificar los retos actuales y definir los objetivos del proyecto. Mapeamos tus ideas para asegurar que la solución tecnológica esté perfectamente alineada a tu visión.">
+                    <div class="w-16 h-16 rounded-full bg-surface-container-lowest border-2 border-primary flex items-center justify-center mb-4 shadow-sm z-10 group-hover:bg-primary transition-colors duration-300">
+                        <span class="material-symbols-outlined text-primary group-hover:text-on-primary transition-colors">search</span>
                     </div>
-                    <h4 class="font-label-sm text-label-sm font-bold mb-1">Descubrimiento</h4>
-                </div>
-                <div class="flex flex-col items-center text-center max-w-[150px]">
-                    <div class="w-16 h-16 rounded-full bg-surface-container-lowest border-2 border-primary flex items-center justify-center mb-4 shadow-sm z-10">
-                        <span class="material-symbols-outlined text-primary" data-icon="analytics">analytics</span>
+                    <h4 class="font-label-sm text-label-sm font-bold mb-1 group-hover:text-primary transition-colors">Descubrimiento</h4>
+                </button>
+
+                <!-- Step 2 -->
+                <button type="button" class="btn-proceso flex flex-col items-center text-center group transition-transform hover:-translate-y-1 focus:outline-none" 
+                        data-title="Análisis" 
+                        data-icon="analytics" 
+                        data-desc="Evaluamos la viabilidad técnica y estructuramos la arquitectura del sistema. Definimos los requerimientos funcionales, flujos de datos y herramientas necesarias para garantizar que el proyecto sea escalable, seguro y eficiente desde su concepción.">
+                    <div class="w-16 h-16 rounded-full bg-surface-container-lowest border-2 border-primary flex items-center justify-center mb-4 shadow-sm z-10 group-hover:bg-primary transition-colors duration-300">
+                        <span class="material-symbols-outlined text-primary group-hover:text-on-primary transition-colors">analytics</span>
                     </div>
-                    <h4 class="font-label-sm text-label-sm font-bold mb-1">Análisis</h4>
-                </div>
-                <div class="flex flex-col items-center text-center max-w-[150px]">
-                    <div class="w-16 h-16 rounded-full bg-surface-container-lowest border-2 border-primary flex items-center justify-center mb-4 shadow-sm z-10">
-                        <span class="material-symbols-outlined text-primary" data-icon="design_services">design_services</span>
+                    <h4 class="font-label-sm text-label-sm font-bold mb-1 group-hover:text-primary transition-colors">Análisis</h4>
+                </button>
+
+                <!-- Step 3 -->
+                <button type="button" class="btn-proceso flex flex-col items-center text-center group transition-transform hover:-translate-y-1 focus:outline-none" 
+                        data-title="Diseño" 
+                        data-icon="design_services" 
+                        data-desc="Creamos interfaces intuitivas (UI/UX) y prototipos interactivos. En esta etapa podrás visualizar cómo se verá y funcionará tu plataforma antes de que escribamos una sola línea de código, garantizando la mejor experiencia para el usuario final.">
+                    <div class="w-16 h-16 rounded-full bg-surface-container-lowest border-2 border-primary flex items-center justify-center mb-4 shadow-sm z-10 group-hover:bg-primary transition-colors duration-300">
+                        <span class="material-symbols-outlined text-primary group-hover:text-on-primary transition-colors">design_services</span>
                     </div>
-                    <h4 class="font-label-sm text-label-sm font-bold mb-1">Diseño</h4>
-                </div>
-                <div class="flex flex-col items-center text-center max-w-[150px]">
-                    <div class="w-16 h-16 rounded-full bg-surface-container-lowest border-2 border-primary flex items-center justify-center mb-4 shadow-sm z-10">
-                        <span class="material-symbols-outlined text-primary" data-icon="code">code</span>
+                    <h4 class="font-label-sm text-label-sm font-bold mb-1 group-hover:text-primary transition-colors">Diseño</h4>
+                </button>
+
+                <!-- Step 4 -->
+                <button type="button" class="btn-proceso flex flex-col items-center text-center group transition-transform hover:-translate-y-1 focus:outline-none" 
+                        data-title="Desarrollo" 
+                        data-icon="code" 
+                        data-desc="Nuestro equipo de ingenieros transforma los diseños en realidad. Utilizamos metodologías ágiles y las tecnologías más modernas y robustas del mercado para programar tu solución, asegurando un código limpio, seguro y optimizado.">
+                    <div class="w-16 h-16 rounded-full bg-surface-container-lowest border-2 border-primary flex items-center justify-center mb-4 shadow-sm z-10 group-hover:bg-primary transition-colors duration-300">
+                        <span class="material-symbols-outlined text-primary group-hover:text-on-primary transition-colors">code</span>
                     </div>
-                    <h4 class="font-label-sm text-label-sm font-bold mb-1">Desarrollo</h4>
-                </div>
-                <div class="flex flex-col items-center text-center max-w-[150px]">
-                    <div class="w-16 h-16 rounded-full bg-surface-container-lowest border-2 border-primary flex items-center justify-center mb-4 shadow-sm z-10">
-                        <span class="material-symbols-outlined text-primary" data-icon="bug_report">bug_report</span>
+                    <h4 class="font-label-sm text-label-sm font-bold mb-1 group-hover:text-primary transition-colors">Desarrollo</h4>
+                </button>
+
+                <!-- Step 5 -->
+                <button type="button" class="btn-proceso flex flex-col items-center text-center group transition-transform hover:-translate-y-1 focus:outline-none" 
+                        data-title="Pruebas" 
+                        data-icon="bug_report" 
+                        data-desc="Realizamos rigurosas pruebas de calidad (QA). Detectamos y corregimos errores, probamos el rendimiento bajo estrés y aseguramos que todas las integraciones y flujos funcionen perfectamente antes de salir al mercado.">
+                    <div class="w-16 h-16 rounded-full bg-surface-container-lowest border-2 border-primary flex items-center justify-center mb-4 shadow-sm z-10 group-hover:bg-primary transition-colors duration-300">
+                        <span class="material-symbols-outlined text-primary group-hover:text-on-primary transition-colors">bug_report</span>
                     </div>
-                    <h4 class="font-label-sm text-label-sm font-bold mb-1">Pruebas</h4>
-                </div>
-                <div class="flex flex-col items-center text-center max-w-[150px]">
-                    <div class="w-16 h-16 rounded-full bg-surface-container-lowest border-2 border-primary flex items-center justify-center mb-4 shadow-sm z-10">
-                        <span class="material-symbols-outlined text-primary" data-icon="rocket_launch">rocket_launch</span>
+                    <h4 class="font-label-sm text-label-sm font-bold mb-1 group-hover:text-primary transition-colors">Pruebas</h4>
+                </button>
+
+                <!-- Step 6 -->
+                <button type="button" class="btn-proceso flex flex-col items-center text-center group transition-transform hover:-translate-y-1 focus:outline-none" 
+                        data-title="Despliegue y Soporte" 
+                        data-icon="rocket_launch" 
+                        data-desc="Lanzamos tu plataforma a producción y la configuramos en servidores seguros. Posteriormente, te brindamos mantenimiento continuo y soporte técnico para asegurar que tu software evolucione junto a tu negocio sin contratiempos.">
+                    <div class="w-16 h-16 rounded-full bg-surface-container-lowest border-2 border-primary flex items-center justify-center mb-4 shadow-sm z-10 group-hover:bg-primary transition-colors duration-300">
+                        <span class="material-symbols-outlined text-primary group-hover:text-on-primary transition-colors">rocket_launch</span>
                     </div>
-                    <h4 class="font-label-sm text-label-sm font-bold mb-1">Despliegue y Soporte</h4>
-                </div>
+                    <h4 class="font-label-sm text-label-sm font-bold mb-1 group-hover:text-primary transition-colors">Despliegue y Soporte</h4>
+                </button>
             </div>
         </div>
     </section>
@@ -346,9 +371,9 @@
         <div class="space-y-4">
             <h4 class="font-label-sm text-label-sm font-bold uppercase tracking-wider text-on-background">Legal</h4>
             <ul class="space-y-2 font-body-md text-body-md">
-                <!-- Se agregó la clase btn-privacidad para abrir el modal -->
                 <li><a href="#" class="btn-privacidad text-on-surface-variant hover:text-primary transition-colors hover:underline transition-all">Políticas de Privacidad</a></li>
-                <li><a href="#" class="text-on-surface-variant hover:text-primary transition-colors hover:underline transition-all">Términos y Condiciones</a></li>
+                <!-- AÑADIDO: Botón de Términos y Condiciones -->
+                <li><a href="#" class="btn-terminos text-on-surface-variant hover:text-primary transition-colors hover:underline transition-all">Términos y Condiciones</a></li>
             </ul>
         </div>
         <div class="space-y-4">
@@ -369,13 +394,10 @@
 </footer>
 
 <!-- ============================================== -->
-<!-- MODAL DE COTIZACIÓN -->
+<!-- 1. MODAL DE COTIZACIÓN -->
 <!-- ============================================== -->
 <div id="cotizacion-modal" class="fixed inset-0 z-[100] flex items-center justify-center px-4 sm:px-0 modal-overlay modal-hidden">
-    <!-- Fondo oscuro difuminado -->
     <div class="fixed inset-0 bg-[#0b1c30]/60 backdrop-blur-sm cursor-pointer close-cotizacion-backdrop"></div>
-    
-    <!-- Contenedor del Formulario -->
     <div class="relative bg-surface-container-lowest rounded-xl shadow-2xl w-full max-w-lg overflow-hidden modal-panel panel-hidden" id="cotizacion-panel">
         <div class="px-6 py-5 border-b border-outline-variant/50 bg-surface flex justify-between items-center">
             <h3 class="font-headline-md text-xl font-bold text-primary flex items-center gap-2">
@@ -386,7 +408,6 @@
                 <span class="material-symbols-outlined">close</span>
             </button>
         </div>
-        
         <form id="cotizacion-form" class="p-6 space-y-5">
             <div>
                 <label for="empresa" class="block font-label-sm text-sm font-bold text-on-surface mb-2">Nombre de la Empresa o Proyecto *</label>
@@ -420,13 +441,11 @@
 </div>
 
 <!-- ============================================== -->
-<!-- MODAL DE POLÍTICAS DE PRIVACIDAD -->
+<!-- 2. MODAL DE POLÍTICAS DE PRIVACIDAD -->
 <!-- ============================================== -->
 <div id="privacidad-modal" class="fixed inset-0 z-[100] flex items-center justify-center px-4 sm:px-0 modal-overlay modal-hidden">
     <div class="fixed inset-0 bg-[#0b1c30]/60 backdrop-blur-sm cursor-pointer close-privacidad-backdrop"></div>
-    
     <div class="relative bg-surface-container-lowest rounded-xl shadow-2xl w-full max-w-2xl max-h-[85vh] flex flex-col overflow-hidden modal-panel panel-hidden" id="privacidad-panel">
-        
         <div class="px-6 py-5 border-b border-outline-variant/50 bg-surface flex justify-between items-center shrink-0">
             <h3 class="font-headline-md text-xl font-bold text-on-background flex items-center gap-2">
                 <span class="material-symbols-outlined text-primary">gavel</span>
@@ -436,35 +455,89 @@
                 <span class="material-symbols-outlined">close</span>
             </button>
         </div>
-        
-        <!-- Cuerpo del texto scrolleable -->
         <div class="p-6 overflow-y-auto custom-scrollbar space-y-4 text-on-surface-variant font-body-md text-[15px] leading-relaxed">
-            <p>En <strong>Marivic Soft</strong>, valoramos su privacidad y estamos comprometidos con la protección de sus datos personales, en estricto cumplimiento de la <strong>Ley N° 29733, Ley de Protección de Datos Personales de Perú</strong>, y su Reglamento.</p>
-
+            <p>En <strong>Marivic Soft</strong>, valoramos su privacidad y estamos comprometidos con la protección de sus datos personales, en estricto cumplimiento de la <strong>Ley N° 29733, Ley de Protección de Datos Personales de Perú</strong>.</p>
             <h4 class="font-bold text-on-background mt-4">1. Identidad y Domicilio</h4>
-            <p>Marivic Soft, con sede en Lima, Perú, es la entidad responsable del tratamiento de los datos personales que usted nos proporcione a través de nuestro sitio web o canales de contacto.</p>
-
+            <p>Marivic Soft, con sede en Lima, Perú, es la entidad responsable del tratamiento de los datos personales.</p>
             <h4 class="font-bold text-on-background mt-4">2. Finalidad del Tratamiento de Datos</h4>
-            <p>Los datos solicitados en nuestros formularios (como nombre de la empresa, descripción de proyectos y número telefónico) serán utilizados única y exclusivamente para:</p>
-            <ul class="list-disc pl-5 space-y-1">
-                <li>Responder a consultas y solicitudes de cotización de servicios de desarrollo de software.</li>
-                <li>Establecer contacto comercial vía WhatsApp, correo electrónico o llamada telefónica.</li>
-                <li>Enviar información relevante sobre nuestras soluciones tecnológicas, siempre que contemos con su consentimiento.</li>
-            </ul>
-
-            <h4 class="font-bold text-on-background mt-4">3. Consentimiento y Seguridad</h4>
-            <p>Al hacer clic en "Enviar Cotización por WhatsApp" o al comunicarse con nosotros, usted otorga su consentimiento libre, previo, expreso e inequívoco para el tratamiento de sus datos. Marivic Soft implementa medidas técnicas y organizativas para garantizar la seguridad de su información y evitar su alteración, pérdida o acceso no autorizado.</p>
-
-            <h4 class="font-bold text-on-background mt-4">4. Ejercicio de Derechos ARCO</h4>
-            <p>Usted puede ejercer en cualquier momento sus derechos de <strong>Acceso, Rectificación, Cancelación y Oposición (ARCO)</strong> respecto a sus datos personales. Para ello, puede comunicarse con nosotros directamente a nuestro número de WhatsApp (+51 93014455) o solicitarlo mediante nuestros canales de contacto oficiales.</p>
-            
-            <p class="text-sm mt-4 italic text-center">Última actualización: Agosto 2026</p>
+            <p>Los datos solicitados serán utilizados única y exclusivamente para responder a consultas, establecer contacto comercial y enviar cotizaciones.</p>
+            <h4 class="font-bold text-on-background mt-4">3. Ejercicio de Derechos ARCO</h4>
+            <p>Usted puede ejercer en cualquier momento sus derechos de Acceso, Rectificación, Cancelación y Oposición respecto a sus datos personales comunicándose a nuestro WhatsApp.</p>
         </div>
-        
-        <!-- Pie del modal -->
         <div class="px-6 py-4 border-t border-outline-variant/50 bg-surface text-right shrink-0">
             <button type="button" class="close-privacidad-btn bg-surface-container-high hover:bg-surface-variant text-on-surface px-6 py-2 rounded-lg font-label-sm text-sm font-bold transition-all">
                 Entendido
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================== -->
+<!-- 3. MODAL DE TÉRMINOS Y CONDICIONES (NUEVO) -->
+<!-- ============================================== -->
+<div id="terminos-modal" class="fixed inset-0 z-[100] flex items-center justify-center px-4 sm:px-0 modal-overlay modal-hidden">
+    <div class="fixed inset-0 bg-[#0b1c30]/60 backdrop-blur-sm cursor-pointer close-terminos-backdrop"></div>
+    <div class="relative bg-surface-container-lowest rounded-xl shadow-2xl w-full max-w-2xl max-h-[85vh] flex flex-col overflow-hidden modal-panel panel-hidden" id="terminos-panel">
+        <div class="px-6 py-5 border-b border-outline-variant/50 bg-surface flex justify-between items-center shrink-0">
+            <h3 class="font-headline-md text-xl font-bold text-on-background flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary">description</span>
+                Términos y Condiciones
+            </h3>
+            <button type="button" class="close-terminos-btn text-on-surface-variant hover:text-error bg-surface-container hover:bg-error/10 p-1 rounded-full transition-all flex items-center justify-center">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <div class="p-6 overflow-y-auto custom-scrollbar space-y-4 text-on-surface-variant font-body-md text-[15px] leading-relaxed">
+            <p>Bienvenido a <strong>Marivic Soft</strong>. Los presentes Términos y Condiciones regulan la prestación de nuestros servicios de desarrollo de software, diseño web y consultoría tecnológica.</p>
+            
+            <h4 class="font-bold text-on-background mt-4">1. Objeto del Servicio</h4>
+            <p>Marivic Soft se compromete a desarrollar soluciones tecnológicas a medida según los requerimientos técnicos y funcionales acordados formalmente en la cotización o contrato previo con el Cliente.</p>
+
+            <h4 class="font-bold text-on-background mt-4">2. Propiedad Intelectual</h4>
+            <p>Todos los derechos sobre el código fuente, diseño y arquitectura del software desarrollado serán transferidos al Cliente única y exclusivamente una vez que se haya cancelado el 100% de los honorarios pactados. Marivic Soft se reserva el derecho de exhibir el proyecto en su portafolio comercial, salvo que se firme un Acuerdo de No Divulgación (NDA).</p>
+
+            <h4 class="font-bold text-on-background mt-4">3. Pagos y Facturación</h4>
+            <p>Los proyectos se inician tras el abono de un anticipo (comúnmente 50%, según lo estipulado en la cotización). El pago restante se realiza al momento de la entrega o despliegue. Todos los precios están sujetos a las normativas tributarias emitidas por la SUNAT en el territorio Peruano.</p>
+
+            <h4 class="font-bold text-on-background mt-4">4. Soporte y Garantía</h4>
+            <p>Entregamos los proyectos libres de errores críticos (bugs) de acuerdo al alcance inicial. Proporcionamos un periodo de garantía (detallado en cada contrato) para subsanar cualquier fallo de código. Nuevas funcionalidades se cotizarán por separado.</p>
+
+            <h4 class="font-bold text-on-background mt-4">5. Legislación Aplicable</h4>
+            <p>Cualquier disputa legal relacionada con la prestación de nuestros servicios estará sujeta a las leyes de la República del Perú y se someterá a la jurisdicción de los tribunales de Lima.</p>
+        </div>
+        <div class="px-6 py-4 border-t border-outline-variant/50 bg-surface text-right shrink-0">
+            <button type="button" class="close-terminos-btn bg-surface-container-high hover:bg-surface-variant text-on-surface px-6 py-2 rounded-lg font-label-sm text-sm font-bold transition-all">
+                Aceptar y Cerrar
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================== -->
+<!-- 4. MODAL DINÁMICO DE DETALLE DEL PROCESO (NUEVO) -->
+<!-- ============================================== -->
+<div id="detalle-proceso-modal" class="fixed inset-0 z-[100] flex items-center justify-center px-4 sm:px-0 modal-overlay modal-hidden">
+    <div class="fixed inset-0 bg-[#0b1c30]/60 backdrop-blur-sm cursor-pointer close-proceso-backdrop"></div>
+    <div class="relative bg-surface-container-lowest rounded-xl shadow-2xl w-full max-w-sm overflow-hidden modal-panel panel-hidden" id="detalle-proceso-panel">
+        
+        <div class="p-8 flex flex-col items-center text-center">
+            <!-- Icono Dinámico -->
+            <div class="w-20 h-20 rounded-full bg-primary/10 border-2 border-primary flex items-center justify-center mb-6">
+                <span id="proceso-icono" class="material-symbols-outlined text-[32px] text-primary">info</span>
+            </div>
+            
+            <!-- Título Dinámico -->
+            <h3 id="proceso-titulo" class="font-headline-md text-2xl font-bold text-on-background mb-4">Etapa</h3>
+            
+            <!-- Descripción Dinámica -->
+            <p id="proceso-descripcion" class="font-body-md text-on-surface-variant leading-relaxed">
+                Descripción de la etapa...
+            </p>
+        </div>
+
+        <div class="px-6 py-4 border-t border-outline-variant/30 bg-surface text-center shrink-0">
+            <button type="button" class="close-proceso-btn w-full bg-primary hover:bg-primary/90 text-on-primary px-6 py-3 rounded-lg font-label-sm text-sm font-bold transition-all shadow-sm">
+                Cerrar Detalle
             </button>
         </div>
     </div>
@@ -475,26 +548,14 @@
 <!-- ============================================== -->
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        // --- MODAL DE COTIZACIÓN ---
-        const cotiModal = document.getElementById('cotizacion-modal');
-        const cotiPanel = document.getElementById('cotizacion-panel');
-        const openCotiBtns = document.querySelectorAll('.btn-cotizar');
-        const closeCotiBtns = document.querySelectorAll('.close-cotizacion-btn, .close-cotizacion-backdrop');
-        const cotiForm = document.getElementById('cotizacion-form');
-
-        // --- MODAL DE PRIVACIDAD ---
-        const privModal = document.getElementById('privacidad-modal');
-        const privPanel = document.getElementById('privacidad-panel');
-        const openPrivBtns = document.querySelectorAll('.btn-privacidad');
-        const closePrivBtns = document.querySelectorAll('.close-privacidad-btn, .close-privacidad-backdrop');
-
-        // Funciones genéricas para abrir/cerrar modales
+        
+        // Función genérica para abrir y cerrar modales
         const openModal = (modal, panel) => {
             modal.classList.remove('modal-hidden');
             modal.classList.add('modal-visible');
             panel.classList.remove('panel-hidden');
             panel.classList.add('panel-visible');
-            document.body.style.overflow = 'hidden'; // Evitar scroll del fondo
+            document.body.style.overflow = 'hidden';
         };
 
         const closeModal = (modal, panel) => {
@@ -502,47 +563,60 @@
             modal.classList.add('modal-hidden');
             panel.classList.remove('panel-visible');
             panel.classList.add('panel-hidden');
-            document.body.style.overflow = 'auto'; // Restaurar scroll
+            document.body.style.overflow = 'auto';
         };
 
-        // Eventos Modal Cotización
-        openCotiBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                openModal(cotiModal, cotiPanel);
+        // --- 1. Lógica Modal Cotización ---
+        const cotiModal = document.getElementById('cotizacion-modal');
+        const cotiPanel = document.getElementById('cotizacion-panel');
+        document.querySelectorAll('.btn-cotizar').forEach(btn => btn.addEventListener('click', (e) => { e.preventDefault(); openModal(cotiModal, cotiPanel); }));
+        document.querySelectorAll('.close-cotizacion-btn, .close-cotizacion-backdrop').forEach(btn => btn.addEventListener('click', () => closeModal(cotiModal, cotiPanel)));
+
+        // --- 2. Lógica Modal Privacidad ---
+        const privModal = document.getElementById('privacidad-modal');
+        const privPanel = document.getElementById('privacidad-panel');
+        document.querySelectorAll('.btn-privacidad').forEach(btn => btn.addEventListener('click', (e) => { e.preventDefault(); openModal(privModal, privPanel); }));
+        document.querySelectorAll('.close-privacidad-btn, .close-privacidad-backdrop').forEach(btn => btn.addEventListener('click', () => closeModal(privModal, privPanel)));
+
+        // --- 3. Lógica Modal Términos y Condiciones ---
+        const termModal = document.getElementById('terminos-modal');
+        const termPanel = document.getElementById('terminos-panel');
+        document.querySelectorAll('.btn-terminos').forEach(btn => btn.addEventListener('click', (e) => { e.preventDefault(); openModal(termModal, termPanel); }));
+        document.querySelectorAll('.close-terminos-btn, .close-terminos-backdrop').forEach(btn => btn.addEventListener('click', () => closeModal(termModal, termPanel)));
+
+        // --- 4. Lógica Interacción del Proceso ---
+        const procModal = document.getElementById('detalle-proceso-modal');
+        const procPanel = document.getElementById('detalle-proceso-panel');
+        const titleEl = document.getElementById('proceso-titulo');
+        const iconEl = document.getElementById('proceso-icono');
+        const descEl = document.getElementById('proceso-descripcion');
+
+        document.querySelectorAll('.btn-proceso').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Leer datos del botón presionado
+                titleEl.textContent = btn.dataset.title;
+                iconEl.textContent = btn.dataset.icon;
+                descEl.textContent = btn.dataset.desc;
+                
+                // Abrir el modal correspondiente
+                openModal(procModal, procPanel);
             });
         });
-        closeCotiBtns.forEach(btn => btn.addEventListener('click', () => closeModal(cotiModal, cotiPanel)));
+        document.querySelectorAll('.close-proceso-btn, .close-proceso-backdrop').forEach(btn => btn.addEventListener('click', () => closeModal(procModal, procPanel)));
 
-        // Eventos Modal Privacidad
-        openPrivBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                openModal(privModal, privPanel);
-            });
-        });
-        closePrivBtns.forEach(btn => btn.addEventListener('click', () => closeModal(privModal, privPanel)));
-
-        // Procesar formulario y redirigir a WhatsApp
+        // --- 5. Lógica Enviar WhatsApp ---
+        const cotiForm = document.getElementById('cotizacion-form');
         cotiForm.addEventListener('submit', (e) => {
             e.preventDefault();
-
-            // Obtener valores
             const empresa = document.getElementById('empresa').value;
             const servicio = document.getElementById('servicio').value;
             const descripcion = document.getElementById('descripcion').value;
 
-            // Formatear mensaje
             const textoMensaje = `*¡Hola Marivic Soft!* 👋🏼%0ADeseo solicitar una cotización para un nuevo proyecto.%0A%0A*🏢 Empresa/Proyecto:* ${encodeURIComponent(empresa)}%0A*💻 Servicio de interés:* ${encodeURIComponent(servicio)}%0A*📝 Descripción:* ${encodeURIComponent(descripcion)}%0A%0AQuedo a la espera de su respuesta.`;
-
-            // Número WhatsApp
             const numeroWhatsApp = "5193014455"; 
 
-            // Redirigir
-            const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${textoMensaje}`;
-            window.open(urlWhatsApp, '_blank');
+            window.open(`https://wa.me/${numeroWhatsApp}?text=${textoMensaje}`, '_blank');
             
-            // Limpiar y cerrar
             closeModal(cotiModal, cotiPanel);
             setTimeout(() => cotiForm.reset(), 300);
         });
