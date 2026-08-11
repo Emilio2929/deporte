@@ -110,22 +110,27 @@
             font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
         
-        /* Animación suave para el modal */
-        #cotizacion-modal { transition: opacity 0.3s ease-in-out; }
-        #modal-panel { transition: transform 0.3s ease-in-out; }
+        /* Animación suave para los modales */
+        .modal-overlay { transition: opacity 0.3s ease-in-out; }
+        .modal-panel { transition: transform 0.3s ease-in-out; }
         .modal-hidden { opacity: 0; pointer-events: none; }
         .modal-visible { opacity: 1; pointer-events: auto; }
         .panel-hidden { transform: scale(0.95) translateY(10px); }
         .panel-visible { transform: scale(1) translateY(0); }
+        
+        /* Scrollbar personalizado para el modal de privacidad */
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f2f4f6; border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #8c706e; border-radius: 4px; }
     </style>
 </head>
 <body class="font-body-md text-on-background bg-background antialiased selection:bg-primary-container selection:text-on-primary-container">
 
 <!-- TopNavBar -->
 <header class="bg-surface/95 dark:bg-surface-container/95 docked full-width top-0 sticky backdrop-blur-md border-b border-outline-variant shadow-sm z-50">
-    <div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto h-20">
-        <div class="flex items-center gap-2">
-            <span class="font-headline-md text-headline-md font-bold tracking-tight text-primary">MARIVIC SOFT</span>
+    <div class="flex justify-between items-center w-full px-4 md:px-margin-desktop max-w-container-max mx-auto h-20 gap-2">
+        <div class="flex items-center truncate">
+            <span class="font-headline-md text-lg md:text-headline-md font-bold tracking-tight text-primary whitespace-nowrap">MARIVIC SOFT</span>
         </div>
         <nav class="hidden md:flex items-center gap-8">
             <a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-sm text-label-sm hover:bg-primary/5 transition-all" href="#">Inicio</a>
@@ -133,8 +138,7 @@
             <a class="text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm hover:bg-primary/5 transition-all py-1" href="#proyectos">Proyectos</a>
             <a class="text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm hover:bg-primary/5 transition-all py-1" href="#contacto">Contacto</a>
         </nav>
-        <!-- SE AGREGÓ LA CLASE btn-cotizar AQUÍ -->
-        <button class="btn-cotizar bg-primary hover:bg-primary/90 text-on-primary px-6 py-3 rounded-lg font-label-sm text-label-sm shadow-[0_4px_14px_0_rgba(135,16,23,0.39)] hover:shadow-[0_6px_20px_rgba(135,16,23,0.23)] hover:-translate-y-0.5 transition-all duration-200">
+        <button class="btn-cotizar bg-primary hover:bg-primary/90 text-on-primary px-3 py-2 md:px-6 md:py-3 rounded-lg font-label-sm text-xs md:text-label-sm shadow-[0_4px_14px_0_rgba(135,16,23,0.39)] hover:shadow-[0_6px_20px_rgba(135,16,23,0.23)] hover:-translate-y-0.5 transition-all duration-200 whitespace-nowrap">
             Cotizar Proyecto
         </button>
     </div>
@@ -142,30 +146,30 @@
 
 <main>
     <!-- Hero Section -->
-    <section class="pt-section-gap pb-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto flex flex-col md:flex-row items-center gap-gutter">
+    <section class="pt-section-gap pb-section-gap px-4 md:px-margin-desktop max-w-container-max mx-auto flex flex-col md:flex-row items-center gap-gutter">
         <div class="flex-1 space-y-stack-lg">
             <p class="text-primary font-label-sm text-label-sm uppercase tracking-wider">Desarrollamos soluciones digitales</p>
             <h1 class="font-headline-xl text-headline-lg-mobile md:text-headline-xl text-on-background">Tu socio estratégico en la <br/><span class="text-primary">evolución tecnológica</span></h1>
             <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
                 Transformamos ideas y procesos en soluciones a medida que impulsan el crecimiento y la eficiencia de su empresa.
             </p>
-            <div class="flex flex-wrap gap-4 pt-4">
-                <button class="btn-cotizar bg-primary hover:bg-primary/90 text-on-primary px-8 py-4 rounded-lg font-label-sm text-label-sm shadow-[0_4px_14px_0_rgba(135,16,23,0.39)] transition-all">
+            <div class="flex flex-col sm:flex-row gap-4 pt-4 w-full">
+                <button class="btn-cotizar bg-primary hover:bg-primary/90 text-on-primary px-8 py-4 rounded-lg font-label-sm text-label-sm shadow-[0_4px_14px_0_rgba(135,16,23,0.39)] transition-all w-full sm:w-auto text-center">
                     Cotizar Ahora
                 </button>
-                <a href="#servicios" class="inline-flex items-center justify-center border-2 border-tertiary text-tertiary hover:bg-surface-container-low px-8 py-4 rounded-lg font-label-sm text-label-sm transition-all">
+                <a href="#servicios" class="inline-flex items-center justify-center border-2 border-tertiary text-tertiary hover:bg-surface-container-low px-8 py-4 rounded-lg font-label-sm text-label-sm transition-all w-full sm:w-auto text-center">
                     Nuestros Servicios
                 </a>
             </div>
         </div>
         <div class="flex-1 relative mt-10 md:mt-0">
             <div class="absolute inset-0 bg-primary/5 rounded-full blur-3xl -z-10 transform translate-x-10 translate-y-10"></div>
-            <img alt="Software interface shown on a high-end modern laptop, sleek and professional rendering" class="w-full h-auto object-contain drop-shadow-2xl rounded-xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSkvr10GwI5UB0eDAOhaz6lUHLSzGqVRpZ9-Qb8tExuEeTXtBEmPDZy0-m9FJA5f1D3tLmaNT09rfDOoKdWO9BuCGGGFoN3fPm_KZtBswZR1cXsOBRusbsSIk7JIar5vz-YSWgyoSyZ8XmU9fzyOG5-DjjpgfrbTs2C3AMxYVfOeLACQRIc5w0TdFZVCZEV9QSjrtJTJsbfOnBPzw-NPELerc-PzPhvZ_yUqfCqSLlvub3Bbc95DjSy9moB2HtpGrE0ts"/>
+            <img alt="Laptop con interface moderna y profesional de desarrollo de software" class="w-full h-auto object-contain drop-shadow-2xl rounded-xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSkvr10GwI5UB0eDAOhaz6lUHLSzGqVRpZ9-Qb8tExuEeTXtBEmPDZy0-m9FJA5f1D3tLmaNT09rfDOoKdWO9BuCGGGFoN3fPm_KZtBswZR1cXsOBRusbsSIk7JIar5vz-YSWgyoSyZ8XmU9fzyOG5-DjjpgfrbTs2C3AMxYVfOeLACQRIc5w0TdFZVCZEV9QSjrtJTJsbfOnBPzw-NPELerc-PzPhvZ_yUqfCqSLlvub3Bbc95DjSy9moB2HtpGrE0ts"/>
         </div>
     </section>
 
     <!-- Stats Section -->
-    <section class="bg-surface-container-low py-12 px-margin-mobile md:px-margin-desktop border-y border-outline-variant/30">
+    <section class="bg-surface-container-low py-12 px-4 md:px-margin-desktop border-y border-outline-variant/30">
         <div class="max-w-container-max mx-auto grid grid-cols-2 md:grid-cols-4 gap-gutter text-center">
             <div class="space-y-2">
                 <div class="font-headline-xl text-headline-lg-mobile md:text-headline-xl text-primary font-bold">50+</div>
@@ -187,7 +191,7 @@
     </section>
 
     <!-- Services Section -->
-    <section class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto" id="servicios">
+    <section class="py-section-gap px-4 md:px-margin-desktop max-w-container-max mx-auto" id="servicios">
         <div class="text-center mb-16 space-y-4">
             <p class="text-primary font-label-sm text-label-sm uppercase tracking-wider">Nuestros Servicios</p>
             <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background">Tecnología que impulsa tu negocio</h2>
@@ -240,7 +244,7 @@
     </section>
 
     <!-- Process Section -->
-    <section class="bg-surface-container-highest py-section-gap px-margin-mobile md:px-margin-desktop relative overflow-hidden">
+    <section class="bg-surface-container-highest py-section-gap px-4 md:px-margin-desktop relative overflow-hidden">
         <div class="absolute inset-0 bg-primary/5 pointer-events-none"></div>
         <div class="max-w-container-max mx-auto relative z-10">
             <div class="text-center mb-16 space-y-4">
@@ -292,7 +296,7 @@
     </section>
 
     <!-- Testimonial -->
-    <section class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+    <section class="py-section-gap px-4 md:px-margin-desktop max-w-container-max mx-auto">
         <div class="text-center mb-12">
             <p class="text-primary font-label-sm text-label-sm uppercase tracking-wider">Testimonios</p>
             <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background">Lo que dicen nuestros clientes</h2>
@@ -326,7 +330,7 @@
 
 <!-- Footer -->
 <footer class="bg-surface-container-low dark:bg-surface-container-highest mt-section-gap full-width border-t border-outline-variant dark:border-outline" id="contacto">
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-gutter py-16 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-gutter py-16 px-4 md:px-margin-desktop max-w-container-max mx-auto">
         <div class="space-y-4 col-span-1 md:col-span-1">
             <span class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary block">MARIVIC SOFT</span>
             <p class="font-body-md text-body-md text-on-surface-variant">Ingeniería de Software para el éxito real. Transformando ideas en soluciones tecnológicas escalables.</p>
@@ -342,13 +346,13 @@
         <div class="space-y-4">
             <h4 class="font-label-sm text-label-sm font-bold uppercase tracking-wider text-on-background">Legal</h4>
             <ul class="space-y-2 font-body-md text-body-md">
-                <li><a class="text-on-surface-variant hover:text-primary transition-colors hover:underline transition-all" href="#">Políticas de Privacidad</a></li>
-                <li><a class="text-on-surface-variant hover:text-primary transition-colors hover:underline transition-all" href="#">Términos y Condiciones</a></li>
+                <!-- Se agregó la clase btn-privacidad para abrir el modal -->
+                <li><a href="#" class="btn-privacidad text-on-surface-variant hover:text-primary transition-colors hover:underline transition-all">Políticas de Privacidad</a></li>
+                <li><a href="#" class="text-on-surface-variant hover:text-primary transition-colors hover:underline transition-all">Términos y Condiciones</a></li>
             </ul>
         </div>
         <div class="space-y-4">
             <h4 class="font-label-sm text-label-sm font-bold uppercase tracking-wider text-on-background">Contacto</h4>
-            <!-- SE AGREGÓ LA CLASE btn-cotizar AQUÍ TAMBIÉN -->
             <button class="btn-cotizar w-full bg-primary hover:bg-primary/90 text-on-primary px-4 py-3 rounded-lg font-label-sm text-label-sm shadow-sm transition-all mb-2 flex items-center justify-center gap-2">
                 <span class="material-symbols-outlined text-[18px]" data-icon="description">description</span>
                 Solicitar Cotización
@@ -359,37 +363,35 @@
             </a>
         </div>
     </div>
-    <div class="border-t border-outline-variant/30 py-6 px-margin-mobile md:px-margin-desktop text-center">
-        <p class="font-body-md text-sm text-on-surface-variant">© 2024 Marivic Soft. Todos los derechos reservados.</p>
+    <div class="border-t border-outline-variant/30 py-6 px-4 md:px-margin-desktop text-center">
+        <p class="font-body-md text-sm text-on-surface-variant">© 2024 Marivic Soft. Todos los derechos reservados. Lima, Perú.</p>
     </div>
 </footer>
 
-<!-- MODAL DE COTIZACIÓN (Oculto por defecto) -->
-<div id="cotizacion-modal" class="fixed inset-0 z-[100] flex items-center justify-center px-4 sm:px-0 modal-hidden">
+<!-- ============================================== -->
+<!-- MODAL DE COTIZACIÓN -->
+<!-- ============================================== -->
+<div id="cotizacion-modal" class="fixed inset-0 z-[100] flex items-center justify-center px-4 sm:px-0 modal-overlay modal-hidden">
     <!-- Fondo oscuro difuminado -->
-    <div class="fixed inset-0 bg-[#0b1c30]/60 backdrop-blur-sm cursor-pointer" id="modal-backdrop"></div>
+    <div class="fixed inset-0 bg-[#0b1c30]/60 backdrop-blur-sm cursor-pointer close-cotizacion-backdrop"></div>
     
     <!-- Contenedor del Formulario -->
-    <div id="modal-panel" class="relative bg-surface-container-lowest rounded-xl shadow-2xl w-full max-w-lg overflow-hidden panel-hidden">
-        
-        <!-- Cabecera del modal -->
+    <div class="relative bg-surface-container-lowest rounded-xl shadow-2xl w-full max-w-lg overflow-hidden modal-panel panel-hidden" id="cotizacion-panel">
         <div class="px-6 py-5 border-b border-outline-variant/50 bg-surface flex justify-between items-center">
             <h3 class="font-headline-md text-xl font-bold text-primary flex items-center gap-2">
                 <span class="material-symbols-outlined">request_quote</span>
                 Cotizar Proyecto
             </h3>
-            <button type="button" id="close-modal" class="text-on-surface-variant hover:text-error bg-surface-container hover:bg-error/10 p-1 rounded-full transition-all flex items-center justify-center">
+            <button type="button" class="close-cotizacion-btn text-on-surface-variant hover:text-error bg-surface-container hover:bg-error/10 p-1 rounded-full transition-all flex items-center justify-center">
                 <span class="material-symbols-outlined">close</span>
             </button>
         </div>
         
-        <!-- Formulario -->
         <form id="cotizacion-form" class="p-6 space-y-5">
             <div>
                 <label for="empresa" class="block font-label-sm text-sm font-bold text-on-surface mb-2">Nombre de la Empresa o Proyecto *</label>
                 <input type="text" id="empresa" required class="w-full px-4 py-3 rounded-lg border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all bg-surface text-on-surface" placeholder="Ej. Corporación XYZ S.A.C.">
             </div>
-            
             <div>
                 <label for="servicio" class="block font-label-sm text-sm font-bold text-on-surface mb-2">¿Qué servicio te interesa? *</label>
                 <select id="servicio" required class="w-full px-4 py-3 rounded-lg border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all bg-surface text-on-surface appearance-none">
@@ -403,14 +405,11 @@
                     <option value="Otro">Otro requerimiento tecnológico</option>
                 </select>
             </div>
-            
             <div>
                 <label for="descripcion" class="block font-label-sm text-sm font-bold text-on-surface mb-2">Descripción de lo que necesitas *</label>
-                <textarea id="descripcion" required rows="4" class="w-full px-4 py-3 rounded-lg border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all bg-surface text-on-surface resize-none" placeholder="Cuéntanos brevemente cuáles son los objetivos o funcionalidades principales que requieres..."></textarea>
+                <textarea id="descripcion" required rows="4" class="w-full px-4 py-3 rounded-lg border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all bg-surface text-on-surface resize-none custom-scrollbar" placeholder="Cuéntanos brevemente cuáles son los objetivos o funcionalidades principales que requieres..."></textarea>
             </div>
-            
             <div class="pt-2">
-                <!-- Botón de WhatsApp -->
                 <button type="submit" class="w-full bg-[#25D366] hover:bg-[#1ebd5c] text-white px-6 py-4 rounded-lg font-label-sm text-[16px] font-bold shadow-[0_4px_14px_0_rgba(37,211,102,0.39)] hover:shadow-[0_6px_20px_rgba(37,211,102,0.23)] hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center gap-3">
                     <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
                     Enviar Cotización por WhatsApp
@@ -420,71 +419,132 @@
     </div>
 </div>
 
-<!-- Lógica Javascript para el Modal y Envío a WhatsApp -->
+<!-- ============================================== -->
+<!-- MODAL DE POLÍTICAS DE PRIVACIDAD -->
+<!-- ============================================== -->
+<div id="privacidad-modal" class="fixed inset-0 z-[100] flex items-center justify-center px-4 sm:px-0 modal-overlay modal-hidden">
+    <div class="fixed inset-0 bg-[#0b1c30]/60 backdrop-blur-sm cursor-pointer close-privacidad-backdrop"></div>
+    
+    <div class="relative bg-surface-container-lowest rounded-xl shadow-2xl w-full max-w-2xl max-h-[85vh] flex flex-col overflow-hidden modal-panel panel-hidden" id="privacidad-panel">
+        
+        <div class="px-6 py-5 border-b border-outline-variant/50 bg-surface flex justify-between items-center shrink-0">
+            <h3 class="font-headline-md text-xl font-bold text-on-background flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary">gavel</span>
+                Políticas de Privacidad
+            </h3>
+            <button type="button" class="close-privacidad-btn text-on-surface-variant hover:text-error bg-surface-container hover:bg-error/10 p-1 rounded-full transition-all flex items-center justify-center">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        
+        <!-- Cuerpo del texto scrolleable -->
+        <div class="p-6 overflow-y-auto custom-scrollbar space-y-4 text-on-surface-variant font-body-md text-[15px] leading-relaxed">
+            <p>En <strong>Marivic Soft</strong>, valoramos su privacidad y estamos comprometidos con la protección de sus datos personales, en estricto cumplimiento de la <strong>Ley N° 29733, Ley de Protección de Datos Personales de Perú</strong>, y su Reglamento.</p>
+
+            <h4 class="font-bold text-on-background mt-4">1. Identidad y Domicilio</h4>
+            <p>Marivic Soft, con sede en Lima, Perú, es la entidad responsable del tratamiento de los datos personales que usted nos proporcione a través de nuestro sitio web o canales de contacto.</p>
+
+            <h4 class="font-bold text-on-background mt-4">2. Finalidad del Tratamiento de Datos</h4>
+            <p>Los datos solicitados en nuestros formularios (como nombre de la empresa, descripción de proyectos y número telefónico) serán utilizados única y exclusivamente para:</p>
+            <ul class="list-disc pl-5 space-y-1">
+                <li>Responder a consultas y solicitudes de cotización de servicios de desarrollo de software.</li>
+                <li>Establecer contacto comercial vía WhatsApp, correo electrónico o llamada telefónica.</li>
+                <li>Enviar información relevante sobre nuestras soluciones tecnológicas, siempre que contemos con su consentimiento.</li>
+            </ul>
+
+            <h4 class="font-bold text-on-background mt-4">3. Consentimiento y Seguridad</h4>
+            <p>Al hacer clic en "Enviar Cotización por WhatsApp" o al comunicarse con nosotros, usted otorga su consentimiento libre, previo, expreso e inequívoco para el tratamiento de sus datos. Marivic Soft implementa medidas técnicas y organizativas para garantizar la seguridad de su información y evitar su alteración, pérdida o acceso no autorizado.</p>
+
+            <h4 class="font-bold text-on-background mt-4">4. Ejercicio de Derechos ARCO</h4>
+            <p>Usted puede ejercer en cualquier momento sus derechos de <strong>Acceso, Rectificación, Cancelación y Oposición (ARCO)</strong> respecto a sus datos personales. Para ello, puede comunicarse con nosotros directamente a nuestro número de WhatsApp (+51 93014455) o solicitarlo mediante nuestros canales de contacto oficiales.</p>
+            
+            <p class="text-sm mt-4 italic text-center">Última actualización: Agosto 2026</p>
+        </div>
+        
+        <!-- Pie del modal -->
+        <div class="px-6 py-4 border-t border-outline-variant/50 bg-surface text-right shrink-0">
+            <button type="button" class="close-privacidad-btn bg-surface-container-high hover:bg-surface-variant text-on-surface px-6 py-2 rounded-lg font-label-sm text-sm font-bold transition-all">
+                Entendido
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================== -->
+<!-- LÓGICA JAVASCRIPT DE MODALES Y WHATSAPP -->
+<!-- ============================================== -->
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        const modal = document.getElementById('cotizacion-modal');
-        const modalPanel = document.getElementById('modal-panel');
-        const backdrop = document.getElementById('modal-backdrop');
-        const closeBtn = document.getElementById('close-modal');
-        const form = document.getElementById('cotizacion-form');
+        // --- MODAL DE COTIZACIÓN ---
+        const cotiModal = document.getElementById('cotizacion-modal');
+        const cotiPanel = document.getElementById('cotizacion-panel');
+        const openCotiBtns = document.querySelectorAll('.btn-cotizar');
+        const closeCotiBtns = document.querySelectorAll('.close-cotizacion-btn, .close-cotizacion-backdrop');
+        const cotiForm = document.getElementById('cotizacion-form');
 
-        // Seleccionar todos los botones que abran el modal
-        const openButtons = document.querySelectorAll('.btn-cotizar');
+        // --- MODAL DE PRIVACIDAD ---
+        const privModal = document.getElementById('privacidad-modal');
+        const privPanel = document.getElementById('privacidad-panel');
+        const openPrivBtns = document.querySelectorAll('.btn-privacidad');
+        const closePrivBtns = document.querySelectorAll('.close-privacidad-btn, .close-privacidad-backdrop');
 
-        const openModal = () => {
+        // Funciones genéricas para abrir/cerrar modales
+        const openModal = (modal, panel) => {
             modal.classList.remove('modal-hidden');
             modal.classList.add('modal-visible');
-            modalPanel.classList.remove('panel-hidden');
-            modalPanel.classList.add('panel-visible');
-            document.body.style.overflow = 'hidden'; // Evitar scroll de fondo
+            panel.classList.remove('panel-hidden');
+            panel.classList.add('panel-visible');
+            document.body.style.overflow = 'hidden'; // Evitar scroll del fondo
         };
 
-        const closeModal = () => {
+        const closeModal = (modal, panel) => {
             modal.classList.remove('modal-visible');
             modal.classList.add('modal-hidden');
-            modalPanel.classList.remove('panel-visible');
-            modalPanel.classList.add('panel-hidden');
+            panel.classList.remove('panel-visible');
+            panel.classList.add('panel-hidden');
             document.body.style.overflow = 'auto'; // Restaurar scroll
         };
 
-        // Asignar evento click a los botones
-        openButtons.forEach(btn => {
+        // Eventos Modal Cotización
+        openCotiBtns.forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
-                openModal();
+                openModal(cotiModal, cotiPanel);
             });
         });
+        closeCotiBtns.forEach(btn => btn.addEventListener('click', () => closeModal(cotiModal, cotiPanel)));
 
-        // Cerrar modal al dar click en la X o fuera del modal
-        closeBtn.addEventListener('click', closeModal);
-        backdrop.addEventListener('click', closeModal);
+        // Eventos Modal Privacidad
+        openPrivBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                openModal(privModal, privPanel);
+            });
+        });
+        closePrivBtns.forEach(btn => btn.addEventListener('click', () => closeModal(privModal, privPanel)));
 
         // Procesar formulario y redirigir a WhatsApp
-        form.addEventListener('submit', (e) => {
-            e.preventDefault(); // Prevenir que recargue la página
+        cotiForm.addEventListener('submit', (e) => {
+            e.preventDefault();
 
-            // Obtener valores del formulario
+            // Obtener valores
             const empresa = document.getElementById('empresa').value;
             const servicio = document.getElementById('servicio').value;
             const descripcion = document.getElementById('descripcion').value;
 
-            // Formatear el texto para WhatsApp (con negritas y saltos de línea)
+            // Formatear mensaje
             const textoMensaje = `*¡Hola Marivic Soft!* 👋🏼%0ADeseo solicitar una cotización para un nuevo proyecto.%0A%0A*🏢 Empresa/Proyecto:* ${encodeURIComponent(empresa)}%0A*💻 Servicio de interés:* ${encodeURIComponent(servicio)}%0A*📝 Descripción:* ${encodeURIComponent(descripcion)}%0A%0AQuedo a la espera de su respuesta.`;
 
-            // Número de WhatsApp (Con el código de país de Perú +51 seguido del 93014455)
-            // NOTA: Si el número de Perú tiene 9 dígitos, y nos diste 8, asegúrate de corregirlo abajo si aplica.
+            // Número WhatsApp
             const numeroWhatsApp = "5193014455"; 
 
-            // Construir URL final
+            // Redirigir
             const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${textoMensaje}`;
-
-            // Abrir en nueva pestaña (App de PC o App móvil de WhatsApp)
             window.open(urlWhatsApp, '_blank');
             
-            // Cerrar el modal y reiniciar los campos
-            closeModal();
-            setTimeout(() => form.reset(), 300);
+            // Limpiar y cerrar
+            closeModal(cotiModal, cotiPanel);
+            setTimeout(() => cotiForm.reset(), 300);
         });
     });
 </script>
