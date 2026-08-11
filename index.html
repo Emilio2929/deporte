@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-
-<html lang="es"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Marivic Soft - Ingeniería para el éxito real</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Montserrat:wght@600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
+<html lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Marivic Soft - Ingeniería para el éxito real</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Montserrat:wght@600;700&amp;display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
             theme: {
@@ -102,7 +101,7 @@
             }
         }
     </script>
-<style>
+    <style>
         body { background-color: #f7f9fb; color: #191c1e; }
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
@@ -110,250 +109,385 @@
         .icon-fill {
             font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
+        
+        /* Animación suave para el modal */
+        #cotizacion-modal { transition: opacity 0.3s ease-in-out; }
+        #modal-panel { transition: transform 0.3s ease-in-out; }
+        .modal-hidden { opacity: 0; pointer-events: none; }
+        .modal-visible { opacity: 1; pointer-events: auto; }
+        .panel-hidden { transform: scale(0.95) translateY(10px); }
+        .panel-visible { transform: scale(1) translateY(0); }
     </style>
 </head>
 <body class="font-body-md text-on-background bg-background antialiased selection:bg-primary-container selection:text-on-primary-container">
+
 <!-- TopNavBar -->
 <header class="bg-surface/95 dark:bg-surface-container/95 docked full-width top-0 sticky backdrop-blur-md border-b border-outline-variant shadow-sm z-50">
-<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto h-20">
-<div class="flex items-center gap-2">
-<span class="font-headline-md text-headline-md font-bold tracking-tight text-primary">MARIVIC SOFT</span>
-</div>
-<nav class="hidden md:flex items-center gap-8">
-<a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-sm text-label-sm hover:bg-primary/5 transition-all" href="#">Inicio</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm hover:bg-primary/5 transition-all py-1" href="#servicios">Servicios</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm hover:bg-primary/5 transition-all py-1" href="#proyectos">Proyectos</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm hover:bg-primary/5 transition-all py-1" href="#contacto">Contacto</a>
-</nav>
-<button class="bg-primary hover:bg-primary/90 text-on-primary px-6 py-3 rounded-lg font-label-sm text-label-sm shadow-[0_4px_14px_0_rgba(135,16,23,0.39)] hover:shadow-[0_6px_20px_rgba(135,16,23,0.23)] hover:-translate-y-0.5 transition-all duration-200">
-                Cotizar Proyecto
-            </button>
-</div>
+    <div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto h-20">
+        <div class="flex items-center gap-2">
+            <span class="font-headline-md text-headline-md font-bold tracking-tight text-primary">MARIVIC SOFT</span>
+        </div>
+        <nav class="hidden md:flex items-center gap-8">
+            <a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-sm text-label-sm hover:bg-primary/5 transition-all" href="#">Inicio</a>
+            <a class="text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm hover:bg-primary/5 transition-all py-1" href="#servicios">Servicios</a>
+            <a class="text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm hover:bg-primary/5 transition-all py-1" href="#proyectos">Proyectos</a>
+            <a class="text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm hover:bg-primary/5 transition-all py-1" href="#contacto">Contacto</a>
+        </nav>
+        <!-- SE AGREGÓ LA CLASE btn-cotizar AQUÍ -->
+        <button class="btn-cotizar bg-primary hover:bg-primary/90 text-on-primary px-6 py-3 rounded-lg font-label-sm text-label-sm shadow-[0_4px_14px_0_rgba(135,16,23,0.39)] hover:shadow-[0_6px_20px_rgba(135,16,23,0.23)] hover:-translate-y-0.5 transition-all duration-200">
+            Cotizar Proyecto
+        </button>
+    </div>
 </header>
+
 <main>
-<!-- Hero Section -->
-<section class="pt-section-gap pb-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto flex flex-col md:flex-row items-center gap-gutter">
-<div class="flex-1 space-y-stack-lg">
-<p class="text-primary font-label-sm text-label-sm uppercase tracking-wider">Desarrollamos soluciones digitales</p>
-<h1 class="font-headline-xl text-headline-lg-mobile md:text-headline-xl text-on-background">Tu socio estratégico en la <br/><span class="text-primary">evolución tecnológica</span></h1>
-<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
-                    Transformamos ideas y procesos en soluciones a medida que impulsan el crecimiento y la eficiencia de su empresa.
+    <!-- Hero Section -->
+    <section class="pt-section-gap pb-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto flex flex-col md:flex-row items-center gap-gutter">
+        <div class="flex-1 space-y-stack-lg">
+            <p class="text-primary font-label-sm text-label-sm uppercase tracking-wider">Desarrollamos soluciones digitales</p>
+            <h1 class="font-headline-xl text-headline-lg-mobile md:text-headline-xl text-on-background">Tu socio estratégico en la <br/><span class="text-primary">evolución tecnológica</span></h1>
+            <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+                Transformamos ideas y procesos en soluciones a medida que impulsan el crecimiento y la eficiencia de su empresa.
+            </p>
+            <div class="flex flex-wrap gap-4 pt-4">
+                <button class="btn-cotizar bg-primary hover:bg-primary/90 text-on-primary px-8 py-4 rounded-lg font-label-sm text-label-sm shadow-[0_4px_14px_0_rgba(135,16,23,0.39)] transition-all">
+                    Cotizar Ahora
+                </button>
+                <a href="#servicios" class="inline-flex items-center justify-center border-2 border-tertiary text-tertiary hover:bg-surface-container-low px-8 py-4 rounded-lg font-label-sm text-label-sm transition-all">
+                    Nuestros Servicios
+                </a>
+            </div>
+        </div>
+        <div class="flex-1 relative mt-10 md:mt-0">
+            <div class="absolute inset-0 bg-primary/5 rounded-full blur-3xl -z-10 transform translate-x-10 translate-y-10"></div>
+            <img alt="Software interface shown on a high-end modern laptop, sleek and professional rendering" class="w-full h-auto object-contain drop-shadow-2xl rounded-xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSkvr10GwI5UB0eDAOhaz6lUHLSzGqVRpZ9-Qb8tExuEeTXtBEmPDZy0-m9FJA5f1D3tLmaNT09rfDOoKdWO9BuCGGGFoN3fPm_KZtBswZR1cXsOBRusbsSIk7JIar5vz-YSWgyoSyZ8XmU9fzyOG5-DjjpgfrbTs2C3AMxYVfOeLACQRIc5w0TdFZVCZEV9QSjrtJTJsbfOnBPzw-NPELerc-PzPhvZ_yUqfCqSLlvub3Bbc95DjSy9moB2HtpGrE0ts"/>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="bg-surface-container-low py-12 px-margin-mobile md:px-margin-desktop border-y border-outline-variant/30">
+        <div class="max-w-container-max mx-auto grid grid-cols-2 md:grid-cols-4 gap-gutter text-center">
+            <div class="space-y-2">
+                <div class="font-headline-xl text-headline-lg-mobile md:text-headline-xl text-primary font-bold">50+</div>
+                <div class="font-label-sm text-label-sm text-on-surface-variant uppercase">Proyectos realizados</div>
+            </div>
+            <div class="space-y-2">
+                <div class="font-headline-xl text-headline-lg-mobile md:text-headline-xl text-primary font-bold">30+</div>
+                <div class="font-label-sm text-label-sm text-on-surface-variant uppercase">Clientes satisfechos</div>
+            </div>
+            <div class="space-y-2">
+                <div class="font-headline-xl text-headline-lg-mobile md:text-headline-xl text-primary font-bold">3+</div>
+                <div class="font-label-sm text-label-sm text-on-surface-variant uppercase">Años de experiencia</div>
+            </div>
+            <div class="space-y-2">
+                <div class="font-headline-xl text-headline-lg-mobile md:text-headline-xl text-primary font-bold">99%</div>
+                <div class="font-label-sm text-label-sm text-on-surface-variant uppercase">Compromiso y calidad</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto" id="servicios">
+        <div class="text-center mb-16 space-y-4">
+            <p class="text-primary font-label-sm text-label-sm uppercase tracking-wider">Nuestros Servicios</p>
+            <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background">Tecnología que impulsa tu negocio</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+            <!-- Service Cards -->
+            <div class="bg-surface-container-lowest p-8 rounded-xl border border-surface-variant hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] transition-all duration-300 group">
+                <div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
+                    <span class="material-symbols-outlined text-primary group-hover:text-on-primary" data-icon="web">web</span>
+                </div>
+                <h3 class="font-headline-md text-headline-md mb-3">Desarrollo Web</h3>
+                <p class="font-body-md text-body-md text-on-surface-variant">Creamos sitios web modernos, rápidos y optimizados para SEO que representan la identidad de su marca.</p>
+            </div>
+            <div class="bg-surface-container-lowest p-8 rounded-xl border border-surface-variant hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] transition-all duration-300 group">
+                <div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
+                    <span class="material-symbols-outlined text-primary group-hover:text-on-primary" data-icon="shopping_cart">shopping_cart</span>
+                </div>
+                <h3 class="font-headline-md text-headline-md mb-3">E-commerce</h3>
+                <p class="font-body-md text-body-md text-on-surface-variant">Plataformas de venta online seguras y escalables para llevar sus productos al mercado digital global.</p>
+            </div>
+            <div class="bg-surface-container-lowest p-8 rounded-xl border border-surface-variant hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] transition-all duration-300 group">
+                <div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
+                    <span class="material-symbols-outlined text-primary group-hover:text-on-primary" data-icon="dashboard">dashboard</span>
+                </div>
+                <h3 class="font-headline-md text-headline-md mb-3">Sistemas Web a Medida</h3>
+                <p class="font-body-md text-body-md text-on-surface-variant">Soluciones de software personalizadas diseñadas específicamente para resolver los retos de su negocio.</p>
+            </div>
+            <div class="bg-surface-container-lowest p-8 rounded-xl border border-surface-variant hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] transition-all duration-300 group">
+                <div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
+                    <span class="material-symbols-outlined text-primary group-hover:text-on-primary" data-icon="settings_suggest">settings_suggest</span>
+                </div>
+                <h3 class="font-headline-md text-headline-md mb-3">Automatización Empresarial</h3>
+                <p class="font-body-md text-body-md text-on-surface-variant">Optimizamos flujos de trabajo reduciendo tareas manuales para aumentar la productividad y reducir errores.</p>
+            </div>
+            <div class="bg-surface-container-lowest p-8 rounded-xl border border-surface-variant hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] transition-all duration-300 group">
+                <div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
+                    <span class="material-symbols-outlined text-primary group-hover:text-on-primary" data-icon="api">api</span>
+                </div>
+                <h3 class="font-headline-md text-headline-md mb-3">Integraciones y APIs</h3>
+                <p class="font-body-md text-body-md text-on-surface-variant">Conectamos sus sistemas existentes para asegurar un flujo de datos continuo y eficiente entre plataformas.</p>
+            </div>
+            <div class="bg-surface-container-lowest p-8 rounded-xl border border-surface-variant hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] transition-all duration-300 group">
+                <div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
+                    <span class="material-symbols-outlined text-primary group-hover:text-on-primary" data-icon="support_agent">support_agent</span>
+                </div>
+                <h3 class="font-headline-md text-headline-md mb-3">Soporte y Mantenimiento</h3>
+                <p class="font-body-md text-body-md text-on-surface-variant">Asistencia técnica continua y actualizaciones proactivas para garantizar que su software siempre funcione al 100%.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="bg-surface-container-highest py-section-gap px-margin-mobile md:px-margin-desktop relative overflow-hidden">
+        <div class="absolute inset-0 bg-primary/5 pointer-events-none"></div>
+        <div class="max-w-container-max mx-auto relative z-10">
+            <div class="text-center mb-16 space-y-4">
+                <p class="text-primary font-label-sm text-label-sm uppercase tracking-wider">Nuestro Proceso</p>
+                <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background">Metodología para el éxito</h2>
+            </div>
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8 md:gap-4 relative">
+                <!-- Connecting Line -->
+                <div class="hidden md:block absolute top-1/2 left-[5%] right-[5%] h-0.5 bg-outline-variant -z-10 -translate-y-1/2"></div>
+                <!-- Steps -->
+                <div class="flex flex-col items-center text-center max-w-[150px]">
+                    <div class="w-16 h-16 rounded-full bg-surface-container-lowest border-2 border-primary flex items-center justify-center mb-4 shadow-sm z-10">
+                        <span class="material-symbols-outlined text-primary" data-icon="search">search</span>
+                    </div>
+                    <h4 class="font-label-sm text-label-sm font-bold mb-1">Descubrimiento</h4>
+                </div>
+                <div class="flex flex-col items-center text-center max-w-[150px]">
+                    <div class="w-16 h-16 rounded-full bg-surface-container-lowest border-2 border-primary flex items-center justify-center mb-4 shadow-sm z-10">
+                        <span class="material-symbols-outlined text-primary" data-icon="analytics">analytics</span>
+                    </div>
+                    <h4 class="font-label-sm text-label-sm font-bold mb-1">Análisis</h4>
+                </div>
+                <div class="flex flex-col items-center text-center max-w-[150px]">
+                    <div class="w-16 h-16 rounded-full bg-surface-container-lowest border-2 border-primary flex items-center justify-center mb-4 shadow-sm z-10">
+                        <span class="material-symbols-outlined text-primary" data-icon="design_services">design_services</span>
+                    </div>
+                    <h4 class="font-label-sm text-label-sm font-bold mb-1">Diseño</h4>
+                </div>
+                <div class="flex flex-col items-center text-center max-w-[150px]">
+                    <div class="w-16 h-16 rounded-full bg-surface-container-lowest border-2 border-primary flex items-center justify-center mb-4 shadow-sm z-10">
+                        <span class="material-symbols-outlined text-primary" data-icon="code">code</span>
+                    </div>
+                    <h4 class="font-label-sm text-label-sm font-bold mb-1">Desarrollo</h4>
+                </div>
+                <div class="flex flex-col items-center text-center max-w-[150px]">
+                    <div class="w-16 h-16 rounded-full bg-surface-container-lowest border-2 border-primary flex items-center justify-center mb-4 shadow-sm z-10">
+                        <span class="material-symbols-outlined text-primary" data-icon="bug_report">bug_report</span>
+                    </div>
+                    <h4 class="font-label-sm text-label-sm font-bold mb-1">Pruebas</h4>
+                </div>
+                <div class="flex flex-col items-center text-center max-w-[150px]">
+                    <div class="w-16 h-16 rounded-full bg-surface-container-lowest border-2 border-primary flex items-center justify-center mb-4 shadow-sm z-10">
+                        <span class="material-symbols-outlined text-primary" data-icon="rocket_launch">rocket_launch</span>
+                    </div>
+                    <h4 class="font-label-sm text-label-sm font-bold mb-1">Despliegue y Soporte</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial -->
+    <section class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+        <div class="text-center mb-12">
+            <p class="text-primary font-label-sm text-label-sm uppercase tracking-wider">Testimonios</p>
+            <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background">Lo que dicen nuestros clientes</h2>
+        </div>
+        <div class="max-w-3xl mx-auto bg-surface-container-lowest p-8 md:p-12 rounded-2xl border border-surface-variant shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] relative">
+            <span class="material-symbols-outlined absolute top-8 left-8 text-surface-variant text-[64px] opacity-20 rotate-180" data-icon="format_quote">format_quote</span>
+            <div class="flex flex-col items-center text-center relative z-10">
+                <div class="flex gap-1 text-primary mb-6">
+                    <span class="material-symbols-outlined icon-fill" data-icon="star">star</span>
+                    <span class="material-symbols-outlined icon-fill" data-icon="star">star</span>
+                    <span class="material-symbols-outlined icon-fill" data-icon="star">star</span>
+                    <span class="material-symbols-outlined icon-fill" data-icon="star">star</span>
+                    <span class="material-symbols-outlined icon-fill" data-icon="star">star</span>
+                </div>
+                <p class="font-body-lg text-body-lg text-on-surface italic mb-8">
+                    "El equipo de Marivic Soft transformó por completo nuestra infraestructura digital. Su atención al detalle y capacidad para resolver problemas complejos nos permitió escalar nuestro negocio de forma segura. Un partner tecnológico invaluable."
                 </p>
-<div class="flex gap-4 pt-4">
-<button class="bg-primary hover:bg-primary/90 text-on-primary px-8 py-4 rounded-lg font-label-sm text-label-sm shadow-[0_4px_14px_0_rgba(135,16,23,0.39)] transition-all">
-                        Nuestros Servicios
-                    </button>
-<button class="border-2 border-tertiary text-tertiary hover:bg-surface-container-low px-8 py-4 rounded-lg font-label-sm text-label-sm transition-all">
-                        Ver Proyectos
-                    </button>
-</div>
-</div>
-<div class="flex-1 relative">
-<div class="absolute inset-0 bg-primary/5 rounded-full blur-3xl -z-10 transform translate-x-10 translate-y-10"></div>
-<img alt="Software interface shown on a high-end modern laptop, sleek and professional rendering" class="w-full h-auto object-contain drop-shadow-2xl rounded-xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSkvr10GwI5UB0eDAOhaz6lUHLSzGqVRpZ9-Qb8tExuEeTXtBEmPDZy0-m9FJA5f1D3tLmaNT09rfDOoKdWO9BuCGGGFoN3fPm_KZtBswZR1cXsOBRusbsSIk7JIar5vz-YSWgyoSyZ8XmU9fzyOG5-DjjpgfrbTs2C3AMxYVfOeLACQRIc5w0TdFZVCZEV9QSjrtJTJsbfOnBPzw-NPELerc-PzPhvZ_yUqfCqSLlvub3Bbc95DjSy9moB2HtpGrE0ts"/>
-</div>
-</section>
-<!-- Stats Section -->
-<section class="bg-surface-container-low py-12 px-margin-mobile md:px-margin-desktop border-y border-outline-variant/30">
-<div class="max-w-container-max mx-auto grid grid-cols-2 md:grid-cols-4 gap-gutter text-center">
-<div class="space-y-2">
-<div class="font-headline-xl text-headline-lg-mobile md:text-headline-xl text-primary font-bold">50+</div>
-<div class="font-label-sm text-label-sm text-on-surface-variant uppercase">Proyectos realizados</div>
-</div>
-<div class="space-y-2">
-<div class="font-headline-xl text-headline-lg-mobile md:text-headline-xl text-primary font-bold">30+</div>
-<div class="font-label-sm text-label-sm text-on-surface-variant uppercase">Clientes satisfechos</div>
-</div>
-<div class="space-y-2">
-<div class="font-headline-xl text-headline-lg-mobile md:text-headline-xl text-primary font-bold">3+</div>
-<div class="font-label-sm text-label-sm text-on-surface-variant uppercase">Años de experiencia</div>
-</div>
-<div class="space-y-2">
-<div class="font-headline-xl text-headline-lg-mobile md:text-headline-xl text-primary font-bold">99%</div>
-<div class="font-label-sm text-label-sm text-on-surface-variant uppercase">Compromiso y calidad</div>
-</div>
-</div>
-</section>
-<!-- Services Section -->
-<section class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto" id="servicios">
-<div class="text-center mb-16 space-y-4">
-<p class="text-primary font-label-sm text-label-sm uppercase tracking-wider">Nuestros Servicios</p>
-<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background">Tecnología que impulsa tu negocio</h2>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
-<!-- Service Card 1 -->
-<div class="bg-surface-container-lowest p-8 rounded-xl border border-surface-variant hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] transition-all duration-300 group">
-<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
-<span class="material-symbols-outlined text-primary group-hover:text-on-primary" data-icon="web">web</span>
-</div>
-<h3 class="font-headline-md text-headline-md mb-3">Desarrollo Web</h3>
-<p class="font-body-md text-body-md text-on-surface-variant">Creamos sitios web modernos, rápidos y optimizados para SEO que representan la identidad de su marca.</p>
-</div>
-<!-- Service Card 2 -->
-<div class="bg-surface-container-lowest p-8 rounded-xl border border-surface-variant hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] transition-all duration-300 group">
-<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
-<span class="material-symbols-outlined text-primary group-hover:text-on-primary" data-icon="shopping_cart">shopping_cart</span>
-</div>
-<h3 class="font-headline-md text-headline-md mb-3">E-commerce</h3>
-<p class="font-body-md text-body-md text-on-surface-variant">Plataformas de venta online seguras y escalables para llevar sus productos al mercado digital global.</p>
-</div>
-<!-- Service Card 3 -->
-<div class="bg-surface-container-lowest p-8 rounded-xl border border-surface-variant hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] transition-all duration-300 group">
-<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
-<span class="material-symbols-outlined text-primary group-hover:text-on-primary" data-icon="dashboard">dashboard</span>
-</div>
-<h3 class="font-headline-md text-headline-md mb-3">Sistemas Web a Medida</h3>
-<p class="font-body-md text-body-md text-on-surface-variant">Soluciones de software personalizadas diseñadas específicamente para resolver los retos de su negocio.</p>
-</div>
-<!-- Service Card 4 -->
-<div class="bg-surface-container-lowest p-8 rounded-xl border border-surface-variant hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] transition-all duration-300 group">
-<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
-<span class="material-symbols-outlined text-primary group-hover:text-on-primary" data-icon="settings_suggest">settings_suggest</span>
-</div>
-<h3 class="font-headline-md text-headline-md mb-3">Automatización Empresarial</h3>
-<p class="font-body-md text-body-md text-on-surface-variant">Optimizamos flujos de trabajo reduciendo tareas manuales para aumentar la productividad y reducir errores.</p>
-</div>
-<!-- Service Card 5 -->
-<div class="bg-surface-container-lowest p-8 rounded-xl border border-surface-variant hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] transition-all duration-300 group">
-<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
-<span class="material-symbols-outlined text-primary group-hover:text-on-primary" data-icon="api">api</span>
-</div>
-<h3 class="font-headline-md text-headline-md mb-3">Integraciones y APIs</h3>
-<p class="font-body-md text-body-md text-on-surface-variant">Conectamos sus sistemas existentes para asegurar un flujo de datos continuo y eficiente entre plataformas.</p>
-</div>
-<!-- Service Card 6 -->
-<div class="bg-surface-container-lowest p-8 rounded-xl border border-surface-variant hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] transition-all duration-300 group">
-<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
-<span class="material-symbols-outlined text-primary group-hover:text-on-primary" data-icon="support_agent">support_agent</span>
-</div>
-<h3 class="font-headline-md text-headline-md mb-3">Soporte y Mantenimiento</h3>
-<p class="font-body-md text-body-md text-on-surface-variant">Asistencia técnica continua y actualizaciones proactivas para garantizar que su software siempre funcione al 100%.</p>
-</div>
-</div>
-</section>
-<!-- Process Section -->
-<section class="bg-surface-container-highest py-section-gap px-margin-mobile md:px-margin-desktop relative overflow-hidden">
-<div class="absolute inset-0 bg-primary/5 pointer-events-none"></div>
-<div class="max-w-container-max mx-auto relative z-10">
-<div class="text-center mb-16 space-y-4">
-<p class="text-primary font-label-sm text-label-sm uppercase tracking-wider">Nuestro Proceso</p>
-<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background">Metodología para el éxito</h2>
-</div>
-<div class="flex flex-col md:flex-row justify-between items-center gap-8 md:gap-4 relative">
-<!-- Connecting Line -->
-<div class="hidden md:block absolute top-1/2 left-[5%] right-[5%] h-0.5 bg-outline-variant -z-10 -translate-y-1/2"></div>
-<div class="flex flex-col items-center text-center max-w-[150px]">
-<div class="w-16 h-16 rounded-full bg-surface-container-lowest border-2 border-primary flex items-center justify-center mb-4 shadow-sm z-10">
-<span class="material-symbols-outlined text-primary" data-icon="search">search</span>
-</div>
-<h4 class="font-label-sm text-label-sm font-bold mb-1">Descubrimiento</h4>
-</div>
-<div class="flex flex-col items-center text-center max-w-[150px]">
-<div class="w-16 h-16 rounded-full bg-surface-container-lowest border-2 border-primary flex items-center justify-center mb-4 shadow-sm z-10">
-<span class="material-symbols-outlined text-primary" data-icon="analytics">analytics</span>
-</div>
-<h4 class="font-label-sm text-label-sm font-bold mb-1">Análisis</h4>
-</div>
-<div class="flex flex-col items-center text-center max-w-[150px]">
-<div class="w-16 h-16 rounded-full bg-surface-container-lowest border-2 border-primary flex items-center justify-center mb-4 shadow-sm z-10">
-<span class="material-symbols-outlined text-primary" data-icon="design_services">design_services</span>
-</div>
-<h4 class="font-label-sm text-label-sm font-bold mb-1">Diseño</h4>
-</div>
-<div class="flex flex-col items-center text-center max-w-[150px]">
-<div class="w-16 h-16 rounded-full bg-surface-container-lowest border-2 border-primary flex items-center justify-center mb-4 shadow-sm z-10">
-<span class="material-symbols-outlined text-primary" data-icon="code">code</span>
-</div>
-<h4 class="font-label-sm text-label-sm font-bold mb-1">Desarrollo</h4>
-</div>
-<div class="flex flex-col items-center text-center max-w-[150px]">
-<div class="w-16 h-16 rounded-full bg-surface-container-lowest border-2 border-primary flex items-center justify-center mb-4 shadow-sm z-10">
-<span class="material-symbols-outlined text-primary" data-icon="bug_report">bug_report</span>
-</div>
-<h4 class="font-label-sm text-label-sm font-bold mb-1">Pruebas</h4>
-</div>
-<div class="flex flex-col items-center text-center max-w-[150px]">
-<div class="w-16 h-16 rounded-full bg-surface-container-lowest border-2 border-primary flex items-center justify-center mb-4 shadow-sm z-10">
-<span class="material-symbols-outlined text-primary" data-icon="rocket_launch">rocket_launch</span>
-</div>
-<h4 class="font-label-sm text-label-sm font-bold mb-1">Despliegue y Soporte</h4>
-</div>
-</div>
-</div>
-</section>
-<!-- Testimonial -->
-<section class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
-<div class="text-center mb-12">
-<p class="text-primary font-label-sm text-label-sm uppercase tracking-wider">Testimonios</p>
-<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background">Lo que dicen nuestros clientes</h2>
-</div>
-<div class="max-w-3xl mx-auto bg-surface-container-lowest p-8 md:p-12 rounded-2xl border border-surface-variant shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] relative">
-<span class="material-symbols-outlined absolute top-8 left-8 text-surface-variant text-[64px] opacity-20 rotate-180" data-icon="format_quote">format_quote</span>
-<div class="flex flex-col items-center text-center relative z-10">
-<div class="flex gap-1 text-primary mb-6">
-<span class="material-symbols-outlined icon-fill" data-icon="star">star</span>
-<span class="material-symbols-outlined icon-fill" data-icon="star">star</span>
-<span class="material-symbols-outlined icon-fill" data-icon="star">star</span>
-<span class="material-symbols-outlined icon-fill" data-icon="star">star</span>
-<span class="material-symbols-outlined icon-fill" data-icon="star">star</span>
-</div>
-<p class="font-body-lg text-body-lg text-on-surface italic mb-8">
-                        "El equipo de Marivic Soft transformó por completo nuestra infraestructura digital. Su atención al detalle y capacidad para resolver problemas complejos nos permitió escalar nuestro negocio de forma segura. Un partner tecnológico invaluable."
-                    </p>
-<div class="flex items-center gap-4">
-<div class="w-12 h-12 rounded-full bg-tertiary-container text-on-tertiary flex items-center justify-center font-bold text-lg">
-                            CM
-                        </div>
-<div class="text-left">
-<h4 class="font-label-sm text-label-sm font-bold text-on-background">Carlos Mendoza</h4>
-<p class="font-body-md text-sm text-on-surface-variant">Director de Operaciones, TechLogistics</p>
-</div>
-</div>
-</div>
-</div>
-</section>
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-full bg-tertiary-container text-on-tertiary flex items-center justify-center font-bold text-lg">
+                        CM
+                    </div>
+                    <div class="text-left">
+                        <h4 class="font-label-sm text-label-sm font-bold text-on-background">Carlos Mendoza</h4>
+                        <p class="font-body-md text-sm text-on-surface-variant">Director de Operaciones, TechLogistics</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </main>
+
 <!-- Footer -->
-<footer class="bg-surface-container-low dark:bg-surface-container-highest mt-section-gap full-width border-t border-outline-variant dark:border-outline">
-<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter py-16 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
-<div class="space-y-4 col-span-1 md:col-span-1">
-<span class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary block">MARIVIC SOFT</span>
-<p class="font-body-md text-body-md text-on-surface-variant">Ingeniería de Software para el éxito real. Transformando ideas en soluciones tecnológicas escalables.</p>
-<div class="flex gap-4 pt-2">
-<a class="text-on-surface-variant hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined" data-icon="language">language</span></a>
-<a class="text-on-surface-variant hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined" data-icon="mail">mail</span></a>
-</div>
-</div>
-<div class="space-y-4">
-<h4 class="font-label-sm text-label-sm font-bold uppercase tracking-wider text-on-background">Enlaces</h4>
-<ul class="space-y-2 font-body-md text-body-md">
-<li><a class="text-primary font-bold hover:underline transition-all" href="#">Inicio</a></li>
-<li><a class="text-on-surface-variant hover:text-primary transition-colors hover:underline transition-all" href="#servicios">Servicios</a></li>
-<li><a class="text-on-surface-variant hover:text-primary transition-colors hover:underline transition-all" href="#proyectos">Proyectos</a></li>
-<li><a class="text-on-surface-variant hover:text-primary transition-colors hover:underline transition-all" href="#contacto">Contacto</a></li>
-</ul>
-</div>
-<div class="space-y-4">
-<h4 class="font-label-sm text-label-sm font-bold uppercase tracking-wider text-on-background">Legal</h4>
-<ul class="space-y-2 font-body-md text-body-md">
-<li><a class="text-on-surface-variant hover:text-primary transition-colors hover:underline transition-all" href="#">Políticas de Privacidad</a></li>
-<li><a class="text-on-surface-variant hover:text-primary transition-colors hover:underline transition-all" href="#">Términos y Condiciones</a></li>
-</ul>
-</div>
-<div class="space-y-4">
-<h4 class="font-label-sm text-label-sm font-bold uppercase tracking-wider text-on-background">Contacto</h4>
-<button class="w-full bg-primary hover:bg-primary/90 text-on-primary px-4 py-3 rounded-lg font-label-sm text-label-sm shadow-sm transition-all mb-2 flex items-center justify-center gap-2">
-<span class="material-symbols-outlined text-[18px]" data-icon="description">description</span>
-                    Solicitar Cotización
-                </button>
-<button class="w-full border-2 border-primary text-primary hover:bg-primary/5 px-4 py-3 rounded-lg font-label-sm text-label-sm transition-all flex items-center justify-center gap-2">
-<span class="material-symbols-outlined text-[18px]" data-icon="chat">chat</span>
-                    Escríbenos por WhatsApp
-                </button>
-</div>
-</div>
-<div class="border-t border-outline-variant/30 py-6 px-margin-mobile md:px-margin-desktop text-center">
-<p class="font-body-md text-sm text-on-surface-variant">© 2024 Marivic Soft. Todos los derechos reservados.</p>
-</div>
+<footer class="bg-surface-container-low dark:bg-surface-container-highest mt-section-gap full-width border-t border-outline-variant dark:border-outline" id="contacto">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-gutter py-16 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+        <div class="space-y-4 col-span-1 md:col-span-1">
+            <span class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary block">MARIVIC SOFT</span>
+            <p class="font-body-md text-body-md text-on-surface-variant">Ingeniería de Software para el éxito real. Transformando ideas en soluciones tecnológicas escalables.</p>
+        </div>
+        <div class="space-y-4">
+            <h4 class="font-label-sm text-label-sm font-bold uppercase tracking-wider text-on-background">Enlaces</h4>
+            <ul class="space-y-2 font-body-md text-body-md">
+                <li><a class="text-primary font-bold hover:underline transition-all" href="#">Inicio</a></li>
+                <li><a class="text-on-surface-variant hover:text-primary transition-colors hover:underline transition-all" href="#servicios">Servicios</a></li>
+                <li><a class="text-on-surface-variant hover:text-primary transition-colors hover:underline transition-all" href="#proyectos">Proyectos</a></li>
+            </ul>
+        </div>
+        <div class="space-y-4">
+            <h4 class="font-label-sm text-label-sm font-bold uppercase tracking-wider text-on-background">Legal</h4>
+            <ul class="space-y-2 font-body-md text-body-md">
+                <li><a class="text-on-surface-variant hover:text-primary transition-colors hover:underline transition-all" href="#">Políticas de Privacidad</a></li>
+                <li><a class="text-on-surface-variant hover:text-primary transition-colors hover:underline transition-all" href="#">Términos y Condiciones</a></li>
+            </ul>
+        </div>
+        <div class="space-y-4">
+            <h4 class="font-label-sm text-label-sm font-bold uppercase tracking-wider text-on-background">Contacto</h4>
+            <!-- SE AGREGÓ LA CLASE btn-cotizar AQUÍ TAMBIÉN -->
+            <button class="btn-cotizar w-full bg-primary hover:bg-primary/90 text-on-primary px-4 py-3 rounded-lg font-label-sm text-label-sm shadow-sm transition-all mb-2 flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined text-[18px]" data-icon="description">description</span>
+                Solicitar Cotización
+            </button>
+            <a href="https://wa.me/5193014455" target="_blank" class="w-full border-2 border-primary text-primary hover:bg-primary/5 px-4 py-3 rounded-lg font-label-sm text-label-sm transition-all flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined text-[18px]" data-icon="chat">chat</span>
+                Escríbenos por WhatsApp
+            </a>
+        </div>
+    </div>
+    <div class="border-t border-outline-variant/30 py-6 px-margin-mobile md:px-margin-desktop text-center">
+        <p class="font-body-md text-sm text-on-surface-variant">© 2024 Marivic Soft. Todos los derechos reservados.</p>
+    </div>
 </footer>
-</body></html>
+
+<!-- MODAL DE COTIZACIÓN (Oculto por defecto) -->
+<div id="cotizacion-modal" class="fixed inset-0 z-[100] flex items-center justify-center px-4 sm:px-0 modal-hidden">
+    <!-- Fondo oscuro difuminado -->
+    <div class="fixed inset-0 bg-[#0b1c30]/60 backdrop-blur-sm cursor-pointer" id="modal-backdrop"></div>
+    
+    <!-- Contenedor del Formulario -->
+    <div id="modal-panel" class="relative bg-surface-container-lowest rounded-xl shadow-2xl w-full max-w-lg overflow-hidden panel-hidden">
+        
+        <!-- Cabecera del modal -->
+        <div class="px-6 py-5 border-b border-outline-variant/50 bg-surface flex justify-between items-center">
+            <h3 class="font-headline-md text-xl font-bold text-primary flex items-center gap-2">
+                <span class="material-symbols-outlined">request_quote</span>
+                Cotizar Proyecto
+            </h3>
+            <button type="button" id="close-modal" class="text-on-surface-variant hover:text-error bg-surface-container hover:bg-error/10 p-1 rounded-full transition-all flex items-center justify-center">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        
+        <!-- Formulario -->
+        <form id="cotizacion-form" class="p-6 space-y-5">
+            <div>
+                <label for="empresa" class="block font-label-sm text-sm font-bold text-on-surface mb-2">Nombre de la Empresa o Proyecto *</label>
+                <input type="text" id="empresa" required class="w-full px-4 py-3 rounded-lg border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all bg-surface text-on-surface" placeholder="Ej. Corporación XYZ S.A.C.">
+            </div>
+            
+            <div>
+                <label for="servicio" class="block font-label-sm text-sm font-bold text-on-surface mb-2">¿Qué servicio te interesa? *</label>
+                <select id="servicio" required class="w-full px-4 py-3 rounded-lg border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all bg-surface text-on-surface appearance-none">
+                    <option value="" disabled selected>Selecciona una opción...</option>
+                    <option value="Desarrollo Web">Desarrollo Web (Página Corporativa/Informativa)</option>
+                    <option value="E-commerce">E-commerce (Tienda Online)</option>
+                    <option value="Sistemas Web a Medida">Sistemas Web a Medida</option>
+                    <option value="Automatización Empresarial">Automatización Empresarial</option>
+                    <option value="Integraciones y APIs">Integraciones y APIs</option>
+                    <option value="Soporte y Mantenimiento">Soporte y Mantenimiento</option>
+                    <option value="Otro">Otro requerimiento tecnológico</option>
+                </select>
+            </div>
+            
+            <div>
+                <label for="descripcion" class="block font-label-sm text-sm font-bold text-on-surface mb-2">Descripción de lo que necesitas *</label>
+                <textarea id="descripcion" required rows="4" class="w-full px-4 py-3 rounded-lg border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all bg-surface text-on-surface resize-none" placeholder="Cuéntanos brevemente cuáles son los objetivos o funcionalidades principales que requieres..."></textarea>
+            </div>
+            
+            <div class="pt-2">
+                <!-- Botón de WhatsApp -->
+                <button type="submit" class="w-full bg-[#25D366] hover:bg-[#1ebd5c] text-white px-6 py-4 rounded-lg font-label-sm text-[16px] font-bold shadow-[0_4px_14px_0_rgba(37,211,102,0.39)] hover:shadow-[0_6px_20px_rgba(37,211,102,0.23)] hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center gap-3">
+                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    Enviar Cotización por WhatsApp
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Lógica Javascript para el Modal y Envío a WhatsApp -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const modal = document.getElementById('cotizacion-modal');
+        const modalPanel = document.getElementById('modal-panel');
+        const backdrop = document.getElementById('modal-backdrop');
+        const closeBtn = document.getElementById('close-modal');
+        const form = document.getElementById('cotizacion-form');
+
+        // Seleccionar todos los botones que abran el modal
+        const openButtons = document.querySelectorAll('.btn-cotizar');
+
+        const openModal = () => {
+            modal.classList.remove('modal-hidden');
+            modal.classList.add('modal-visible');
+            modalPanel.classList.remove('panel-hidden');
+            modalPanel.classList.add('panel-visible');
+            document.body.style.overflow = 'hidden'; // Evitar scroll de fondo
+        };
+
+        const closeModal = () => {
+            modal.classList.remove('modal-visible');
+            modal.classList.add('modal-hidden');
+            modalPanel.classList.remove('panel-visible');
+            modalPanel.classList.add('panel-hidden');
+            document.body.style.overflow = 'auto'; // Restaurar scroll
+        };
+
+        // Asignar evento click a los botones
+        openButtons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                openModal();
+            });
+        });
+
+        // Cerrar modal al dar click en la X o fuera del modal
+        closeBtn.addEventListener('click', closeModal);
+        backdrop.addEventListener('click', closeModal);
+
+        // Procesar formulario y redirigir a WhatsApp
+        form.addEventListener('submit', (e) => {
+            e.preventDefault(); // Prevenir que recargue la página
+
+            // Obtener valores del formulario
+            const empresa = document.getElementById('empresa').value;
+            const servicio = document.getElementById('servicio').value;
+            const descripcion = document.getElementById('descripcion').value;
+
+            // Formatear el texto para WhatsApp (con negritas y saltos de línea)
+            const textoMensaje = `*¡Hola Marivic Soft!* 👋🏼%0ADeseo solicitar una cotización para un nuevo proyecto.%0A%0A*🏢 Empresa/Proyecto:* ${encodeURIComponent(empresa)}%0A*💻 Servicio de interés:* ${encodeURIComponent(servicio)}%0A*📝 Descripción:* ${encodeURIComponent(descripcion)}%0A%0AQuedo a la espera de su respuesta.`;
+
+            // Número de WhatsApp (Con el código de país de Perú +51 seguido del 93014455)
+            // NOTA: Si el número de Perú tiene 9 dígitos, y nos diste 8, asegúrate de corregirlo abajo si aplica.
+            const numeroWhatsApp = "5193014455"; 
+
+            // Construir URL final
+            const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${textoMensaje}`;
+
+            // Abrir en nueva pestaña (App de PC o App móvil de WhatsApp)
+            window.open(urlWhatsApp, '_blank');
+            
+            // Cerrar el modal y reiniciar los campos
+            closeModal();
+            setTimeout(() => form.reset(), 300);
+        });
+    });
+</script>
+
+</body>
+</html>
