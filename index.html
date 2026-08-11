@@ -121,7 +121,6 @@
 <header class="bg-surface/95 dark:bg-surface-container/95 docked full-width top-0 sticky backdrop-blur-md border-b border-outline-variant shadow-sm z-50">
     <div class="flex justify-between items-center w-full px-4 md:px-margin-desktop max-w-container-max mx-auto h-20 gap-2">
         <div class="flex items-center">
-            <!-- SE ELIMINÓ TRUNCATE Y WHITESPACE-NOWRAP PARA EVITAR EL BUG DE LA LETRA 'A' -->
             <span class="font-headline-md text-lg md:text-headline-md font-bold text-primary">MARIVIC SOFT</span>
         </div>
         <nav class="hidden md:flex items-center gap-8">
@@ -235,7 +234,82 @@
         </div>
     </section>
 
-    <!-- Process Section (AHORA EN CUADRÍCULA Y CLICKEABLE) -->
+    <!-- ========================================== -->
+    <!-- PROJECTS SECTION (NUEVO) -->
+    <!-- ========================================== -->
+    <section class="py-section-gap px-4 md:px-margin-desktop max-w-container-max mx-auto border-t border-outline-variant/30" id="proyectos">
+        <div class="text-center mb-16 space-y-4">
+            <p class="text-primary font-label-sm text-label-sm uppercase tracking-wider">Casos de Éxito</p>
+            <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background">Proyectos Destacados</h2>
+            <p class="font-body-md text-on-surface-variant max-w-2xl mx-auto">Conoce cómo nuestras soluciones de software están transformando el día a día de instituciones y negocios.</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-gutter">
+            
+            <!-- Proyecto 1: Colegio Kumamoto -->
+            <div class="bg-surface-container-lowest rounded-xl border border-surface-variant overflow-hidden hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] transition-all duration-300 flex flex-col group">
+                <div class="h-48 bg-surface-container flex items-center justify-center relative overflow-hidden">
+                    <div class="absolute inset-0 bg-primary/10 group-hover:bg-primary/20 transition-colors duration-300"></div>
+                    <span class="material-symbols-outlined text-[72px] text-primary/60 group-hover:scale-110 transition-transform duration-300">school</span>
+                </div>
+                <div class="p-8 flex-1 flex flex-col">
+                    <h3 class="font-headline-md text-headline-md mb-1">Sistema de Gestión Escolar</h3>
+                    <p class="text-sm font-bold text-primary mb-4 uppercase tracking-wider">IE 3092 Kumamoto I</p>
+                    <p class="font-body-md text-body-md text-on-surface-variant mb-6 flex-1">
+                        Plataforma integral desarrollada a medida para la gestión administrativa e institucional. Permite el control eficiente de matrículas, registro de notas de profesores y cuenta con un <strong>portal exclusivo para padres</strong> donde pueden monitorear el rendimiento y progreso de sus hijos en tiempo real.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-4 mb-8 pt-6 border-t border-outline-variant/30 text-center md:text-left">
+                        <div>
+                            <div class="font-headline-md text-2xl text-primary font-bold">+1,000</div>
+                            <div class="text-[12px] text-on-surface-variant font-bold uppercase tracking-wider mt-1">Alumnos Gestionados</div>
+                        </div>
+                        <div>
+                            <div class="font-headline-md text-2xl text-primary font-bold">100%</div>
+                            <div class="text-[12px] text-on-surface-variant font-bold uppercase tracking-wider mt-1">Transparencia a Padres</div>
+                        </div>
+                    </div>
+                    
+                    <a href="https://www.ie3092kumamoto1.org/login" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 w-full bg-surface hover:bg-primary hover:text-on-primary border-2 border-primary text-primary px-4 py-3 rounded-lg font-label-sm text-label-sm transition-all duration-300 shadow-sm">
+                        Visitar Proyecto <span class="material-symbols-outlined text-[18px]">open_in_new</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Proyecto 2: Broastería -->
+            <div class="bg-surface-container-lowest rounded-xl border border-surface-variant overflow-hidden hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] transition-all duration-300 flex flex-col group">
+                <div class="h-48 bg-surface-container flex items-center justify-center relative overflow-hidden">
+                    <div class="absolute inset-0 bg-tertiary/10 group-hover:bg-tertiary/20 transition-colors duration-300"></div>
+                    <span class="material-symbols-outlined text-[72px] text-tertiary/60 group-hover:scale-110 transition-transform duration-300">point_of_sale</span>
+                </div>
+                <div class="p-8 flex-1 flex flex-col">
+                    <h3 class="font-headline-md text-headline-md mb-1">Sistema POS & Operaciones</h3>
+                    <p class="text-sm font-bold text-tertiary mb-4 uppercase tracking-wider">Fast Food / Broastería</p>
+                    <p class="font-body-md text-body-md text-on-surface-variant mb-6 flex-1">
+                        Moderno sistema de Punto de Venta (POS) diseñado para optimizar el flujo de trabajo en restaurantes de comida rápida. Facilita la toma de pedidos, facturación inmediata, control de inventario automatizado y brinda reportes financieros detallados para la toma de decisiones.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-4 mb-8 pt-6 border-t border-outline-variant/30 text-center md:text-left">
+                        <div>
+                            <div class="font-headline-md text-2xl text-tertiary font-bold">-35%</div>
+                            <div class="text-[12px] text-on-surface-variant font-bold uppercase tracking-wider mt-1">Tiempo de Atención</div>
+                        </div>
+                        <div>
+                            <div class="font-headline-md text-2xl text-tertiary font-bold">Real</div>
+                            <div class="text-[12px] text-on-surface-variant font-bold uppercase tracking-wider mt-1">Control de Inventario</div>
+                        </div>
+                    </div>
+                    
+                    <a href="https://broasteria.vercel.app" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 w-full bg-surface hover:bg-tertiary hover:border-tertiary hover:text-on-primary border-2 border-tertiary text-tertiary px-4 py-3 rounded-lg font-label-sm text-label-sm transition-all duration-300 shadow-sm">
+                        Visitar Proyecto <span class="material-symbols-outlined text-[18px]">open_in_new</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Process Section -->
     <section class="bg-surface-container-highest py-section-gap px-4 md:px-margin-desktop relative overflow-hidden">
         <div class="absolute inset-0 bg-primary/5 pointer-events-none"></div>
         <div class="max-w-container-max mx-auto relative z-10">
@@ -245,7 +319,6 @@
                 <p class="text-sm text-on-surface-variant italic">Presiona cada paso para conocer los detalles</p>
             </div>
             
-            <!-- Cambiamos a GRID: 2 columnas móvil, 3 tablet, 6 escritorio -->
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-y-12 gap-x-4 relative">
                 
                 <!-- Connecting Line (solo visible en escritorio) -->
@@ -372,7 +445,6 @@
             <h4 class="font-label-sm text-label-sm font-bold uppercase tracking-wider text-on-background">Legal</h4>
             <ul class="space-y-2 font-body-md text-body-md">
                 <li><a href="#" class="btn-privacidad text-on-surface-variant hover:text-primary transition-colors hover:underline transition-all">Políticas de Privacidad</a></li>
-                <!-- AÑADIDO: Botón de Términos y Condiciones -->
                 <li><a href="#" class="btn-terminos text-on-surface-variant hover:text-primary transition-colors hover:underline transition-all">Términos y Condiciones</a></li>
             </ul>
         </div>
@@ -473,7 +545,7 @@
 </div>
 
 <!-- ============================================== -->
-<!-- 3. MODAL DE TÉRMINOS Y CONDICIONES (NUEVO) -->
+<!-- 3. MODAL DE TÉRMINOS Y CONDICIONES -->
 <!-- ============================================== -->
 <div id="terminos-modal" class="fixed inset-0 z-[100] flex items-center justify-center px-4 sm:px-0 modal-overlay modal-hidden">
     <div class="fixed inset-0 bg-[#0b1c30]/60 backdrop-blur-sm cursor-pointer close-terminos-backdrop"></div>
@@ -489,19 +561,14 @@
         </div>
         <div class="p-6 overflow-y-auto custom-scrollbar space-y-4 text-on-surface-variant font-body-md text-[15px] leading-relaxed">
             <p>Bienvenido a <strong>Marivic Soft</strong>. Los presentes Términos y Condiciones regulan la prestación de nuestros servicios de desarrollo de software, diseño web y consultoría tecnológica.</p>
-            
             <h4 class="font-bold text-on-background mt-4">1. Objeto del Servicio</h4>
             <p>Marivic Soft se compromete a desarrollar soluciones tecnológicas a medida según los requerimientos técnicos y funcionales acordados formalmente en la cotización o contrato previo con el Cliente.</p>
-
             <h4 class="font-bold text-on-background mt-4">2. Propiedad Intelectual</h4>
             <p>Todos los derechos sobre el código fuente, diseño y arquitectura del software desarrollado serán transferidos al Cliente única y exclusivamente una vez que se haya cancelado el 100% de los honorarios pactados. Marivic Soft se reserva el derecho de exhibir el proyecto en su portafolio comercial, salvo que se firme un Acuerdo de No Divulgación (NDA).</p>
-
             <h4 class="font-bold text-on-background mt-4">3. Pagos y Facturación</h4>
             <p>Los proyectos se inician tras el abono de un anticipo (comúnmente 50%, según lo estipulado en la cotización). El pago restante se realiza al momento de la entrega o despliegue. Todos los precios están sujetos a las normativas tributarias emitidas por la SUNAT en el territorio Peruano.</p>
-
             <h4 class="font-bold text-on-background mt-4">4. Soporte y Garantía</h4>
             <p>Entregamos los proyectos libres de errores críticos (bugs) de acuerdo al alcance inicial. Proporcionamos un periodo de garantía (detallado en cada contrato) para subsanar cualquier fallo de código. Nuevas funcionalidades se cotizarán por separado.</p>
-
             <h4 class="font-bold text-on-background mt-4">5. Legislación Aplicable</h4>
             <p>Cualquier disputa legal relacionada con la prestación de nuestros servicios estará sujeta a las leyes de la República del Perú y se someterá a la jurisdicción de los tribunales de Lima.</p>
         </div>
@@ -514,27 +581,21 @@
 </div>
 
 <!-- ============================================== -->
-<!-- 4. MODAL DINÁMICO DE DETALLE DEL PROCESO (NUEVO) -->
+<!-- 4. MODAL DINÁMICO DE DETALLE DEL PROCESO -->
 <!-- ============================================== -->
 <div id="detalle-proceso-modal" class="fixed inset-0 z-[100] flex items-center justify-center px-4 sm:px-0 modal-overlay modal-hidden">
     <div class="fixed inset-0 bg-[#0b1c30]/60 backdrop-blur-sm cursor-pointer close-proceso-backdrop"></div>
     <div class="relative bg-surface-container-lowest rounded-xl shadow-2xl w-full max-w-sm overflow-hidden modal-panel panel-hidden" id="detalle-proceso-panel">
         
         <div class="p-8 flex flex-col items-center text-center">
-            <!-- Icono Dinámico -->
             <div class="w-20 h-20 rounded-full bg-primary/10 border-2 border-primary flex items-center justify-center mb-6">
                 <span id="proceso-icono" class="material-symbols-outlined text-[32px] text-primary">info</span>
             </div>
-            
-            <!-- Título Dinámico -->
             <h3 id="proceso-titulo" class="font-headline-md text-2xl font-bold text-on-background mb-4">Etapa</h3>
-            
-            <!-- Descripción Dinámica -->
             <p id="proceso-descripcion" class="font-body-md text-on-surface-variant leading-relaxed">
                 Descripción de la etapa...
             </p>
         </div>
-
         <div class="px-6 py-4 border-t border-outline-variant/30 bg-surface text-center shrink-0">
             <button type="button" class="close-proceso-btn w-full bg-primary hover:bg-primary/90 text-on-primary px-6 py-3 rounded-lg font-label-sm text-sm font-bold transition-all shadow-sm">
                 Cerrar Detalle
@@ -593,12 +654,9 @@
 
         document.querySelectorAll('.btn-proceso').forEach(btn => {
             btn.addEventListener('click', () => {
-                // Leer datos del botón presionado
                 titleEl.textContent = btn.dataset.title;
                 iconEl.textContent = btn.dataset.icon;
                 descEl.textContent = btn.dataset.desc;
-                
-                // Abrir el modal correspondiente
                 openModal(procModal, procPanel);
             });
         });
