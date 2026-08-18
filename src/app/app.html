@@ -1,0 +1,859 @@
+﻿
+
+<!-- Floating TopNavBar -->
+<header class="relative z-50 mx-2 md:mx-auto mt-2 md:mt-4 max-w-container-max bg-white shadow-[0_4px_20px_rgb(0,0,0,0.08)] rounded-xl md:rounded-2xl h-[64px] md:h-[72px] flex justify-between items-center px-3 md:px-6 transition-all mb-6 md:mb-8">
+    <div class="flex items-center">
+        <!-- mix-blend-darken hides the bounding box better on white/light backgrounds -->
+        <img src="logo1.png" alt="Marivic Soft" class="h-8 md:h-12 w-auto mix-blend-darken" />
+    </div>
+    <nav class="hidden md:flex items-center gap-1 bg-surface-container-lowest/60 p-1.5 rounded-xl border border-outline-variant/20">
+        <a class="text-primary font-bold bg-white shadow-sm rounded-lg px-4 py-2 text-sm transition-all" href="#">Inicio</a>
+        <a class="text-on-surface-variant hover:text-primary hover:bg-white/60 rounded-lg px-4 py-2 text-sm transition-all font-medium" href="#nosotros">Nosotros</a>
+        <a class="text-on-surface-variant hover:text-primary hover:bg-white/60 rounded-lg px-4 py-2 text-sm transition-all font-medium" href="#servicios">Servicios</a>
+        <a class="text-on-surface-variant hover:text-primary hover:bg-white/60 rounded-lg px-4 py-2 text-sm transition-all font-medium" href="#proyectos">Proyectos</a>
+        <a class="text-on-surface-variant hover:text-primary hover:bg-white/60 rounded-lg px-4 py-2 text-sm transition-all font-medium" href="#contacto">Contacto</a>
+    </nav>
+    <div class="flex items-center gap-2">
+        <a href="#simulador" class="btn-cotizar bg-primary hover:bg-primary/90 text-on-primary px-4 py-2 md:px-5 md:py-2.5 rounded-lg md:rounded-xl font-bold text-sm shadow-[0_4px_14px_0_rgba(135,16,23,0.39)] hover:shadow-[0_6px_20px_rgba(135,16,23,0.23)] hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-1.5">
+            Cotizar <span class="material-symbols-outlined text-[16px]">calculate</span>
+        </a>
+        <button class="md:hidden text-on-surface-variant p-1 transition-all" (click)="toggleMobileMenu()">
+            <span class="material-symbols-outlined text-[28px]">{{ mobileMenuOpen ? 'close' : 'menu' }}</span>
+        </button>
+    </div>
+
+    <!-- Mobile Menu Dropdown -->
+    <div *ngIf="mobileMenuOpen" class="absolute top-[100%] left-0 w-full bg-white shadow-xl rounded-b-2xl border-t border-outline-variant/10 py-4 px-6 flex flex-col gap-4 md:hidden z-40 animate-fade-in-down">
+        <a class="text-on-surface hover:text-primary font-bold text-lg border-b border-outline-variant/10 pb-2 transition-colors" href="#" (click)="toggleMobileMenu()">Inicio</a>
+        <a class="text-on-surface hover:text-primary font-bold text-lg border-b border-outline-variant/10 pb-2 transition-colors" href="#nosotros" (click)="toggleMobileMenu()">Nosotros</a>
+        <a class="text-on-surface hover:text-primary font-bold text-lg border-b border-outline-variant/10 pb-2 transition-colors" href="#servicios" (click)="toggleMobileMenu()">Servicios</a>
+        <a class="text-primary font-bold text-lg border-b border-outline-variant/10 pb-2 transition-colors flex items-center gap-2" href="#simulador" (click)="toggleMobileMenu()">
+            <span class="material-symbols-outlined">calculate</span> Simulador de Precios
+        </a>
+        <a class="text-on-surface hover:text-primary font-bold text-lg border-b border-outline-variant/10 pb-2 transition-colors" href="#proyectos" (click)="toggleMobileMenu()">Proyectos</a>
+        <a class="text-on-surface hover:text-primary font-bold text-lg transition-colors" href="#contacto" (click)="toggleMobileMenu()">Contacto</a>
+    </div>
+</header>
+
+<main>
+    <!-- Hero Section -->
+    <section class="relative pt-0 md:pt-4 pb-section-gap px-4 md:px-margin-desktop w-full overflow-hidden">
+        <!-- Vibrant Animated Background Blobs -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-20">
+            <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[50%] bg-blue-500/20 rounded-full blur-[100px] animate-pulse-glow"></div>
+            <div class="absolute top-[20%] right-[-10%] w-[50%] h-[60%] bg-primary/20 rounded-full blur-[120px] animate-float-slow"></div>
+            <div class="absolute bottom-[-20%] left-[20%] w-[40%] h-[50%] bg-purple-500/15 rounded-full blur-[100px] animate-float-fast"></div>
+        </div>
+
+        <div class="max-w-container-max mx-auto flex flex-col md:flex-row items-start gap-gutter relative z-10 pt-2 md:pt-10">
+            <div class="flex-1 space-y-4 md:space-y-6">
+                <h1 class="font-headline-xl text-[36px] leading-[1.15] md:text-[56px] text-on-background font-extrabold lg:max-w-xl">
+                    Tu socio estratégico en la <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-600 to-blue-600">evolución tecnológica</span>
+                </h1>
+                <p class="font-body-lg text-lg text-on-surface-variant max-w-2xl leading-relaxed">
+                    Transformamos ideas y procesos en <strong class="text-on-background">soluciones digitales vibrantes y a medida</strong> que impulsan el crecimiento, atrapan a tus clientes y multiplican la eficiencia de tu empresa.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 pt-6 w-full">
+                    <a href="#simulador" class="btn-cotizar bg-primary hover:bg-primary/90 text-on-primary px-8 py-4 rounded-xl font-bold text-sm shadow-[0_4px_14px_0_rgba(135,16,23,0.39)] hover:shadow-[0_6px_20px_rgba(135,16,23,0.23)] hover:-translate-y-1 transition-all duration-300 w-full sm:w-auto text-center flex justify-center items-center gap-2">
+                        Calcula tu Presupuesto <span class="material-symbols-outlined text-[18px]">calculate</span>
+                    </a>
+                    <a href="#servicios" class="inline-flex items-center justify-center bg-white/50 backdrop-blur-md border-2 border-outline-variant hover:border-primary text-on-surface hover:text-primary px-8 py-4 rounded-xl font-bold text-sm transition-all duration-300 w-full sm:w-auto text-center shadow-sm">
+                        Nuestros Servicios
+                    </a>
+                </div>
+            </div>
+            
+            <div class="flex-1 relative mt-16 md:mt-0 min-h-[500px] flex items-center justify-center">
+                <!-- AI Hologram Scene without covering logo and without dull filters -->
+                <div class="relative w-full max-w-[600px] h-auto aspect-square mask-radial-fade animate-float-slow group cursor-default z-10">
+                    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-white/40 to-transparent h-20 hidden group-hover:block animate-scanline z-30 pointer-events-none"></div>
+                    <img alt="Programador tecnológico" src="hero-programmer.jpg" class="w-full h-full object-cover rounded-3xl" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="bg-surface-container-low py-12 px-4 md:px-margin-desktop border-y border-outline-variant/30 animate-on-scroll opacity-0 translate-y-10 transition-all duration-[800ms] ease-out">
+        <div class="max-w-container-max mx-auto grid grid-cols-2 md:grid-cols-4 gap-gutter text-center">
+            <div class="space-y-2">
+                <div class="font-headline-xl text-headline-lg-mobile md:text-headline-xl text-primary font-bold">50+</div>
+                <div class="font-label-sm text-label-sm text-on-surface-variant uppercase">Proyectos realizados</div>
+            </div>
+            <div class="space-y-2">
+                <div class="font-headline-xl text-headline-lg-mobile md:text-headline-xl text-primary font-bold">30+</div>
+                <div class="font-label-sm text-label-sm text-on-surface-variant uppercase">Clientes satisfechos</div>
+            </div>
+            <div class="space-y-2">
+                <div class="font-headline-xl text-headline-lg-mobile md:text-headline-xl text-primary font-bold">3+</div>
+                <div class="font-label-sm text-label-sm text-on-surface-variant uppercase">Años de experiencia</div>
+            </div>
+            <div class="space-y-2">
+                <div class="font-headline-xl text-headline-lg-mobile md:text-headline-xl text-primary font-bold">99%</div>
+                <div class="font-label-sm text-label-sm text-on-surface-variant uppercase">Compromiso y calidad</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="py-section-gap px-4 md:px-margin-desktop max-w-container-max mx-auto animate-on-scroll opacity-0 translate-y-10 transition-all duration-[800ms] ease-out" id="nosotros">
+        <div class="flex flex-col lg:flex-row items-center gap-16">
+            <div class="flex-1 space-y-6">
+                <p class="text-primary font-label-sm text-label-sm uppercase tracking-wider">Sobre Nosotros</p>
+                <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background">Ingeniería sólida para <span class="text-primary">resultados reales</span></h2>
+                <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                    En <strong>Marivic Soft</strong>, no solo escribimos código; diseñamos soluciones estratégicas que impulsan el crecimiento corporativo. Nacimos con la visión de cerrar la brecha entre los desafíos empresariales complejos y la tecnología accesible, entregando software robusto, seguro y altamente escalable.
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 pt-6">
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-2 text-primary">
+                            <span class="material-symbols-outlined icon-fill">rocket_launch</span>
+                            <h3 class="font-headline-md text-lg font-bold text-on-background">Nuestra Misión</h3>
+                        </div>
+                        <p class="font-body-sm text-sm text-on-surface-variant">Empoderar a empresas e instituciones mediante herramientas digitales personalizadas, optimizando sus procesos y maximizando su rentabilidad.</p>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-2 text-primary">
+                            <span class="material-symbols-outlined icon-fill">visibility</span>
+                            <h3 class="font-headline-md text-lg font-bold text-on-background">Nuestra Visión</h3>
+                        </div>
+                        <p class="font-body-sm text-sm text-on-surface-variant">Ser el socio tecnológico líder y más confiable de la región, reconocido por la excelencia de nuestra ingeniería y el éxito de nuestros clientes.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flex-1 relative w-full h-[400px] rounded-2xl overflow-hidden shadow-2xl">
+                <div class="absolute inset-0 bg-primary/20 mix-blend-multiply z-10"></div>
+                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Equipo de Marivic Soft trabajando" class="w-full h-full object-cover" />
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="bg-surface-container-low py-16 px-4 md:px-margin-desktop border-y border-outline-variant/30 animate-on-scroll opacity-0 translate-y-10 transition-all duration-[800ms] ease-out">
+        <div class="max-w-container-max mx-auto">
+            <div class="text-center mb-12 space-y-4">
+                <h2 class="font-headline-md text-2xl md:text-3xl font-bold text-on-background">Nuestros Pilares</h2>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Value 1 -->
+                <div class="bg-surface p-6 rounded-xl border border-outline-variant/50 hover:border-primary transition-colors flex flex-col items-center text-center group">
+                    <div class="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-on-primary transition-colors">
+                        <span class="material-symbols-outlined">lightbulb</span>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">Innovación Constante</h4>
+                    <p class="text-sm text-on-surface-variant">Adoptamos las últimas tecnologías para mantener a nuestros clientes siempre un paso adelante.</p>
+                </div>
+                <!-- Value 2 -->
+                <div class="bg-surface p-6 rounded-xl border border-outline-variant/50 hover:border-primary transition-colors flex flex-col items-center text-center group">
+                    <div class="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-on-primary transition-colors">
+                        <span class="material-symbols-outlined">verified</span>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">Calidad Técnica</h4>
+                    <p class="text-sm text-on-surface-variant">Código limpio, arquitecturas seguras y pruebas rigurosas en cada despliegue.</p>
+                </div>
+                <!-- Value 3 -->
+                <div class="bg-surface p-6 rounded-xl border border-outline-variant/50 hover:border-primary transition-colors flex flex-col items-center text-center group">
+                    <div class="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-on-primary transition-colors">
+                        <span class="material-symbols-outlined">handshake</span>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">Compromiso Total</h4>
+                    <p class="text-sm text-on-surface-variant">Asumimos cada proyecto como propio, garantizando tiempos de entrega y resultados reales.</p>
+                </div>
+                <!-- Value 4 -->
+                <div class="bg-surface p-6 rounded-xl border border-outline-variant/50 hover:border-primary transition-colors flex flex-col items-center text-center group">
+                    <div class="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-on-primary transition-colors">
+                        <span class="material-symbols-outlined">shield</span>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">Transparencia</h4>
+                    <p class="text-sm text-on-surface-variant">Comunicación clara y directa en cada etapa del ciclo de desarrollo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="py-section-gap px-4 md:px-margin-desktop max-w-container-max mx-auto animate-on-scroll opacity-0 translate-y-10 transition-all duration-[800ms] ease-out" id="servicios">
+        <div class="text-center mb-16 space-y-4">
+            <p class="text-primary font-label-sm text-label-sm uppercase tracking-wider">Nuestros Servicios</p>
+            <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background">Tecnología que impulsa tu negocio</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+            <!-- Service Cards -->
+            <div class="bg-surface-container-lowest p-8 rounded-xl border border-surface-variant hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] transition-all duration-300 group">
+                <div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
+                    <span class="material-symbols-outlined text-primary group-hover:text-on-primary" data-icon="web">web</span>
+                </div>
+                <h3 class="font-headline-md text-headline-md mb-3">Desarrollo Web</h3>
+                <p class="font-body-md text-body-md text-on-surface-variant">Creamos sitios web modernos, rápidos y optimizados para SEO que representan la identidad de su marca.</p>
+            </div>
+            <div class="bg-surface-container-lowest p-8 rounded-xl border border-surface-variant hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] transition-all duration-300 group">
+                <div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
+                    <span class="material-symbols-outlined text-primary group-hover:text-on-primary" data-icon="shopping_cart">shopping_cart</span>
+                </div>
+                <h3 class="font-headline-md text-headline-md mb-3">E-commerce</h3>
+                <p class="font-body-md text-body-md text-on-surface-variant">Plataformas de venta online seguras y escalables para llevar sus productos al mercado digital global.</p>
+            </div>
+            <div class="bg-surface-container-lowest p-8 rounded-xl border border-surface-variant hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] transition-all duration-300 group">
+                <div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
+                    <span class="material-symbols-outlined text-primary group-hover:text-on-primary" data-icon="dashboard">dashboard</span>
+                </div>
+                <h3 class="font-headline-md text-headline-md mb-3">Sistemas Web a Medida</h3>
+                <p class="font-body-md text-body-md text-on-surface-variant">Soluciones de software personalizadas diseñadas específicamente para resolver los retos de su negocio.</p>
+            </div>
+            <div class="bg-surface-container-lowest p-8 rounded-xl border border-surface-variant hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] transition-all duration-300 group">
+                <div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
+                    <span class="material-symbols-outlined text-primary group-hover:text-on-primary" data-icon="settings_suggest">settings_suggest</span>
+                </div>
+                <h3 class="font-headline-md text-headline-md mb-3">Automatización Empresarial</h3>
+                <p class="font-body-md text-body-md text-on-surface-variant">Optimizamos flujos de trabajo reduciendo tareas manuales para aumentar la productividad y reducir errores.</p>
+            </div>
+            <div class="bg-surface-container-lowest p-8 rounded-xl border border-surface-variant hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] transition-all duration-300 group">
+                <div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
+                    <span class="material-symbols-outlined text-primary group-hover:text-on-primary" data-icon="api">api</span>
+                </div>
+                <h3 class="font-headline-md text-headline-md mb-3">Integraciones y APIs</h3>
+                <p class="font-body-md text-body-md text-on-surface-variant">Conectamos sus sistemas existentes para asegurar un flujo de datos continuo y eficiente entre plataformas.</p>
+            </div>
+            <div class="bg-surface-container-lowest p-8 rounded-xl border border-surface-variant hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] transition-all duration-300 group">
+                <div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
+                    <span class="material-symbols-outlined text-primary group-hover:text-on-primary" data-icon="support_agent">support_agent</span>
+                </div>
+                <h3 class="font-headline-md text-headline-md mb-3">Soporte y Mantenimiento</h3>
+                <p class="font-body-md text-body-md text-on-surface-variant">Asistencia técnica continua y actualizaciones proactivas para garantizar que su software siempre funcione al 100%.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- CALCULADORA DE PRESUPUESTOS (NUEVO) -->
+    <!-- ========================================== -->
+    <section class="py-section-gap px-4 md:px-margin-desktop max-w-container-max mx-auto border-t border-outline-variant/30 animate-on-scroll opacity-0 translate-y-10 transition-all duration-[800ms] ease-out" id="simulador">
+        <div class="text-center mb-12 space-y-4">
+            <p class="text-primary font-label-sm text-label-sm uppercase tracking-wider">Simulador Inteligente</p>
+            <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background">Calcula tu presupuesto en segundos</h2>
+            <p class="font-body-md text-on-surface-variant max-w-2xl mx-auto">Selecciona las características que necesitas para tu proyecto y obtén un presupuesto estimado al instante. Pensado especialmente para impulsar PyMEs.</p>
+        </div>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Columna de Opciones -->
+            <div class="lg:col-span-2 space-y-8">
+                
+                <!-- 1. Tipo de Proyecto -->
+                <div class="bg-surface-container-lowest p-6 rounded-2xl border border-surface-variant shadow-sm">
+                    <h3 class="font-headline-sm font-bold mb-4 text-on-background flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary">rocket_launch</span>
+                        1. ¿Qué necesitas desarrollar?
+                    </h3>
+                    <div class="flex flex-wrap gap-3">
+                        <button type="button" 
+                                class="border-2 rounded-full py-2 px-5 text-center transition-all bg-white"
+                                [ngClass]="selectedProject === 900 ? 'border-primary text-primary shadow-sm' : 'border-outline-variant hover:border-primary text-on-surface-variant'"
+                                (click)="setProject(900, 'Web Informativa')">
+                            <span class="font-bold text-sm">Web Informativa</span>
+                        </button>
+                        <button type="button" 
+                                class="border-2 rounded-full py-2 px-5 text-center transition-all bg-white"
+                                [ngClass]="selectedProject === 1800 ? 'border-primary text-primary shadow-sm' : 'border-outline-variant hover:border-primary text-on-surface-variant'"
+                                (click)="setProject(1800, 'Tienda Online')">
+                            <span class="font-bold text-sm">E-commerce</span>
+                        </button>
+                        <button type="button" 
+                                class="border-2 rounded-full py-2 px-5 text-center transition-all bg-white"
+                                [ngClass]="selectedProject === 2800 ? 'border-primary text-primary shadow-sm' : 'border-outline-variant hover:border-primary text-on-surface-variant'"
+                                (click)="setProject(2800, 'Sistema Web')">
+                            <span class="font-bold text-sm">Sistema Web</span>
+                        </button>
+                        <button type="button" 
+                                class="border-2 rounded-full py-2 px-5 text-center transition-all bg-white"
+                                [ngClass]="selectedProject === 4000 ? 'border-primary text-primary shadow-sm' : 'border-outline-variant hover:border-primary text-on-surface-variant'"
+                                (click)="setProject(4000, 'Aplicación Móvil')">
+                            <span class="font-bold text-sm">App Móvil</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 2. Diseño -->
+                <div class="bg-surface-container-lowest p-6 rounded-2xl border border-surface-variant shadow-sm">
+                    <h3 class="font-headline-sm font-bold mb-4 text-on-background flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary">design_services</span>
+                        2. Nivel de Diseño UI/UX
+                    </h3>
+                    <div class="flex flex-wrap gap-3">
+                        <button type="button" 
+                                class="border-2 rounded-full py-2 px-5 text-center transition-all bg-white"
+                                [ngClass]="selectedDesign === 0 ? 'border-primary text-primary shadow-sm' : 'border-outline-variant hover:border-primary text-on-surface-variant'"
+                                (click)="setDesign(0, 'Plantilla Premium')">
+                            <span class="font-bold text-sm">Plantilla Premium (+S/0)</span>
+                        </button>
+                        <button type="button" 
+                                class="border-2 rounded-full py-2 px-5 text-center transition-all bg-white"
+                                [ngClass]="selectedDesign === 600 ? 'border-primary text-primary shadow-sm' : 'border-outline-variant hover:border-primary text-on-surface-variant'"
+                                (click)="setDesign(600, 'Diseño Personalizado')">
+                            <span class="font-bold text-sm">Personalizado (+S/600)</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 3. Funcionalidades Extra -->
+                <div class="bg-surface-container-lowest p-6 rounded-2xl border border-surface-variant shadow-sm">
+                    <h3 class="font-headline-sm font-bold mb-4 text-on-background flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary">extension</span>
+                        3. Funcionalidades Extra (Múltiple)
+                    </h3>
+                    <div class="flex flex-wrap gap-3">
+                        <label class="flex items-center gap-2 py-2 px-4 border-2 rounded-full cursor-pointer transition-all bg-white hover:border-primary"
+                               [ngClass]="selectedExtras['pagos'] ? 'border-primary text-primary shadow-sm' : 'border-outline-variant text-on-surface-variant'">
+                            <input type="checkbox" class="w-4 h-4 accent-primary" [checked]="selectedExtras['pagos']" (change)="toggleExtra('pagos')">
+                            <span class="font-bold text-sm">Pasarela de Pagos (+S/450)</span>
+                        </label>
+                        
+                        <label class="flex items-center gap-2 py-2 px-4 border-2 rounded-full cursor-pointer transition-all bg-white hover:border-primary"
+                               [ngClass]="selectedExtras['chat'] ? 'border-primary text-primary shadow-sm' : 'border-outline-variant text-on-surface-variant'">
+                            <input type="checkbox" class="w-4 h-4 accent-primary" [checked]="selectedExtras['chat']" (change)="toggleExtra('chat')">
+                            <span class="font-bold text-sm">Bot de WhatsApp (+S/150)</span>
+                        </label>
+                        
+                        <label class="flex items-center gap-2 py-2 px-4 border-2 rounded-full cursor-pointer transition-all bg-white hover:border-primary"
+                               [ngClass]="selectedExtras['admin'] ? 'border-primary text-primary shadow-sm' : 'border-outline-variant text-on-surface-variant'">
+                            <input type="checkbox" class="w-4 h-4 accent-primary" [checked]="selectedExtras['admin']" (change)="toggleExtra('admin')">
+                            <span class="font-bold text-sm">Panel Admin (+S/500)</span>
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+            
+            <!-- Columna Resumen (Sticky) -->
+            <div class="lg:col-span-1">
+                <div class="sticky top-28 bg-primary text-on-primary p-8 rounded-3xl shadow-xl border border-primary">
+                    <h3 class="font-bold text-xl mb-6 flex items-center gap-2">
+                        <span class="material-symbols-outlined">receipt_long</span>
+                        Resumen de Cotización
+                    </h3>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex justify-between items-start border-b border-white/20 pb-4">
+                            <span class="opacity-90">Tipo de Proyecto:</span>
+                            <strong class="text-right">{{projectName}}</strong>
+                        </div>
+                        <div class="flex justify-between items-start border-b border-white/20 pb-4">
+                            <span class="opacity-90">Diseño:</span>
+                            <strong class="text-right">{{designName}}</strong>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <div class="text-sm opacity-80 uppercase tracking-wider mb-2">Inversión Estimada</div>
+                        <div class="text-5xl font-extrabold flex items-baseline gap-1">
+                            <span class="text-2xl font-normal">S/</span>
+                            {{totalEstimado.toLocaleString('es-PE')}}
+                        </div>
+                        <p class="text-xs mt-2 opacity-75">*Precio referencial (no incluye IGV). El costo final se define tras la reunión de requerimientos.</p>
+                    </div>
+                    
+                    <button class="w-full bg-white text-primary hover:bg-surface-container-lowest py-4 rounded-xl font-bold text-lg shadow-lg hover:-translate-y-1 transition-all duration-300 flex justify-center items-center gap-2 group"
+                            (click)="solicitarSimulador()">
+                        Solicitar por WhatsApp
+                        <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">send</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- PROJECTS SECTION (NUEVO) -->
+    <!-- ========================================== -->
+    <section class="py-section-gap px-4 md:px-margin-desktop max-w-container-max mx-auto border-t border-outline-variant/30 animate-on-scroll opacity-0 translate-y-10 transition-all duration-[800ms] ease-out" id="proyectos">
+        <div class="text-center mb-16 space-y-4">
+            <p class="text-primary font-label-sm text-label-sm uppercase tracking-wider">Casos de Éxito</p>
+            <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background">Proyectos Destacados</h2>
+            <p class="font-body-md text-on-surface-variant max-w-2xl mx-auto">Conoce cómo nuestras soluciones de software están transformando el día a día de instituciones y negocios.</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-gutter">
+            
+            <!-- Proyecto 1: Colegio Kumamoto -->
+            <div class="bg-surface-container-lowest rounded-xl border border-surface-variant overflow-hidden hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] transition-all duration-300 flex flex-col group">
+                <div class="h-48 bg-surface-container flex items-center justify-center relative overflow-hidden">
+                    <div class="absolute inset-0 bg-primary/10 group-hover:bg-primary/20 transition-colors duration-300 z-10 pointer-events-none"></div>
+                    <img src="proyectokumamoto.png" alt="Sistema Escolar Kumamoto" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
+                </div>
+                <div class="p-8 flex-1 flex flex-col">
+                    <h3 class="font-headline-md text-headline-md mb-1">Sistema de Gestión Escolar</h3>
+                    <p class="text-sm font-bold text-primary mb-4 uppercase tracking-wider">IE 3092 Kumamoto I</p>
+                    <p class="font-body-md text-body-md text-on-surface-variant mb-6 flex-1">
+                        Plataforma integral desarrollada a medida para la gestión administrativa e institucional. Permite el control eficiente de matrículas, registro de notas de profesores y cuenta con un <strong>portal exclusivo para padres</strong> donde pueden monitorear el rendimiento y progreso de sus hijos en tiempo real.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-4 mb-8 pt-6 border-t border-outline-variant/30 text-center md:text-left">
+                        <div>
+                            <div class="font-headline-md text-2xl text-primary font-bold">+1,000</div>
+                            <div class="text-[12px] text-on-surface-variant font-bold uppercase tracking-wider mt-1">Alumnos Gestionados</div>
+                        </div>
+                        <div>
+                            <div class="font-headline-md text-2xl text-primary font-bold">100%</div>
+                            <div class="text-[12px] text-on-surface-variant font-bold uppercase tracking-wider mt-1">Transparencia a Padres</div>
+                        </div>
+                    </div>
+                    
+                    <a href="https://www.ie3092kumamoto1.org/login" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 w-full bg-surface hover:bg-primary hover:text-on-primary border-2 border-primary text-primary px-4 py-3 rounded-lg font-label-sm text-label-sm transition-all duration-300 shadow-sm">
+                        Visitar Proyecto <span class="material-symbols-outlined text-[18px]">open_in_new</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Proyecto 2: Broastería -->
+            <div class="bg-surface-container-lowest rounded-xl border border-surface-variant overflow-hidden hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] transition-all duration-300 flex flex-col group">
+                <div class="h-48 bg-surface-container flex items-center justify-center relative overflow-hidden">
+                    <div class="absolute inset-0 bg-tertiary/10 group-hover:bg-tertiary/20 transition-colors duration-300 z-10 pointer-events-none"></div>
+                    <img src="proyectoPos.png" alt="Sistema POS" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
+                </div>
+                <div class="p-8 flex-1 flex flex-col">
+                    <h3 class="font-headline-md text-headline-md mb-1">Sistema POS & Operaciones</h3>
+                    <p class="text-sm font-bold text-tertiary mb-4 uppercase tracking-wider">Fast Food / Broastería</p>
+                    <p class="font-body-md text-body-md text-on-surface-variant mb-6 flex-1">
+                        Moderno sistema de Punto de Venta (POS) diseñado para optimizar el flujo de trabajo en restaurantes de comida rápida. Facilita la toma de pedidos, facturación inmediata, control de inventario automatizado y brinda reportes financieros detallados para la toma de decisiones.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-4 mb-8 pt-6 border-t border-outline-variant/30 text-center md:text-left">
+                        <div>
+                            <div class="font-headline-md text-2xl text-tertiary font-bold">-35%</div>
+                            <div class="text-[12px] text-on-surface-variant font-bold uppercase tracking-wider mt-1">Tiempo de Atención</div>
+                        </div>
+                        <div>
+                            <div class="font-headline-md text-2xl text-tertiary font-bold">Real</div>
+                            <div class="text-[12px] text-on-surface-variant font-bold uppercase tracking-wider mt-1">Control de Inventario</div>
+                        </div>
+                    </div>
+                    
+                    <a href="https://broasteria.vercel.app" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 w-full bg-surface hover:bg-tertiary hover:border-tertiary hover:text-on-primary border-2 border-tertiary text-tertiary px-4 py-3 rounded-lg font-label-sm text-label-sm transition-all duration-300 shadow-sm">
+                        Visitar Proyecto <span class="material-symbols-outlined text-[18px]">open_in_new</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Partners / Clients Section -->
+    <section class="bg-surface py-12 px-4 md:px-margin-desktop border-t border-outline-variant/30">
+        <div class="max-w-container-max mx-auto text-center">
+            <h3 class="font-label-sm text-sm font-bold text-on-surface-variant uppercase tracking-widest mb-8">Empresas e Instituciones que confían en nosotros</h3>
+            <div class="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+                <div class="text-xl font-headline-md font-bold text-on-surface-variant">Colegio Kumamoto</div>
+                <div class="text-xl font-headline-md font-bold text-on-surface-variant">TechLogistics S.A.</div>
+                <div class="text-xl font-headline-md font-bold text-on-surface-variant">Broastería Central</div>
+                <div class="text-xl font-headline-md font-bold text-on-surface-variant">Grupo XYZ</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="bg-surface-container-highest py-section-gap px-4 md:px-margin-desktop relative overflow-hidden">
+        <div class="absolute inset-0 bg-primary/5 pointer-events-none"></div>
+        <div class="max-w-container-max mx-auto relative z-10">
+            <div class="text-center mb-16 space-y-4">
+                <p class="text-primary font-label-sm text-label-sm uppercase tracking-wider">Nuestro Proceso</p>
+                <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background">Metodología para el éxito</h2>
+                <p class="text-sm text-on-surface-variant italic">Presiona cada paso para conocer los detalles</p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-y-12 gap-x-4 relative">
+                
+                <!-- Connecting Line (solo visible en escritorio) -->
+                <div class="hidden lg:block absolute top-[32px] left-[8%] right-[8%] h-0.5 bg-outline-variant -z-10"></div>
+                
+                <!-- Step 1 -->
+                <button type="button" class="btn-proceso flex flex-col items-center text-center group transition-transform hover:-translate-y-1 focus:outline-none" (click)="openProcessModal('Descubrimiento', 'search', 'En esta etapa inicial, nos reunimos contigo para comprender a fondo las necesidades de tu negocio, identificar los retos actuales y definir los objetivos del proyecto. Mapeamos tus ideas para asegurar que la solución tecnológica esté perfectamente alineada a tu visión.')">
+                    <div class="w-16 h-16 rounded-full bg-surface-container-lowest border-2 border-primary flex items-center justify-center mb-4 shadow-sm z-10 group-hover:bg-primary transition-colors duration-300">
+                        <span class="material-symbols-outlined text-primary group-hover:text-on-primary transition-colors">search</span>
+                    </div>
+                    <h4 class="font-label-sm text-label-sm font-bold mb-1 group-hover:text-primary transition-colors">Descubrimiento</h4>
+                </button>
+
+                <!-- Step 2 -->
+                <button type="button" class="btn-proceso flex flex-col items-center text-center group transition-transform hover:-translate-y-1 focus:outline-none" (click)="openProcessModal('Análisis', 'analytics', 'Evaluamos la viabilidad técnica y estructuramos la arquitectura del sistema. Definimos los requerimientos funcionales, flujos de datos y herramientas necesarias para garantizar que el proyecto sea escalable, seguro y eficiente desde su concepción.')">
+                    <div class="w-16 h-16 rounded-full bg-surface-container-lowest border-2 border-primary flex items-center justify-center mb-4 shadow-sm z-10 group-hover:bg-primary transition-colors duration-300">
+                        <span class="material-symbols-outlined text-primary group-hover:text-on-primary transition-colors">analytics</span>
+                    </div>
+                    <h4 class="font-label-sm text-label-sm font-bold mb-1 group-hover:text-primary transition-colors">Análisis</h4>
+                </button>
+
+                <!-- Step 3 -->
+                <button type="button" class="btn-proceso flex flex-col items-center text-center group transition-transform hover:-translate-y-1 focus:outline-none" (click)="openProcessModal('Diseño', 'design_services', 'Creamos interfaces intuitivas (UI/UX) y prototipos interactivos. En esta etapa podrás visualizar cómo se verá y funcionará tu plataforma antes de que escribamos una sola línea de código, garantizando la mejor experiencia para el usuario final.')">
+                    <div class="w-16 h-16 rounded-full bg-surface-container-lowest border-2 border-primary flex items-center justify-center mb-4 shadow-sm z-10 group-hover:bg-primary transition-colors duration-300">
+                        <span class="material-symbols-outlined text-primary group-hover:text-on-primary transition-colors">design_services</span>
+                    </div>
+                    <h4 class="font-label-sm text-label-sm font-bold mb-1 group-hover:text-primary transition-colors">Diseño</h4>
+                </button>
+
+                <!-- Step 4 -->
+                <button type="button" class="btn-proceso flex flex-col items-center text-center group transition-transform hover:-translate-y-1 focus:outline-none" (click)="openProcessModal('Desarrollo', 'code', 'Nuestro equipo de ingenieros transforma los diseños en realidad. Utilizamos metodologías ágiles y las tecnologías más modernas y robustas del mercado para programar tu solución, asegurando un código limpio, seguro y optimizado.')">
+                    <div class="w-16 h-16 rounded-full bg-surface-container-lowest border-2 border-primary flex items-center justify-center mb-4 shadow-sm z-10 group-hover:bg-primary transition-colors duration-300">
+                        <span class="material-symbols-outlined text-primary group-hover:text-on-primary transition-colors">code</span>
+                    </div>
+                    <h4 class="font-label-sm text-label-sm font-bold mb-1 group-hover:text-primary transition-colors">Desarrollo</h4>
+                </button>
+
+                <!-- Step 5 -->
+                <button type="button" class="btn-proceso flex flex-col items-center text-center group transition-transform hover:-translate-y-1 focus:outline-none" (click)="openProcessModal('Pruebas', 'bug_report', 'Realizamos rigurosas pruebas de calidad (QA). Detectamos y corregimos errores, probamos el rendimiento bajo estrés y aseguramos que todas las integraciones y flujos funcionen perfectamente antes de salir al mercado.')">
+                    <div class="w-16 h-16 rounded-full bg-surface-container-lowest border-2 border-primary flex items-center justify-center mb-4 shadow-sm z-10 group-hover:bg-primary transition-colors duration-300">
+                        <span class="material-symbols-outlined text-primary group-hover:text-on-primary transition-colors">bug_report</span>
+                    </div>
+                    <h4 class="font-label-sm text-label-sm font-bold mb-1 group-hover:text-primary transition-colors">Pruebas</h4>
+                </button>
+
+                <!-- Step 6 -->
+                <button type="button" class="btn-proceso flex flex-col items-center text-center group transition-transform hover:-translate-y-1 focus:outline-none" (click)="openProcessModal('Despliegue y Soporte', 'rocket_launch', 'Lanzamos tu plataforma a producción y la configuramos en servidores seguros. Posteriormente, te brindamos mantenimiento continuo y soporte técnico para asegurar que tu software evolucione junto a tu negocio sin contratiempos.')">
+                    <div class="w-16 h-16 rounded-full bg-surface-container-lowest border-2 border-primary flex items-center justify-center mb-4 shadow-sm z-10 group-hover:bg-primary transition-colors duration-300">
+                        <span class="material-symbols-outlined text-primary group-hover:text-on-primary transition-colors">rocket_launch</span>
+                    </div>
+                    <h4 class="font-label-sm text-label-sm font-bold mb-1 group-hover:text-primary transition-colors">Despliegue y Soporte</h4>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technologies Section -->
+    <section class="py-section-gap px-4 md:px-margin-desktop max-w-container-max mx-auto border-t border-outline-variant/30 animate-on-scroll opacity-0 translate-y-10 transition-all duration-[800ms] ease-out">
+        <div class="text-center mb-12 space-y-4">
+            <p class="text-primary font-label-sm text-label-sm uppercase tracking-wider">Stack Tecnológico</p>
+            <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background">Tecnologías de Vanguardia</h2>
+            <p class="font-body-md text-on-surface-variant max-w-2xl mx-auto">Utilizamos un stack moderno, seguro y altamente escalable para construir soluciones empresariales de primer nivel.</p>
+        </div>
+        <div class="flex flex-wrap justify-center gap-8 md:gap-12 opacity-80">
+            <!-- Tech Icons -->
+            <div class="flex flex-col items-center gap-2 group">
+                <div class="w-16 h-16 bg-surface-container rounded-2xl flex items-center justify-center group-hover:bg-primary/10 group-hover:-translate-y-2 border border-outline-variant/30 transition-all duration-300">
+                    <span class="font-bold text-xl text-on-surface-variant group-hover:text-primary transition-colors">Ng</span>
+                </div>
+                <span class="text-xs font-bold text-on-surface-variant uppercase tracking-wider">Angular</span>
+            </div>
+            <div class="flex flex-col items-center gap-2 group">
+                <div class="w-16 h-16 bg-surface-container rounded-2xl flex items-center justify-center group-hover:bg-primary/10 group-hover:-translate-y-2 border border-outline-variant/30 transition-all duration-300">
+                    <span class="font-bold text-xl text-on-surface-variant group-hover:text-primary transition-colors">TS</span>
+                </div>
+                <span class="text-xs font-bold text-on-surface-variant uppercase tracking-wider">TypeScript</span>
+            </div>
+            <div class="flex flex-col items-center gap-2 group">
+                <div class="w-16 h-16 bg-surface-container rounded-2xl flex items-center justify-center group-hover:bg-primary/10 group-hover:-translate-y-2 border border-outline-variant/30 transition-all duration-300">
+                    <span class="font-bold text-xl text-on-surface-variant group-hover:text-primary transition-colors">Tw</span>
+                </div>
+                <span class="text-xs font-bold text-on-surface-variant uppercase tracking-wider">Tailwind</span>
+            </div>
+            <div class="flex flex-col items-center gap-2 group">
+                <div class="w-16 h-16 bg-surface-container rounded-2xl flex items-center justify-center group-hover:bg-primary/10 group-hover:-translate-y-2 border border-outline-variant/30 transition-all duration-300">
+                    <span class="font-bold text-xl text-on-surface-variant group-hover:text-primary transition-colors">No</span>
+                </div>
+                <span class="text-xs font-bold text-on-surface-variant uppercase tracking-wider">Node.js</span>
+            </div>
+            <div class="flex flex-col items-center gap-2 group">
+                <div class="w-16 h-16 bg-surface-container rounded-2xl flex items-center justify-center group-hover:bg-primary/10 group-hover:-translate-y-2 border border-outline-variant/30 transition-all duration-300">
+                    <span class="font-bold text-xl text-on-surface-variant group-hover:text-primary transition-colors">Py</span>
+                </div>
+                <span class="text-xs font-bold text-on-surface-variant uppercase tracking-wider">Python</span>
+            </div>
+            <div class="flex flex-col items-center gap-2 group">
+                <div class="w-16 h-16 bg-surface-container rounded-2xl flex items-center justify-center group-hover:bg-primary/10 group-hover:-translate-y-2 border border-outline-variant/30 transition-all duration-300">
+                    <span class="font-bold text-xl text-on-surface-variant group-hover:text-primary transition-colors">AWS</span>
+                </div>
+                <span class="text-xs font-bold text-on-surface-variant uppercase tracking-wider">AWS</span>
+            </div>
+            <div class="flex flex-col items-center gap-2 group">
+                <div class="w-16 h-16 bg-surface-container rounded-2xl flex items-center justify-center group-hover:bg-primary/10 group-hover:-translate-y-2 border border-outline-variant/30 transition-all duration-300">
+                    <span class="font-bold text-xl text-on-surface-variant group-hover:text-primary transition-colors">Re</span>
+                </div>
+                <span class="text-xs font-bold text-on-surface-variant uppercase tracking-wider">React</span>
+            </div>
+            <div class="flex flex-col items-center gap-2 group">
+                <div class="w-16 h-16 bg-surface-container rounded-2xl flex items-center justify-center group-hover:bg-primary/10 group-hover:-translate-y-2 border border-outline-variant/30 transition-all duration-300">
+                    <span class="font-bold text-xl text-on-surface-variant group-hover:text-primary transition-colors">SQL</span>
+                </div>
+                <span class="text-xs font-bold text-on-surface-variant uppercase tracking-wider">Databases</span>
+            </div>
+            <div class="flex flex-col items-center gap-2 group">
+                <div class="w-16 h-16 bg-surface-container rounded-2xl flex items-center justify-center group-hover:bg-primary/10 group-hover:-translate-y-2 border border-outline-variant/30 transition-all duration-300">
+                    <span class="font-bold text-xl text-on-surface-variant group-hover:text-primary transition-colors">.NET</span>
+                </div>
+                <span class="text-xs font-bold text-on-surface-variant uppercase tracking-wider">.NET Core</span>
+            </div>
+            <div class="flex flex-col items-center gap-2 group">
+                <div class="w-16 h-16 bg-surface-container rounded-2xl flex items-center justify-center group-hover:bg-primary/10 group-hover:-translate-y-2 border border-outline-variant/30 transition-all duration-300">
+                    <span class="font-bold text-xl text-on-surface-variant group-hover:text-primary transition-colors">Lv</span>
+                </div>
+                <span class="text-xs font-bold text-on-surface-variant uppercase tracking-wider">Laravel</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial -->
+    <section class="py-section-gap px-4 md:px-margin-desktop max-w-container-max mx-auto animate-on-scroll opacity-0 translate-y-10 transition-all duration-[800ms] ease-out">
+        <div class="text-center mb-12">
+            <p class="text-primary font-label-sm text-label-sm uppercase tracking-wider">Testimonios</p>
+            <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background">Lo que dicen nuestros clientes</h2>
+        </div>
+        <div class="max-w-3xl mx-auto bg-surface-container-lowest p-8 md:p-12 rounded-2xl border border-surface-variant shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] relative">
+            <span class="material-symbols-outlined absolute top-8 left-8 text-surface-variant text-[64px] opacity-20 rotate-180" data-icon="format_quote">format_quote</span>
+            <div class="flex flex-col items-center text-center relative z-10">
+                <div class="flex gap-1 text-primary mb-6">
+                    <span class="material-symbols-outlined icon-fill" data-icon="star">star</span>
+                    <span class="material-symbols-outlined icon-fill" data-icon="star">star</span>
+                    <span class="material-symbols-outlined icon-fill" data-icon="star">star</span>
+                    <span class="material-symbols-outlined icon-fill" data-icon="star">star</span>
+                    <span class="material-symbols-outlined icon-fill" data-icon="star">star</span>
+                </div>
+                <p class="font-body-lg text-body-lg text-on-surface italic mb-8">
+                    "El equipo de Marivic Soft transformó por completo nuestra infraestructura digital. Su atención al detalle y capacidad para resolver problemas complejos nos permitió escalar nuestro negocio de forma segura. Un partner tecnológico invaluable."
+                </p>
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-full bg-tertiary-container text-on-tertiary flex items-center justify-center font-bold text-lg">
+                        CM
+                    </div>
+                    <div class="text-left">
+                        <h4 class="font-label-sm text-label-sm font-bold text-on-background">Carlos Mendoza</h4>
+                        <p class="font-body-md text-sm text-on-surface-variant">Director de Operaciones, TechLogistics</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Floating WhatsApp Button (No bounce animation) -->
+<a href="https://wa.me/51930144555" target="_blank" class="fixed bottom-6 right-6 z-[100] bg-[#25D366] text-white p-4 rounded-full shadow-[0_4px_14px_0_rgba(37,211,102,0.39)] hover:shadow-[0_6px_20px_rgba(37,211,102,0.5)] hover:-translate-y-1 transition-all duration-300 flex items-center justify-center">
+    <svg class="w-8 h-8 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.888-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.347-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.876 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+</a>
+
+<!-- Footer -->
+<footer class="bg-surface-container-low dark:bg-surface-container-highest mt-section-gap full-width border-t border-outline-variant dark:border-outline animate-on-scroll opacity-0 translate-y-10 transition-all duration-[800ms] ease-out" id="contacto">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-gutter py-16 px-4 md:px-margin-desktop max-w-container-max mx-auto">
+        <div class="space-y-4 col-span-1 md:col-span-1">
+            <img src="logo1.png" alt="Marivic Soft" class="h-10 md:h-12 w-auto mb-2" />
+            <p class="font-body-md text-body-md text-on-surface-variant">Ingeniería de Software para el éxito real. Transformando ideas en soluciones tecnológicas escalables.</p>
+        </div>
+        <div class="space-y-4">
+            <h4 class="font-label-sm text-label-sm font-bold uppercase tracking-wider text-on-background">Enlaces</h4>
+            <ul class="space-y-2 font-body-md text-body-md">
+                <li><a class="text-primary font-bold hover:underline transition-all" href="#">Inicio</a></li>
+                <li><a class="text-on-surface-variant hover:text-primary transition-colors hover:underline transition-all" href="#servicios">Servicios</a></li>
+                <li><a class="text-on-surface-variant hover:text-primary transition-colors hover:underline transition-all" href="#proyectos">Proyectos</a></li>
+            </ul>
+        </div>
+        <div class="space-y-4">
+            <h4 class="font-label-sm text-label-sm font-bold uppercase tracking-wider text-on-background">Legal</h4>
+            <ul class="space-y-2 font-body-md text-body-md">
+                <li><a href="#" class="btn-privacidad text-on-surface-variant hover:text-primary transition-colors hover:underline transition-all" (click)="$event.preventDefault(); openModal('privacidad')">Políticas de Privacidad</a></li>
+                <li><a href="#" class="btn-terminos text-on-surface-variant hover:text-primary transition-colors hover:underline transition-all" (click)="$event.preventDefault(); openModal('terminos')">Términos y Condiciones</a></li>
+            </ul>
+        </div>
+        <div class="space-y-4">
+            <h4 class="font-label-sm text-label-sm font-bold uppercase tracking-wider text-on-background">Contacto</h4>
+            <button class="btn-cotizar w-full bg-primary hover:bg-primary/90 text-on-primary px-4 py-3 rounded-lg font-label-sm text-label-sm shadow-sm transition-all mb-2 flex items-center justify-center gap-2" (click)="$event.preventDefault(); openModal('cotizacion')">
+                <span class="material-symbols-outlined text-[18px]" data-icon="description">description</span>
+                Solicitar Cotización
+            </button>
+            <a href="https://wa.me/51930144555" target="_blank" class="w-full border-2 border-primary text-primary hover:bg-primary/5 px-4 py-3 rounded-lg font-label-sm text-label-sm transition-all flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined text-[18px]" data-icon="chat">chat</span>
+                Escríbenos por WhatsApp
+            </a>
+            <a href="https://www.tiktok.com/@marivicsoft8" target="_blank" class="w-full border-2 border-outline-variant text-on-surface-variant hover:border-[#ff0050] hover:text-[#ff0050] hover:bg-[#ff0050]/5 px-4 py-3 rounded-lg font-label-sm text-label-sm transition-all flex items-center justify-center gap-2 mt-2">
+                <svg class="w-[18px] h-[18px] fill-current" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.01.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 2.23-.9 4.45-2.43 6.08-1.5 1.56-3.66 2.45-5.83 2.52-2.19.08-4.43-.45-6.18-1.78-1.72-1.28-2.82-3.23-3.08-5.35-.29-2.31.25-4.72 1.63-6.55 1.34-1.75 3.42-2.86 5.6-3.15.02 1.45.01 2.9.01 4.35-1.15.15-2.26.68-3.04 1.54-.74.8-1.13 1.9-1.08 3.02.04 1.07.49 2.1 1.25 2.85.73.72 1.74 1.16 2.78 1.19 1.13.04 2.26-.35 3.09-1.11.83-.73 1.32-1.79 1.41-2.92.05-3.05.03-6.1.03-9.15h.01V.02z"/></svg>
+                @marivicsoft8
+            </a>
+        </div>
+    </div>
+    <div class="border-t border-outline-variant/30 py-6 px-4 md:px-margin-desktop text-center">
+        <p class="font-body-md text-sm text-on-surface-variant">© 2024 Marivic Soft. Todos los derechos reservados. Lima, Perú.</p>
+    </div>
+</footer>
+
+<!-- ============================================== -->
+<!-- 1. MODAL DE COTIZACIÓN -->
+<!-- ============================================== -->
+<div id="cotizacion-modal" [class]="'fixed inset-0 z-[100] flex items-center justify-center px-4 sm:px-0 modal-overlay ' + (activeModal === 'cotizacion' ? 'modal-visible' : 'modal-hidden')">
+    <div class="fixed inset-0 bg-[#0b1c30]/60 backdrop-blur-sm cursor-pointer close-cotizacion-backdrop" (click)="closeModal()"></div>
+    <div class="relative bg-surface-container-lowest rounded-xl shadow-2xl w-full max-w-lg overflow-hidden modal-panel panel-hidden" id="cotizacion-panel">
+        <div class="px-6 py-5 border-b border-outline-variant/50 bg-surface flex justify-between items-center">
+            <h3 class="font-headline-md text-xl font-bold text-primary flex items-center gap-2">
+                <span class="material-symbols-outlined">request_quote</span>
+                Cotizar Proyecto
+            </h3>
+            <button type="button" class="close-cotizacion-btn text-on-surface-variant hover:text-error bg-surface-container hover:bg-error/10 p-1 rounded-full transition-all flex items-center justify-center" (click)="closeModal()">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <form id="cotizacion-form" class="p-6 space-y-5" (submit)="handleCotizacionSubmit($event)">
+            <div>
+                <label for="empresa" class="block font-label-sm text-sm font-bold text-on-surface mb-2">Nombre de la Empresa o Proyecto *</label>
+                <input type="text" id="empresa" required class="w-full px-4 py-3 rounded-lg border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all bg-surface text-on-surface" placeholder="Ej. Corporación XYZ S.A.C.">
+            </div>
+            <div>
+                <label for="servicio" class="block font-label-sm text-sm font-bold text-on-surface mb-2">¿Qué servicio te interesa? *</label>
+                <select id="servicio" required class="w-full px-4 py-3 rounded-lg border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all bg-surface text-on-surface appearance-none">
+                    <option value="" disabled selected>Selecciona una opción...</option>
+                    <option value="Desarrollo Web">Desarrollo Web (Página Corporativa/Informativa)</option>
+                    <option value="E-commerce">E-commerce (Tienda Online)</option>
+                    <option value="Sistemas Web a Medida">Sistemas Web a Medida</option>
+                    <option value="Automatización Empresarial">Automatización Empresarial</option>
+                    <option value="Integraciones y APIs">Integraciones y APIs</option>
+                    <option value="Soporte y Mantenimiento">Soporte y Mantenimiento</option>
+                    <option value="Otro">Otro requerimiento tecnológico</option>
+                </select>
+            </div>
+            <div>
+                <label for="descripcion" class="block font-label-sm text-sm font-bold text-on-surface mb-2">Descripción de lo que necesitas *</label>
+                <textarea id="descripcion" required rows="4" class="w-full px-4 py-3 rounded-lg border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all bg-surface text-on-surface resize-none custom-scrollbar" placeholder="Cuéntanos brevemente cuáles son los objetivos o funcionalidades principales que requieres..."></textarea>
+            </div>
+            <div class="pt-2">
+                <button type="submit" class="w-full bg-[#25D366] hover:bg-[#1ebd5c] text-white px-6 py-4 rounded-lg font-label-sm text-[16px] font-bold shadow-[0_4px_14px_0_rgba(37,211,102,0.39)] hover:shadow-[0_6px_20px_rgba(37,211,102,0.23)] hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center gap-3">
+                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    Enviar Cotización por WhatsApp
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- ============================================== -->
+<!-- 2. MODAL DE POLÍTICAS DE PRIVACIDAD -->
+<!-- ============================================== -->
+<div id="privacidad-modal" [class]="'fixed inset-0 z-[100] flex items-center justify-center px-4 sm:px-0 modal-overlay ' + (activeModal === 'privacidad' ? 'modal-visible' : 'modal-hidden')">
+    <div class="fixed inset-0 bg-[#0b1c30]/60 backdrop-blur-sm cursor-pointer close-privacidad-backdrop" (click)="closeModal()"></div>
+    <div class="relative bg-surface-container-lowest rounded-xl shadow-2xl w-full max-w-2xl max-h-[85vh] flex flex-col overflow-hidden modal-panel panel-hidden" id="privacidad-panel">
+        <div class="px-6 py-5 border-b border-outline-variant/50 bg-surface flex justify-between items-center shrink-0">
+            <h3 class="font-headline-md text-xl font-bold text-on-background flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary">gavel</span>
+                Políticas de Privacidad
+            </h3>
+            <button type="button" class="close-privacidad-btn text-on-surface-variant hover:text-error bg-surface-container hover:bg-error/10 p-1 rounded-full transition-all flex items-center justify-center" (click)="closeModal()">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <div class="p-6 overflow-y-auto custom-scrollbar space-y-4 text-on-surface-variant font-body-md text-[15px] leading-relaxed">
+            <p>En <strong>Marivic Soft</strong>, valoramos su privacidad y estamos comprometidos con la protección de sus datos personales, en estricto cumplimiento de la <strong>Ley N° 29733, Ley de Protección de Datos Personales de Perú</strong>.</p>
+            <h4 class="font-bold text-on-background mt-4">1. Identidad y Domicilio</h4>
+            <p>Marivic Soft, con sede en Lima, Perú, es la entidad responsable del tratamiento de los datos personales.</p>
+            <h4 class="font-bold text-on-background mt-4">2. Finalidad del Tratamiento de Datos</h4>
+            <p>Los datos solicitados serán utilizados única y exclusivamente para responder a consultas, establecer contacto comercial y enviar cotizaciones.</p>
+            <h4 class="font-bold text-on-background mt-4">3. Ejercicio de Derechos ARCO</h4>
+            <p>Usted puede ejercer en cualquier momento sus derechos de Acceso, Rectificación, Cancelación y Oposición respecto a sus datos personales comunicándose a nuestro WhatsApp.</p>
+        </div>
+        <div class="px-6 py-4 border-t border-outline-variant/50 bg-surface text-right shrink-0">
+            <button type="button" class="close-privacidad-btn bg-surface-container-high hover:bg-surface-variant text-on-surface px-6 py-2 rounded-lg font-label-sm text-sm font-bold transition-all" (click)="closeModal()">
+                Entendido
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================== -->
+<!-- 3. MODAL DE TÉRMINOS Y CONDICIONES -->
+<!-- ============================================== -->
+<div id="terminos-modal" [class]="'fixed inset-0 z-[100] flex items-center justify-center px-4 sm:px-0 modal-overlay ' + (activeModal === 'terminos' ? 'modal-visible' : 'modal-hidden')">
+    <div class="fixed inset-0 bg-[#0b1c30]/60 backdrop-blur-sm cursor-pointer close-terminos-backdrop" (click)="closeModal()"></div>
+    <div class="relative bg-surface-container-lowest rounded-xl shadow-2xl w-full max-w-2xl max-h-[85vh] flex flex-col overflow-hidden modal-panel panel-hidden" id="terminos-panel">
+        <div class="px-6 py-5 border-b border-outline-variant/50 bg-surface flex justify-between items-center shrink-0">
+            <h3 class="font-headline-md text-xl font-bold text-on-background flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary">description</span>
+                Términos y Condiciones
+            </h3>
+            <button type="button" class="close-terminos-btn text-on-surface-variant hover:text-error bg-surface-container hover:bg-error/10 p-1 rounded-full transition-all flex items-center justify-center" (click)="closeModal()">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <div class="p-6 overflow-y-auto custom-scrollbar space-y-4 text-on-surface-variant font-body-md text-[15px] leading-relaxed">
+            <p>Bienvenido a <strong>Marivic Soft</strong>. Los presentes Términos y Condiciones regulan la prestación de nuestros servicios de desarrollo de software, diseño web y consultoría tecnológica.</p>
+            <h4 class="font-bold text-on-background mt-4">1. Objeto del Servicio</h4>
+            <p>Marivic Soft se compromete a desarrollar soluciones tecnológicas a medida según los requerimientos técnicos y funcionales acordados formalmente en la cotización o contrato previo con el Cliente.</p>
+            <h4 class="font-bold text-on-background mt-4">2. Propiedad Intelectual</h4>
+            <p>Todos los derechos sobre el código fuente, diseño y arquitectura del software desarrollado serán transferidos al Cliente única y exclusivamente una vez que se haya cancelado el 100% de los honorarios pactados.</p>
+            <h4 class="font-bold text-on-background mt-4">3. Pagos y Facturación</h4>
+            <p>Los proyectos se inician tras el abono de un anticipo (comúnmente 50%). Todos los precios están sujetos a las normativas de la SUNAT en el territorio Peruano.</p>
+            <h4 class="font-bold text-on-background mt-4">4. Soporte y Garantía</h4>
+            <p>Entregamos los proyectos libres de errores críticos de acuerdo al alcance inicial y proporcionamos un periodo de garantía para subsanar cualquier fallo de código.</p>
+            <h4 class="font-bold text-on-background mt-4">5. Legislación Aplicable</h4>
+            <p>Cualquier disputa legal estará sujeta a las leyes de la República del Perú y se someterá a la jurisdicción de los tribunales de Lima.</p>
+        </div>
+        <div class="px-6 py-4 border-t border-outline-variant/50 bg-surface text-right shrink-0">
+            <button type="button" class="close-terminos-btn bg-surface-container-high hover:bg-surface-variant text-on-surface px-6 py-2 rounded-lg font-label-sm text-sm font-bold transition-all" (click)="closeModal()">
+                Aceptar y Cerrar
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================== -->
+<!-- 4. MODAL DINÁMICO DE DETALLE DEL PROCESO -->
+<!-- ============================================== -->
+<div id="detalle-proceso-modal" [class]="'fixed inset-0 z-[100] flex items-center justify-center px-4 sm:px-0 modal-overlay ' + (activeModal === 'proceso' ? 'modal-visible' : 'modal-hidden')">
+    <div class="fixed inset-0 bg-[#0b1c30]/60 backdrop-blur-sm cursor-pointer close-proceso-backdrop" (click)="closeModal()"></div>
+    <div class="relative bg-surface-container-lowest rounded-xl shadow-2xl w-full max-w-sm overflow-hidden modal-panel panel-hidden" id="detalle-proceso-panel">
+        <div class="p-8 flex flex-col items-center text-center">
+            <div class="w-20 h-20 rounded-full bg-primary/10 border-2 border-primary flex items-center justify-center mb-6">
+                <span id="proceso-icono" class="material-symbols-outlined text-[32px] text-primary">{{ processDetail?.icon || "info" }}</span>
+            </div>
+            <h3 id="proceso-titulo" class="font-headline-md text-2xl font-bold text-on-background mb-4">{{ processDetail?.title || "Etapa" }}</h3>
+            <p id="proceso-descripcion" class="font-body-md text-on-surface-variant leading-relaxed">{{ processDetail?.desc || "Descripción de la etapa..." }}</p>
+        </div>
+        <div class="px-6 py-4 border-t border-outline-variant/30 bg-surface text-center shrink-0">
+            <button type="button" class="close-proceso-btn w-full bg-primary hover:bg-primary/90 text-on-primary px-6 py-3 rounded-lg font-label-sm text-sm font-bold transition-all shadow-sm" (click)="closeModal()">
+                Cerrar Detalle
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- ========================================== -->
+<!-- AI CHAT AGENT (GEMINI) -->
+<!-- ========================================== -->
+<button (click)="toggleChat()" id="ai-chat-btn" class="fixed bottom-24 right-6 z-[100] bg-primary text-on-primary p-4 rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.2)] hover:-translate-y-1 hover:shadow-[0_8px_30px_rgb(135,16,23,0.35)] transition-all duration-300 flex items-center justify-center group focus:outline-none" title="Asistente de IA">
+    <span class="material-symbols-outlined text-[26px] group-hover:scale-110 transition-transform">smart_toy</span>
+    <span *ngIf="!isChatOpen" class="absolute -top-1 -right-1 w-3 h-3 bg-yellow-400 rounded-full animate-ping"></span>
+    <span *ngIf="!isChatOpen" class="absolute -top-1 -right-1 w-3 h-3 bg-yellow-400 rounded-full"></span>
+</button>
+
+<div *ngIf="isChatOpen" id="ai-chat-window" class="fixed bottom-44 right-6 z-[100] w-[320px] md:w-[360px] bg-white rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-outline-variant/30 flex flex-col overflow-hidden origin-bottom-right">
+    <div class="bg-primary text-on-primary p-4 flex justify-between items-center">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+                <span class="material-symbols-outlined text-[20px]">smart_toy</span>
+            </div>
+            <div>
+                <h3 class="font-bold text-sm leading-tight">Asistente IA · Marivic Soft</h3>
+                <span class="text-[10px] text-green-300 flex items-center gap-1">
+                    <span class="w-1.5 h-1.5 rounded-full bg-green-400 inline-block"></span> En línea
+                </span>
+            </div>
+        </div>
+        <button (click)="toggleChat()" class="text-on-primary/80 hover:text-white transition-colors focus:outline-none">
+            <span class="material-symbols-outlined">close</span>
+        </button>
+    </div>
+    <div class="h-72 p-4 overflow-y-auto flex flex-col gap-3 bg-gray-50" #chatScroll>
+        <div *ngFor="let msg of chatMessages"
+             class="max-w-[85%] p-3 text-sm leading-relaxed"
+             [ngClass]="msg.role === 'user'
+               ? 'bg-primary text-on-primary self-end rounded-2xl rounded-tr-sm'
+               : 'bg-white border border-gray-200 text-gray-800 self-start rounded-2xl rounded-tl-sm shadow-sm'">
+            <p class="whitespace-pre-wrap">{{msg.text}}</p>
+        </div>
+        <div *ngIf="isAiTyping" class="bg-white border border-gray-200 self-start rounded-2xl rounded-tl-sm p-3 shadow-sm flex gap-1 items-center">
+            <div class="w-2 h-2 bg-primary rounded-full animate-bounce"></div>
+            <div class="w-2 h-2 bg-primary rounded-full animate-bounce" style="animation-delay:0.15s"></div>
+            <div class="w-2 h-2 bg-primary rounded-full animate-bounce" style="animation-delay:0.3s"></div>
+        </div>
+    </div>
+    <div class="p-3 border-t border-gray-100 bg-white flex gap-2 items-end">
+        <textarea [(ngModel)]="chatInput"
+                  (keydown)="onChatKeydown($event)"
+                  placeholder="Escribe tu pregunta..."
+                  class="flex-1 bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-primary resize-none max-h-24"
+                  rows="1"></textarea>
+        <button (click)="sendMessage()"
+                [disabled]="!chatInput.trim() || isAiTyping"
+                class="bg-primary text-on-primary w-10 h-10 rounded-full flex items-center justify-center hover:bg-primary/90 transition-colors disabled:opacity-40 disabled:cursor-not-allowed shrink-0">
+            <span class="material-symbols-outlined text-[18px]">send</span>
+        </button>
+    </div>
+</div>

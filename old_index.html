@@ -125,6 +125,7 @@
         </div>
         <nav class="hidden md:flex items-center gap-8">
             <a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-sm text-label-sm hover:bg-primary/5 transition-all" href="#">Inicio</a>
+            <a class="text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm hover:bg-primary/5 transition-all py-1" href="#nosotros">Nosotros</a>
             <a class="text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm hover:bg-primary/5 transition-all py-1" href="#servicios">Servicios</a>
             <a class="text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm hover:bg-primary/5 transition-all py-1" href="#proyectos">Proyectos</a>
             <a class="text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm hover:bg-primary/5 transition-all py-1" href="#contacto">Contacto</a>
@@ -177,6 +178,82 @@
             <div class="space-y-2">
                 <div class="font-headline-xl text-headline-lg-mobile md:text-headline-xl text-primary font-bold">99%</div>
                 <div class="font-label-sm text-label-sm text-on-surface-variant uppercase">Compromiso y calidad</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="py-section-gap px-4 md:px-margin-desktop max-w-container-max mx-auto" id="nosotros">
+        <div class="flex flex-col lg:flex-row items-center gap-16">
+            <div class="flex-1 space-y-6">
+                <p class="text-primary font-label-sm text-label-sm uppercase tracking-wider">Sobre Nosotros</p>
+                <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background">Ingeniería sólida para <span class="text-primary">resultados reales</span></h2>
+                <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                    En <strong>Marivic Soft</strong>, no solo escribimos código; diseñamos soluciones estratégicas que impulsan el crecimiento corporativo. Nacimos con la visión de cerrar la brecha entre los desafíos empresariales complejos y la tecnología accesible, entregando software robusto, seguro y altamente escalable.
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 pt-6">
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-2 text-primary">
+                            <span class="material-symbols-outlined icon-fill">rocket_launch</span>
+                            <h3 class="font-headline-md text-lg font-bold text-on-background">Nuestra Misión</h3>
+                        </div>
+                        <p class="font-body-sm text-sm text-on-surface-variant">Empoderar a empresas e instituciones mediante herramientas digitales personalizadas, optimizando sus procesos y maximizando su rentabilidad.</p>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-2 text-primary">
+                            <span class="material-symbols-outlined icon-fill">visibility</span>
+                            <h3 class="font-headline-md text-lg font-bold text-on-background">Nuestra Visión</h3>
+                        </div>
+                        <p class="font-body-sm text-sm text-on-surface-variant">Ser el socio tecnológico líder y más confiable de la región, reconocido por la excelencia de nuestra ingeniería y el éxito de nuestros clientes.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flex-1 relative w-full h-[400px] rounded-2xl overflow-hidden shadow-2xl">
+                <div class="absolute inset-0 bg-primary/20 mix-blend-multiply z-10"></div>
+                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Equipo de Marivic Soft trabajando" class="w-full h-full object-cover" />
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="bg-surface-container-low py-16 px-4 md:px-margin-desktop border-y border-outline-variant/30">
+        <div class="max-w-container-max mx-auto">
+            <div class="text-center mb-12 space-y-4">
+                <h2 class="font-headline-md text-2xl md:text-3xl font-bold text-on-background">Nuestros Pilares</h2>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Value 1 -->
+                <div class="bg-surface p-6 rounded-xl border border-outline-variant/50 hover:border-primary transition-colors flex flex-col items-center text-center group">
+                    <div class="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-on-primary transition-colors">
+                        <span class="material-symbols-outlined">lightbulb</span>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">Innovación Constante</h4>
+                    <p class="text-sm text-on-surface-variant">Adoptamos las últimas tecnologías para mantener a nuestros clientes siempre un paso adelante.</p>
+                </div>
+                <!-- Value 2 -->
+                <div class="bg-surface p-6 rounded-xl border border-outline-variant/50 hover:border-primary transition-colors flex flex-col items-center text-center group">
+                    <div class="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-on-primary transition-colors">
+                        <span class="material-symbols-outlined">verified</span>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">Calidad Técnica</h4>
+                    <p class="text-sm text-on-surface-variant">Código limpio, arquitecturas seguras y pruebas rigurosas en cada despliegue.</p>
+                </div>
+                <!-- Value 3 -->
+                <div class="bg-surface p-6 rounded-xl border border-outline-variant/50 hover:border-primary transition-colors flex flex-col items-center text-center group">
+                    <div class="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-on-primary transition-colors">
+                        <span class="material-symbols-outlined">handshake</span>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">Compromiso Total</h4>
+                    <p class="text-sm text-on-surface-variant">Asumimos cada proyecto como propio, garantizando tiempos de entrega y resultados reales.</p>
+                </div>
+                <!-- Value 4 -->
+                <div class="bg-surface p-6 rounded-xl border border-outline-variant/50 hover:border-primary transition-colors flex flex-col items-center text-center group">
+                    <div class="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-on-primary transition-colors">
+                        <span class="material-symbols-outlined">shield</span>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">Transparencia</h4>
+                    <p class="text-sm text-on-surface-variant">Comunicación clara y directa en cada etapa del ciclo de desarrollo.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -309,6 +386,19 @@
         </div>
     </section>
 
+    <!-- Partners / Clients Section -->
+    <section class="bg-surface py-12 px-4 md:px-margin-desktop border-t border-outline-variant/30">
+        <div class="max-w-container-max mx-auto text-center">
+            <h3 class="font-label-sm text-sm font-bold text-on-surface-variant uppercase tracking-widest mb-8">Empresas e Instituciones que confían en nosotros</h3>
+            <div class="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+                <div class="text-xl font-headline-md font-bold text-on-surface-variant">Colegio Kumamoto</div>
+                <div class="text-xl font-headline-md font-bold text-on-surface-variant">TechLogistics S.A.</div>
+                <div class="text-xl font-headline-md font-bold text-on-surface-variant">Broastería Central</div>
+                <div class="text-xl font-headline-md font-bold text-on-surface-variant">Grupo XYZ</div>
+            </div>
+        </div>
+    </section>
+
     <!-- Process Section -->
     <section class="bg-surface-container-highest py-section-gap px-4 md:px-margin-desktop relative overflow-hidden">
         <div class="absolute inset-0 bg-primary/5 pointer-events-none"></div>
@@ -389,6 +479,60 @@
                     </div>
                     <h4 class="font-label-sm text-label-sm font-bold mb-1 group-hover:text-primary transition-colors">Despliegue y Soporte</h4>
                 </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technologies Section -->
+    <section class="py-section-gap px-4 md:px-margin-desktop max-w-container-max mx-auto border-t border-outline-variant/30">
+        <div class="text-center mb-12 space-y-4">
+            <p class="text-primary font-label-sm text-label-sm uppercase tracking-wider">Stack Tecnológico</p>
+            <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background">Tecnologías de Vanguardia</h2>
+            <p class="font-body-md text-on-surface-variant max-w-2xl mx-auto">Utilizamos un stack moderno, seguro y altamente escalable para construir soluciones empresariales de primer nivel.</p>
+        </div>
+        <div class="flex flex-wrap justify-center gap-8 md:gap-12 opacity-80">
+            <!-- Tech Icons -->
+            <div class="flex flex-col items-center gap-2 group">
+                <div class="w-16 h-16 bg-surface-container rounded-2xl flex items-center justify-center group-hover:bg-primary/10 group-hover:-translate-y-2 border border-outline-variant/30 transition-all duration-300">
+                    <span class="font-bold text-xl text-on-surface-variant group-hover:text-primary transition-colors">JS</span>
+                </div>
+                <span class="text-xs font-bold text-on-surface-variant uppercase tracking-wider">JavaScript</span>
+            </div>
+            <div class="flex flex-col items-center gap-2 group">
+                <div class="w-16 h-16 bg-surface-container rounded-2xl flex items-center justify-center group-hover:bg-primary/10 group-hover:-translate-y-2 border border-outline-variant/30 transition-all duration-300">
+                    <span class="font-bold text-xl text-on-surface-variant group-hover:text-primary transition-colors">TS</span>
+                </div>
+                <span class="text-xs font-bold text-on-surface-variant uppercase tracking-wider">TypeScript</span>
+            </div>
+            <div class="flex flex-col items-center gap-2 group">
+                <div class="w-16 h-16 bg-surface-container rounded-2xl flex items-center justify-center group-hover:bg-primary/10 group-hover:-translate-y-2 border border-outline-variant/30 transition-all duration-300">
+                    <span class="font-bold text-xl text-on-surface-variant group-hover:text-primary transition-colors">Re</span>
+                </div>
+                <span class="text-xs font-bold text-on-surface-variant uppercase tracking-wider">React</span>
+            </div>
+            <div class="flex flex-col items-center gap-2 group">
+                <div class="w-16 h-16 bg-surface-container rounded-2xl flex items-center justify-center group-hover:bg-primary/10 group-hover:-translate-y-2 border border-outline-variant/30 transition-all duration-300">
+                    <span class="font-bold text-xl text-on-surface-variant group-hover:text-primary transition-colors">No</span>
+                </div>
+                <span class="text-xs font-bold text-on-surface-variant uppercase tracking-wider">Node.js</span>
+            </div>
+            <div class="flex flex-col items-center gap-2 group">
+                <div class="w-16 h-16 bg-surface-container rounded-2xl flex items-center justify-center group-hover:bg-primary/10 group-hover:-translate-y-2 border border-outline-variant/30 transition-all duration-300">
+                    <span class="font-bold text-xl text-on-surface-variant group-hover:text-primary transition-colors">Py</span>
+                </div>
+                <span class="text-xs font-bold text-on-surface-variant uppercase tracking-wider">Python</span>
+            </div>
+            <div class="flex flex-col items-center gap-2 group">
+                <div class="w-16 h-16 bg-surface-container rounded-2xl flex items-center justify-center group-hover:bg-primary/10 group-hover:-translate-y-2 border border-outline-variant/30 transition-all duration-300">
+                    <span class="font-bold text-xl text-on-surface-variant group-hover:text-primary transition-colors">AWS</span>
+                </div>
+                <span class="text-xs font-bold text-on-surface-variant uppercase tracking-wider">AWS</span>
+            </div>
+            <div class="flex flex-col items-center gap-2 group">
+                <div class="w-16 h-16 bg-surface-container rounded-2xl flex items-center justify-center group-hover:bg-primary/10 group-hover:-translate-y-2 border border-outline-variant/30 transition-all duration-300">
+                    <span class="font-bold text-xl text-on-surface-variant group-hover:text-primary transition-colors">SQL</span>
+                </div>
+                <span class="text-xs font-bold text-on-surface-variant uppercase tracking-wider">Databases</span>
             </div>
         </div>
     </section>
